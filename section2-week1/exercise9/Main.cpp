@@ -14,7 +14,7 @@ int main()
 	cin >> a;
 
 	//identify the character
-	if ((islower(a)) && (a == 'a' || a == 'e' || a == 'i' || a == 'o' || a == 'u'))
+	if ((a == 'a' || a == 'e' || a == 'i' || a == 'o' || a == 'u'))
 		{
 			cout << "This character is a lowercase vowel"<<endl;
 		}
