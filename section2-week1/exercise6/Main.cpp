@@ -10,11 +10,11 @@ int main()
 	cout << "WELCOME PLAYER, choose your character" << endl;
 	cout << "1 - Gardian\n2 - Wizard\n3 - Warrior\n4 - Healer" << endl;
 
-	int cho;
+	int choice;
 
-	cin >> cho;
+	cin >> choice;
 
-	switch (cho) {
+	switch (choice) {
 	case 1:
 		cout << "you have selected Gardian" << endl;
 		cout << "You are going to protect the door";
