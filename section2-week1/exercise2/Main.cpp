@@ -7,9 +7,10 @@ using namespace std;
 
 int main()
 {
-	int number, solve;
+	int number;
 	cout << "do you want to prove my math skills? \n gimme 3 numbers and I say whether the numbers are even or odd " << endl;
-
+	
+	int solve;
 	for (int i=0; i <= 2; i++)
 	{
 		cin >> number;
