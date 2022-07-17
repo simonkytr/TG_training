@@ -10,13 +10,13 @@ using namespace std;
 
 int main()
 {
-	int ans1 = 0;
-	int ans2 = 0;
-	int ans3 = 1;
-	int ans4 = 0;
-	int ans5 = 1;
+	int answer1 = 0;
+	int answer2 = 0;
+	int answer3 = 1;
+	int answer4 = 0;
+	int answer5 = 1;
 
-	int ans;
+	int answer;
 	int score = 0;
 
 
@@ -25,8 +25,8 @@ int main()
 
 	//question 1
 	cout << "\nColombia's capital city is Quito?" << endl;
-	cin >> ans;
-	if (ans1 == ans)
+	cin >> answer;
+	if (answer1 == answer)
 	{
 		cout << "that's correct" << endl;
 		score++;
@@ -37,8 +37,8 @@ int main()
 
 	//question2
 	cout << "\nthere are 40 stars on the EEUU's flag" << endl;
-	cin >> ans;
-	if (ans2 == ans)
+	cin >> answer;
+	if (answer2 == answer)
 	{
 		cout << "that's correct" << endl;
 		score++;
@@ -50,8 +50,8 @@ int main()
 
 	//question3
 	cout << "\nis the cheetah the fastest animal on the earth?" << endl;
-	cin >> ans;
-	if (ans3 == ans)
+	cin >> answer;
+	if (answer3 == answer)
 	{
 		cout << "that's correct" << endl;
 		score++;
@@ -63,8 +63,8 @@ int main()
 
 	//question4
 	cout << "\nthe earth is located in the Andromeda galaxy?" << endl;
-	cin >> ans;
-	if (ans4 == ans)
+	cin >> answer;
+	if (answer4 == answer)
 	{
 		cout << "that's correct" << endl;
 		score++;
@@ -76,8 +76,8 @@ int main()
 
 	//question4
 	cout << "\nwe're in the XXI century?" << endl;
-	cin >> ans;
-	if (ans5 == ans)
+	cin >> answer;
+	if (answer5 == answer)
 	{
 		cout << "that's correct" << endl;
 		score++;
