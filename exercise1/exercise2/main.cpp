@@ -1,6 +1,6 @@
 //Exercise 2 - Data Type Sizes
-Write a program that will output the size of the different data types in c++.
-Hint: You can add an indent in your output by using the \t escape character.
+//Write a program that will output the size of the different data types in c++.
+//Hint: You can add an indent in your output by using the \t escape character.
 
 #include <iostream>
 
