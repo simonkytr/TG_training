@@ -11,11 +11,11 @@ using namespace std;
 
 int main()
 {
-	int value, v1, ans;
+	int value, random, answer;
 	ans = 0;
 
 	srand(time(NULL));
-	v1 = rand() % (1 - 4);
+	random = rand() % (1 - 4);
 
 	cout << "Hey you, let's play Rock, Paper, Scissors!" << endl;
 
@@ -24,7 +24,7 @@ int main()
 
 	cin >> value;
 
-	cout << "\nI have selected the weapon: " << v1 << endl;
+	cout << "\nI have selected the weapon: " << random << endl;
 
 
 	//comparing the weapons
@@ -32,47 +32,47 @@ int main()
 	{
 		case 1:
 			cout << "You have selected Rock" << endl;
-			if (v1 == 1) 
+			if (random == 1) 
 			{
-				ans = 1; ;
+				answer = 1; ;
 			}
-			if (v1 == 2)
+			if (random == 2)
 			{
-				ans = 3;
+				answer = 3;
 			}
-			if (v1 == 3)
+			if (random == 3)
 			{
-				ans = 2;
+				answer = 2;
 			}
 			break;
 		case 2:
 			cout << "You have selected paper" << endl;
-			if (v1 == 1)
+			if (random == 1)
 			{
-				ans = 2;
+				answer = 2;
 			}
-			if (v1 == 2)
+			if (random == 2)
 			{
-				ans = 1;
+				answer = 1;
 			}
-			if (v1 == 3)
+			if (random == 3)
 			{
-				ans = 3;
+				answer = 3;
 			}
 			break;
 		case 3:
 			cout << "You have selected Scissors" << endl;
-			if (v1 == 1)
+			if (random == 1)
 			{
-				ans = 2;
+				answer = 2;
 			}
-			if (v1 == 2)
+			if (random == 2)
 			{
-				ans = 3;
+				answer = 3;
 			}
-			if (v1 == 3)
+			if (random == 3)
 			{
-				ans = 1;
+				answer = 1;
 			}
 			break;
 		default:
@@ -81,7 +81,7 @@ int main()
 	}
 
 	//givin the beredict
-	switch (ans)
+	switch (answer)
 	{
 	case 1:
 		cout << "it's a tie" << endl;
