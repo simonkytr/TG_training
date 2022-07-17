@@ -11,11 +11,11 @@ using namespace std;
 
 int main()
 {
-	int coin, v1;
+	int coin, random;
 
 	/* initialize random seed: */
 	srand(time(NULL));
-	v1 = rand() % (1 - 3);
+	random = rand() % (1 - 3);
 
 	cout << "welcome to flip-a-coin!" << endl;
 	cout << "1 - Tails \n2 - Head" << endl;
@@ -25,12 +25,12 @@ int main()
 	//lanzamiento
 	
 
-	cout << "\nactual result: " <<v1<< endl;
+	cout << "\nactual result: " <<random<< endl;
 	cout << "\nyou guest result: " <<coin<< endl;
 
 	
 
-	if (coin == v1)
+	if (coin == random)
 	{
 		cout << "\nCongratulations, you guessed right!!!";
 	}
