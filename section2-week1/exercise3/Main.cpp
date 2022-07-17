@@ -16,12 +16,13 @@ int main()
 	{
 		cout << "this number is negative " << endl;
 	}
-	if (number > 0)
-	{
-		cout << "this number is positive " << endl;
-	}
 	if (number == 0)
 	{
 		cout << "this number is cero " << endl;
 	}
+	else
+	{
+		cout << "this number is positive " << endl;
+	}
+	
 }
