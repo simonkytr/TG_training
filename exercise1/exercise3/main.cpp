@@ -25,16 +25,16 @@ int main()
 
 
 	Message("signed char", SCHAR_MIN, SCHAR_MAX);
-	Message("unigned char", -UCHAR_MAX / 2, UCHAR_MAX / 2);
+	Message("unigned char", 0, UCHAR_MAX );
 	Message("char", CHAR_MIN, CHAR_MAX);
 	Message("short", SHRT_MIN, SHRT_MAX);
-	Message("Usigned short", -USHRT_MAX / 2, USHRT_MAX / 2);
+	Message("Usigned short", 0, USHRT_MAX );
 	Message("int", INT_MIN, INT_MAX);
-	Message("Usigned Int", UINT_MAX / 2, UINT_MAX / 2);
+	Message("Usigned Int", 0, UINT_MAX );
 	Message("LONG", LONG_MIN, LONG_MAX);
-	Message("Usigned Long", ULONG_MAX / 2, ULONG_MAX / 2);
+	Message("Usigned Long", 0, ULONG_MAX );
 	Message("Long Long", LLONG_MIN, LLONG_MAX);
-	Message("U. Long Log", ULLONG_MAX / 2, ULLONG_MAX / 2);
+	Message("U. Long Log", 0, ULLONG_MAX);
 
 	std::cout << "---------------------------------------------------" << std::endl;
 

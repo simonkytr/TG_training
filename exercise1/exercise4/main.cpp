@@ -8,10 +8,10 @@
 
 int main() {
 
-	int overflow = SHRT_MAX + 1;
-	int underflow = SHRT_MIN - 1;
+	short overflow = SHRT_MAX + 1;
+	short underflow = SHRT_MIN - 1;
 
-	std::cout << "¡¡Esto pasa cuando no cuidas tus datos!!" << std::endl;
+	std::cout << "Â¡Â¡Esto pasa cuando no cuidas tus datos!!" << std::endl;
 
 	std::cout << "---------------------------------------" << std::endl;
 
