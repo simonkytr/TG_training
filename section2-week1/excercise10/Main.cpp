@@ -15,17 +15,13 @@ int main()
 	cin >> a;
 
 	//identify the character
-	if (isupper(a)) {
-		if (a == 'a' || a == 'e' || a == 'i' || a == 'o' || a == 'u')
-		{
-			cout << "This character is not a lowercase vowel" << endl;
-		}
+	if (!(a == 'a' || a == 'e' || a == 'i' || a == 'o' || a == 'u'))
+	{
+		cout << "This character is not a lowercase vowel" << endl;
+	}
+
+	else {
+		cout << "This character is a lowercase vowel" << endl;
 
 	}
-	else {
-		if (a == 'a' || a == 'e' || a == 'i' || a == 'o' || a == 'u')
-		{
-			cout << "This character is a lowercase vowel" << endl;
-		}
-		
-	}
+}
