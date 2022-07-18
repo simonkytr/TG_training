@@ -41,7 +41,7 @@ int main()
 
 
 	int prize = 0;
-	std::cout << "\n\ntus datos fueron: " << std::endl;
+	std::cout << "\n\nyour numbers: " << std::endl;
 	for (int i = 0; i < 5; i++)
 	{
 		std::cout << arrayInput[i] << ", ";
