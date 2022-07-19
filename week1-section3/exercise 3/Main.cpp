@@ -19,10 +19,11 @@ int main() {
 
 		if (i % 10 == 0) {
 			std::cout << i << ", ";
-			multiples = multiples + i;
+			multiples = + i;
+			continue;
 		}
-		sum = sum + i;//sum of the rest of the numbers
+		sum += i;//sum of the rest of the numbers
 	}
-	std::cout << std::endl << "Sum of the rest of numbers: "<< sum-multiples;//difference between the rest of the numbers and the multiples of 10
+	std::cout << std::endl << "Sum of the rest of numbers: "<< sum;//difference between the rest of the numbers and the multiples of 10
 	std::cin.get();
 }

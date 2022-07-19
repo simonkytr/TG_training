@@ -10,12 +10,7 @@ Rewrite the previous lottery but now instead of getting $10 for each number matc
 int main()
 {
 
-
 	std::cout << "Welcome to the lottery!" << std::endl;
-
-	
-
-
 
 	int arrayInput[5];
 	int input;
@@ -25,8 +20,7 @@ int main()
 	{
 
 		std::cout << "Please enter entry a number between (1-20): ";
-		std::cin >> arrayInput[i];
-		
+		std::cin >> arrayInput[i];	
 
 	}
 
@@ -48,9 +42,6 @@ int main()
 
 
 	}
-	
 
-
-	
 	std::cout << "\nYou winnings!!: $" << prize;
 }

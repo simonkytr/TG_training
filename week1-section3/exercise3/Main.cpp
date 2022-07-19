@@ -15,20 +15,20 @@ int main()
 	std::string answer[5] = {"F","T","T","F","T"};
 	
 	//creating inputs
-	std::string answer2;
+	std::string EntryAnswer;
 	int score=0;
 
-	int ansWrong=0;//to validate the wrong typing
+	int IncorrectAnswer=0;//to validate the wrong typing
 
 	for ( int i = 0; i < 5; i++)
 	{
 		std::cout << question[i];//reading the question
-		std::cin >> answer2;//input the answer
+		std::cin >> EntryAnswer;//input the answer
 
-		if ((answer2 == "T") || (answer2 == "F"))
+		if ((EntryAnswer == "T") || (EntryAnswer == "F"))
 		{
 		
-			if (answer2 == answer[i]) {
+			if (EntryAnswer == answer[i]) {
 				std::cout << "That's Correct!" << std::endl;
 				score++;
 			}
@@ -39,18 +39,18 @@ int main()
 		}
 		else {
 			//when the player type wrong
-			while (!(answer2 == "T") || !(answer2 == "F"))
+			while (!(EntryAnswer == "T") || !(EntryAnswer == "F"))
 			{
 				std::cout << "do you remember how to type?" << std::endl;
 
 				//repeat the question until the player type any valid option 
 				std::cout << question[i];//reading the question
-				std::cin >> answer2;//input the answer
+				std::cin >> EntryAnswer;//input the answer
 
-				if ((answer2 == "T") || (answer2 == "F"))
+				if ((EntryAnswer == "T") || (EntryAnswer == "F"))
 				{
 
-					if (answer2 == answer[i]) {
+					if (EntryAnswer == answer[i]) {
 						std::cout << "That's Correct!" << std::endl;
 						score++;
 						break;
@@ -62,13 +62,13 @@ int main()
 
 
 				}
-				if (ansWrong == 2)//skip the question
+				if (IncorrectAnswer == 2)//skip the question
 				{
 					std::cout << "is this a Hard question for you?, don't worry go to the next question" << std::endl;
 						break;
 				}
 
-				ansWrong++;//rise the answrong
+				IncorrectAnswer++;//rise the answrong
 				
 				continue;
 			}

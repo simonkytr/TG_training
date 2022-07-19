@@ -40,7 +40,7 @@ int main()
 
 	//------------------------------------------------------------------------
 
-	char word2[30] = {"D i e g o"};
+	char word2[30] = {'D', 'i', 'e', 'g', 'o'};
 	std::cout << "2.My string initialized with single characters is: " << word2 << std::endl;
 
 	int size2 = 0;

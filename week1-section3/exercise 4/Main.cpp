@@ -9,16 +9,13 @@ This time you can only use one for loop and it should not loop more than 10 time
 
 int main() {
 
-	
-	int multiples;
 	std::cout << "These are the multyples of 100" << std::endl;
 
-	for (int i = 10; i < 100; i=i+10)
+	for (int i = 10; i <= 100; i+=10)
 	{
 		//give the multiples of 10
 
-		multiples = i;
-		std::cout << multiples << ", ";
+		std::cout << i << ", ";
 
 	}
 	

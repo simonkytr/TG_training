@@ -15,25 +15,30 @@ int main(){
 	int  insert, sum=0;
 	int size = 0;
 
-
-
 	for ( int i = 0; i < 10; i++){
-		std::cout << "insert any NUMBER: ";
-		std::cin >> insert;
-		sum = sum + insert;
-		insert = numbers[i];
-		
+
+
 		//Error: interrup the loop
-		
-			if (std::cin.fail() || std::cin.bad()) {
+		if (std::cin.fail() || std::cin.bad()) {
 			std::cin.clear();
 			std::cin.ignore(100, '\n');
 
-			std::cout << "\ntotal number entered: " << 1+i << std::endl;
+			std::cout << "\ntotal number entered: " << size << std::endl;
 			std::cout << "\nTotal sum of numbers entered: " << sum << std::endl;
 
 			return 0;
 		}
+		
+
+		std::cout << "insert any NUMBER: ";
+		std::cin >> insert;
+		numbers[i] = insert;
+		sum  += insert;
+		
+		
+		size++;
+		
+			
 
 	}
 
