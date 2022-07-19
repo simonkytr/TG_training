@@ -19,43 +19,24 @@ int main()
 		yes, no, maybe, perhaps
 	};
 	//inicialize variables
-	answers ans;
-	ans = yes;
+	answers ans = yes;
 
 
-	int v1;
+	int random;
 
 	//selecting the answer
 	srand(time(NULL));
-	v1 = rand() % (1 - 5);
+	random = rand() % (1 - 5);
 
 	char ask[100];
 	cout << "Would you like to know what happens in your future?" << endl;
 	cout << "\n+++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
 	cout << "\nYou can ask to me any question... " << endl;
 	cin >> ask;
-	
 
-	
+	ans = (answers)random;
+	cout << random << endl;
 
-	//giving and answer to the number random
-	switch (v1)
-	{
-	case 1:
-		ans = yes;
-		break;
-	case 2:
-		ans = no;
-		break;
-	case 3:
-		ans = maybe;
-		break;
-	case 4:
-		ans = perhaps;
-		break;
-	default:
-		break;
-	}
 	
 	//guessing the future
 	switch (ans)
@@ -77,3 +58,4 @@ int main()
 	}
 
 }
+
