@@ -11,82 +11,89 @@ using namespace std;
 
 int main()
 {
-	int value, random, answer;
-	ans = 0;
+	int value, random;
 
-	srand(time(NULL));
-	random = rand() % (1 - 4);
 
 	cout << "Hey you, let's play Rock, Paper, Scissors!" << endl;
-
 	cout << "1 - Rock\n2 - Paper\n3 - Scissors" << endl;
 	cout << "choose you weapon: " << endl;
 
+	enum Weapon
+	{
+		Rock, Paper, Scissors
+	};
+	srand(time(NULL));
+	random = rand() % (1 - 4);
+	Weapon weapon = (Weapon)random;
+
 	cin >> value;
 
-	cout << "\nI have selected the weapon: " << random << endl;
 
-
-	//comparing the weapons
-	switch (value) 
+	enum Answers
 	{
-		case 1:
-			cout << "You have selected Rock" << endl;
-			if (random == 1) 
-			{
-				answer = 1; ;
-			}
-			if (random == 2)
-			{
-				answer = 3;
-			}
-			if (random == 3)
-			{
-				answer = 2;
-			}
-			break;
-		case 2:
-			cout << "You have selected paper" << endl;
-			if (random == 1)
-			{
-				answer = 2;
-			}
-			if (random == 2)
-			{
-				answer = 1;
-			}
-			if (random == 3)
-			{
-				answer = 3;
-			}
-			break;
-		case 3:
-			cout << "You have selected Scissors" << endl;
-			if (random == 1)
-			{
-				answer = 2;
-			}
-			if (random == 2)
-			{
-				answer = 3;
-			}
-			if (random == 3)
-			{
-				answer = 1;
-			}
-			break;
-		default:
-			cout << "You do not know how to play this game...";
-
+		tie, YouWin, YouLose
+	};
+	Answers answer = tie;
+	
+	//comparing the weapons
+	switch (weapon)
+	{
+	case Rock:
+		cout << "I have selected Rock" << endl;
+		if (value == 1)
+		{
+			 answer = tie;
+		}
+		if (value == 2)
+		{
+			 answer = YouWin;
+		}
+		if (value == 3)
+		{
+			 answer = YouLose;
+		}
+		break;
+	case Paper:
+		cout << "I have selected Paper" << endl;
+		if (value == 1)
+		{
+			 answer = YouLose;
+		}
+		if (value == 2)
+		{
+			 answer = tie;
+		}
+		if (value == 3)
+		{
+			 answer = YouWin;
+		}
+		break;
+	case Scissors:
+		cout << "I have selected Scissors" << endl;
+		if (value == 1)
+		{
+			 answer = YouWin;
+		}
+		if (value == 2)
+		{
+			 answer = YouLose;
+		}
+		if (value == 3)
+		{
+			 answer = tie;
+		}
+		break;
+	default:
+		break;
 	}
 
-	//givin the beredict
+	//giving the veredict
 	switch (answer)
 	{
-	case 1:
+	case tie:
 		cout << "it's a tie" << endl;
 		break;
-	case 2:
+	case YouLose:
 		cout << "HAHHAHAAH you lose, LOSER" << endl;
 		break;
 	case 3:
@@ -95,9 +102,5 @@ int main()
 	default:
 		break;
 	}
-	
-
-	
-
 
 }
