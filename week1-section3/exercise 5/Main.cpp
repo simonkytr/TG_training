@@ -12,12 +12,10 @@ If the user exceeds the size of your array, tell them about it and then output t
 int main(){
 
 	int numbers[10];
-	int  insert, sum=0;
+	int  sum=0;
 	int size = 0;
 
 	for ( int i = 0; i < 10; i++){
-
-
 		//Error: interrup the loop
 		if (std::cin.fail() || std::cin.bad()) {
 			std::cin.clear();
@@ -31,21 +29,15 @@ int main(){
 		
 
 		std::cout << "insert any NUMBER: ";
+		int insert;
 		std::cin >> insert;
 		numbers[i] = insert;
 		sum  += insert;
-		
-		
 		size++;
-		
-			
 
 	}
 
 
 	std::cout << "\ntotal number entered: " <<  size << std::endl;
 	std::cout << "\nTotal sum of numbers entered: " << sum << std::endl;
-
-	
-
 }
