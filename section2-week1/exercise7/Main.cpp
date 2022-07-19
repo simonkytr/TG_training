@@ -96,7 +96,7 @@ int main()
 	case YouLose:
 		cout << "HAHHAHAAH you lose, LOSER" << endl;
 		break;
-	case 3:
+	case YouWin:
 		cout << "You win... you are awesome" << endl;
 		break;
 	default:
