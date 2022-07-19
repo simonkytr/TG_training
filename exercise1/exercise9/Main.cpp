@@ -6,7 +6,7 @@ using namespace std;
 
 int main() 
 {
-	int item1, item2, item3, price1, price2, price3, op1, op2, op3, suma;
+	int price1, price2, price3; 
 
 	price1 = 50;
 	price2 = 500;
@@ -25,10 +25,13 @@ int main()
 	cout << "How many items 3 do you want?" << endl;
 	cin >> item3;
 
+	int op1, op2, op3;
+	int item1, item2, item3;
 	op1 = item1 * price1;
 	op2 = item2 * price2;
 	op3 = item3 * price3;
-
+	
+	int suma;
 	suma = op1 + op2 + op3;
 
 	cout << "processing...\n\n" << endl;
