@@ -15,40 +15,33 @@ int main()
 {
 
 	int numbers[10];
-	int  sum = 0;
+	int sum = 0;
 	int insert;
 	int size=0;
 
 	
 
-	for (int i = 0; i < 10; i++)
+	while (size<10)
 	{
 
 		std::cout << "insert any NUMBER, (If you want to finish push ENTER): ";
-
-		
-	
-		
-		if (std::cin.fail() || std::cin.bad()) {
-			std::cout << "Try again, no characters!! " << std::endl;;
-			std::cin.clear();
-			std::cin.ignore(1000, '\n');
-			std::cout << "insert any NUMBER, (If you want to finish push ENTER): ";
-			insert = std::cin.peek();
-
-		}
 
 		//finish pushing enter
 		if (std::cin.peek() == '\n')break;
 
 
 		std::cin >> insert;
-		sum = sum + insert;
-		numbers[i] = insert;
-
-		if (std::cin.good())size++;
-
-
+		
+		if (std::cin.fail() || std::cin.bad()) {
+			std::cout << "Try again, no characters!! " << std::endl;;
+			std::cin.clear();
+			
+		}
+		else {
+			sum = sum + insert;
+			numbers[size] = insert;
+			size++;
+		}
 
 		std::cin.ignore(1000, '\n');
 
