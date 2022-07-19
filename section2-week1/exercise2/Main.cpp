@@ -9,14 +9,13 @@ int main()
 {
 	int number;
 	cout << "do you want to prove my math skills? \n gimme 3 numbers and I say whether the numbers are even or odd " << endl;
-	
-	int solve;
-	for (int i=0; i <= 2; i++)
+
+	for (int i = 0; i <= 2; i++)
 	{
 		cin >> number;
-		solve = div(number, 2).rem;
+		
 
-		if (solve == 0)
+		if (number % 2 == 0)
 		{
 			cout << "This number is EVEN!" << endl;
 		}
