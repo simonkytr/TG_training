@@ -1,5 +1,13 @@
 /*
-* Create a printer class. This class should allow you to store a string and then output it in different formats. Ask the user to input a string and then show what your printer can do! Remember to use char arrays instead of strings and avoid the std namespace.
+* Create a printer class. This class should allow you to store a string and then output it in different formats. Ask the user to input a string and then show what your printer can do! Remember to use char arrays instead of strings and avoid the std namespace.Create a printer class. This class should allow you to store a string and then output it in different formats. Ask the user to input a string and then show what your printer can do! Remember to use char arrays instead of strings and avoid the std namespace.
+
+You class should have the following methods:
+Printer();
+Printer(std::string outputString);
+void Print();
+void PrintReversed();
+void PrintSpaced(int spaces);
+void PrintVertically();
 */
 
 #include <iostream>
@@ -14,7 +22,7 @@ public:
 	{
 		WordEntry = " ";
 	};
-	Printer(std::string OutputString) {
+	Printer (std::string OutputString) {
 		WordEntry = OutputString;
 	};
 	void Print() {
@@ -33,7 +41,7 @@ public:
 			size++;
 		}
 
-		char wordReverse[6];
+		char wordReverse [6];
 
 		for (int i = size - 1; i >= 0; i--)
 		{
@@ -41,11 +49,11 @@ public:
 
 		}
 
-		wordReverse[size] = 0;
+		wordReverse [size] = 0;
 		std::cout << "This string reversed is: " << wordReverse << std::endl;
 	};
 
-	void PrintSpaced(int spaces) {
+	void PrintSpaced (int spaces) {
 		std::cout << std::endl;
 		for (int i = 0; i < 6; i++)
 		{
@@ -86,6 +94,6 @@ int main()
 	Printer printer(Word);
 	printer.Print();
 	printer.PrintReversed();
-	printer.PrintSpaced(spaces);
+	printer.PrintSpaced (spaces);
 	printer.PrintVertically();
 }

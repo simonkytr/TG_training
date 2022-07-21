@@ -1,12 +1,27 @@
 /*
-Exercise 2 - Military Clock
 Create a class called MilitaryClock that stores and displays the military time.
+
+Your class should contain the following constructors and methods:
+MilitaryClock();
+MilitaryClock(short hours, short minutes);
+void SetTime(short hours, short minutes);
+void DisplayTime();
+
+Here’s an example of how the class could be used:
+MilitaryClock clock;
+clock.Display();
+clock = MilitaryClock(7,0);
+clock.Display();
+clock.SetTime(12, 15);
+clock.Display();
+
+Don’t forget that military time is displayed as hhmm so add a preceding 0 before hours/minutes if their value is less than 10.
 */
 
 #include <iostream>
 
 
-class MilitaryClock
+class FMilitaryClock
 {
 
 private:
@@ -16,25 +31,25 @@ private:
 
 public:
 
-	MilitaryClock()
+	FMilitaryClock()
 	{
 		hours = 0;
 		minutes = 0;
 	}
 
-	MilitaryClock(short MilitaryHours, short MilitaryMinutes)
+	FMilitaryClock(short MilitaryHours, short MilitaryMinutes)
 	{
 		hours = MilitaryHours;
 		minutes = MilitaryMinutes;
 	}
 
-	void setTime(short MilitaryHours, short MilitaryMinutes)
+	void SetTime(short MilitaryHours, short MilitaryMinutes)
 	{
 		hours = MilitaryHours;
 		minutes = MilitaryMinutes;
 	}
 
-	void displayTime()
+	void DisplayTime()
 	{
 		if (hours < 10)
 		{
@@ -55,11 +70,11 @@ public:
 
 int main()
 {
-	MilitaryClock clock;
-	clock.displayTime();
-	clock = MilitaryClock(7, 0);
-	clock.displayTime();
-	clock.setTime(12, 15);
-	clock.displayTime();
+	FMilitaryClock clock;
+	clock.DisplayTime();
+	clock = FMilitaryClock(7, 0);
+	clock.DisplayTime();
+	clock.SetTime(12, 15);
+	clock.DisplayTime();
 
 }

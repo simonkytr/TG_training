@@ -20,29 +20,29 @@ public:
 	};
 };
 
-void InitializeClass() {
-	FMyFirtsClass firstClass;
-	FMyFirtsClass secondClass;
-	FMyFirtsClass thirdClass;
-	FMyFirtsClass fourthClass;
-	FMyFirtsClass fifthClass;
+void InstantiateClasses() {
+	FMyFirtsClass firstInstance;
+	FMyFirtsClass secondInstance;
+	FMyFirtsClass thirdInstance;
+	FMyFirtsClass fourthInstance;
+	FMyFirtsClass fifthInstance;
 
 }
 
-void InitializeClassLoop() {
-	int numberClass = 0;
-	for (int i = 0; i < 5; i++)
+void InstantiateClassesLoop() {
+	
+	for (int NumberInstance = 0; NumberInstance < 5; NumberInstance++)
 	{
-		numberClass++;
+		NumberInstance++;
 		FMyFirtsClass firstClass;
-		std::cout << "initilized " << numberClass << "th class" << std::endl;
+		std::cout << "initilized " << NumberInstance << "th class" << std::endl;
 	}
 }
 
 int main() 
 {
-	InitializeClass();
+	InstantiateClasses();
 
-	InitializeClassLoop();
+	InstantiateClasses();
 }
 
