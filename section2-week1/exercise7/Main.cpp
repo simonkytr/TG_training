@@ -11,7 +11,6 @@ using namespace std;
 
 int main()
 {
-	int value, random;
 
 
 	cout << "Hey you, let's play Rock, Paper, Scissors!" << endl;
@@ -23,62 +22,62 @@ int main()
 		Rock, Paper, Scissors
 	};
 	srand(time(NULL));
-	random = rand() % (1 - 4);
-	Weapon weapon = (Weapon)random;
+	int WeaponUser, WeaponRandom;
+	WeaponRandom =  rand() % 3;
+	Weapon weapon = (Weapon)WeaponRandom;
+	cin >> WeaponUser;
 
-	cin >> value;
 
-
-	enum Answers
+	enum Answer
 	{
 		tie, YouWin, YouLose
 	};
-	Answers answer = tie;
+	Answer answer = tie;
 	
 	//comparing the weapons
 	switch (weapon)
 	{
 	case Rock:
 		cout << "I have selected Rock" << endl;
-		if (value == 1)
+		if (WeaponUser == 1)
 		{
 			 answer = tie;
 		}
-		if (value == 2)
+		else if (WeaponUser == 2)
 		{
 			 answer = YouWin;
 		}
-		if (value == 3)
+		else
 		{
 			 answer = YouLose;
 		}
 		break;
 	case Paper:
 		cout << "I have selected Paper" << endl;
-		if (value == 1)
+		if (WeaponUser == 1)
 		{
 			 answer = YouLose;
 		}
-		if (value == 2)
+		else if (WeaponUser == 2)
 		{
 			 answer = tie;
 		}
-		if (value == 3)
+		else
 		{
 			 answer = YouWin;
 		}
 		break;
 	case Scissors:
 		cout << "I have selected Scissors" << endl;
-		if (value == 1)
+		if (WeaponUser == 1)
 		{
 			 answer = YouWin;
 		}
-		if (value == 2)
+		else if (WeaponUser == 2)
 		{
 			 answer = YouLose;
 		}
-		if (value == 3)
+		else
 		{
 			 answer = tie;
 		}
