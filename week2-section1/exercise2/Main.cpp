@@ -26,43 +26,43 @@ class FMilitaryClock
 
 private:
 
-	short hours;
-	short minutes;
+	short Hours;
+	short Minutes;
 
 public:
 
 	FMilitaryClock()
 	{
-		hours = 0;
-		minutes = 0;
+		Hours = 0;
+		Minutes = 0;
 	}
 
-	FMilitaryClock(short MilitaryHours, short MilitaryMinutes)
+	FMilitaryClock (short MilitaryHours, short MilitaryMinutes)
 	{
-		hours = MilitaryHours;
-		minutes = MilitaryMinutes;
+		Hours = MilitaryHours;
+		Minutes = MilitaryMinutes;
 	}
 
-	void SetTime(short MilitaryHours, short MilitaryMinutes)
+	void SetTime (short MilitaryHours, short MilitaryMinutes)
 	{
-		hours = MilitaryHours;
-		minutes = MilitaryMinutes;
+		Hours = MilitaryHours;
+		Minutes = MilitaryMinutes;
 	}
 
 	void DisplayTime()
 	{
-		if (hours < 10)
+		if (Hours < 10)
 		{
-			std::cout << "0" << hours;
+			std::cout << "0" << Hours;
 		}
 		
-		if (minutes < 10)
+		if (Minutes < 10)
 		{
-			std::cout << "0" << minutes;
+			std::cout << "0" << Minutes;
 		}
 		else
 		{
-			std::cout << hours << minutes;
+			std::cout << Hours << Minutes;
 		}
 		std::cout << std::endl;
 	}
@@ -70,11 +70,11 @@ public:
 
 int main()
 {
-	FMilitaryClock clock;
-	clock.DisplayTime();
-	clock = FMilitaryClock(7, 0);
-	clock.DisplayTime();
-	clock.SetTime(12, 15);
-	clock.DisplayTime();
+	FMilitaryClock Clock;
+	Clock.DisplayTime();
+	Clock = FMilitaryClock(7, 0);
+	Clock.DisplayTime();
+	Clock.SetTime(12, 15);
+	Clock.DisplayTime();
 
 }

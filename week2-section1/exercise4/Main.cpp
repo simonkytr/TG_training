@@ -13,24 +13,26 @@ void PrintVertically();
 #include <iostream>
 #include<string>
 
-class Printer
+class FPrinter
 {
 private:
 	std::string WordEntry;
 public:
-	 Printer()
+	 FPrinter()
 	{
 		WordEntry = " ";
 	};
-	Printer (std::string OutputString) {
+	FPrinter (std::string OutputString) {
 		WordEntry = OutputString;
 	};
-	void Print() {
+	void Print() const
+	{
 		std::cout << WordEntry << std::endl;
 	};
 
-	void PrintReversed() {
-		int size = 0;
+	void PrintReversed() const
+	{
+		int Size = 0;
 
 		for (int i = 0; i < WordEntry.length(); i++)
 		{
@@ -38,24 +40,24 @@ public:
 			{
 				break;
 			}
-			size++;
+			Size++;
 		}
 		char wordReverse [30];
 
-		for (int i = size - 1; i >= 0; i--)
+		for (int i = Size - 1; i >= 0; i--)
 		{
-			wordReverse[size - 1 - i] = WordEntry[i];
+			wordReverse[Size - 1 - i] = WordEntry[i];
 
 		}
 
-		wordReverse [size] = 0;
+		wordReverse [Size] = 0;
 		std::cout << "This string reversed is: " << wordReverse << std::endl;
 	};
 
-	void PrintSpaced (int spaces) {
+	void PrintSpaced (int spaces) const
+	{
 		std::cout << std::endl;
-		std::cout << "\nInsert spaces between each letter" << std::endl;
-		std::cin >> spaces;
+		
 		for (int i = 0; i < WordEntry.length(); i++)
 		{
 			std::cout << WordEntry[i];
@@ -66,7 +68,7 @@ public:
 		}
 	};
 
-	void PrintVertically()
+	void PrintVertically() const
 	{
 		std::cout << std::endl;
 		for (int i = 0; i < WordEntry.length(); i++)
@@ -82,24 +84,15 @@ int main()
 {
 	std::cout << "Welcome! Please enter a string: ";
 	std::string Word;
-	
 	std::cin >> Word;
-
-	int spaces = 0;
-
-	for (int i = 0; i < 6; i++)
-	{
-		if (Word[i] == '\0')
-		{
-			break;
-		}
-		spaces++;
-	}
-
-	Printer printer(Word);
+	//The printer is Working
+	FPrinter printer(Word);
 	printer.Print();
 	printer.PrintReversed();
-	
+	//the printer is asking about how many spaces between each letter
+	std::cout << "\nInsert spaces between each letter" << std::endl;
+	int spaces;
+	std::cin >> spaces;
 	printer.PrintSpaced (spaces);
 	printer.PrintVertically();
 }

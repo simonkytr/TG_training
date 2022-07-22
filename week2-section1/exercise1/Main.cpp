@@ -21,11 +21,11 @@ public:
 };
 
 void InstantiateClasses() {
-	FMyFirtsClass firstInstance;
-	FMyFirtsClass secondInstance;
-	FMyFirtsClass thirdInstance;
-	FMyFirtsClass fourthInstance;
-	FMyFirtsClass fifthInstance;
+	FMyFirtsClass FirstInstance;
+	FMyFirtsClass SecondInstance;
+	FMyFirtsClass ThirdInstance;
+	FMyFirtsClass FourthInstance;
+	FMyFirtsClass FifthInstance;
 
 }
 
@@ -35,7 +35,7 @@ void InstantiateClassesLoop() {
 	{
 		NumberInstance++;
 		FMyFirtsClass firstClass;
-		std::cout << "initilized " << NumberInstance << "th class" << std::endl;
+		std::cout << "Initantiated " << NumberInstance << "th class" << std::endl;
 	}
 }
 
@@ -43,6 +43,6 @@ int main()
 {
 	InstantiateClasses();
 
-	InstantiateClasses();
+	InstantiateClassesLoop();
 }
 

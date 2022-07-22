@@ -15,18 +15,18 @@ float GetPerimeter()
 #include <cmath>
 #include <iomanip>
 
-class Circle
+class FCircle
 {
 private:
 
 	float radius;
 
 public:
-	Circle()
+	FCircle()
 	{
 		radius = 0.0f;
 	}
-	Circle (float InRadius)
+	FCircle (float InRadius)
 	{
 		radius = InRadius;
 	}
@@ -35,24 +35,24 @@ public:
 		return 2.0f * 3.1416f * radius;
 	}
 
-	float GetArea()
+	float GetArea() const
 	{
 		return 3.1416f * pow(radius, 2);
 	}
 };
 
-class Square
+class FSquare
 {
 private:
 	float height;
 	float lenght;
 public:
-	 Square()
+	 FSquare()
 	{
 		height = 0.0f;
 		lenght = 0.0f;
 	}
-	 Square (float InHeight, float InLenght)
+	 FSquare (float InHeight, float InLenght)
 	{
 		height = InHeight;
 		lenght = InLenght;
@@ -85,7 +85,7 @@ int main()
 		std::cout << "Enter radius for your circle " << std::endl;
 		float Radius;
 		std::cin >> Radius;
-		Circle circle (Radius);
+		FCircle circle (Radius);
 		std::cout << "Circle's area: " << circle.GetArea() << std::endl;
 		std::cout << "Circle's perimeter: " << circle.GetPerimeter() << std::endl;
 	}
@@ -98,7 +98,7 @@ int main()
 		std::cout << "Enter Lenght for the square " << std::endl;
 		float Lenght;
 		std::cin >> Lenght;
-		Square square(Height, Lenght);
+		FSquare square(Height, Lenght);
 		std::cout << "square's perimeter: " << square.GetArea() << std::endl;
 		std::cout << "square's perimeter: " << square.GetPerimeter() << std::endl;
 	}
