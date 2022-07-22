@@ -19,8 +19,7 @@ int main()
 			std::cout << "Try again, no characters!! " << std::endl;;
 			std::cin.clear();
 			std::cin.ignore(1000, '\n');
-			std::cout << "Please enter a number between 1 - 10: ";
-			number = std::cin.peek();
+			
 		}
 		
 		std::cout << "\nPlease enter a number between 1 - 10: ";

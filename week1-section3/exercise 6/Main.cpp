@@ -25,13 +25,9 @@ int main()
 	{
 
 		std::cout << "insert any NUMBER, (If you want to finish push ENTER): ";
-
 		//finish pushing enter
 		if (std::cin.peek() == '\n')break;
-
-
 		std::cin >> insert;
-		
 		if (std::cin.fail() || std::cin.bad()) {
 			std::cout << "Try again, no characters!! " << std::endl;;
 			std::cin.clear();
