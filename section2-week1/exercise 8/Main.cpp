@@ -26,7 +26,7 @@ int main()
 
 	//selecting the answer
 	srand(time(NULL));
-	random = rand() % (1 - 5);
+	random = rand() % 4;
 
 	char ask[100];
 	cout << "Would you like to know what happens in your future?" << endl;
