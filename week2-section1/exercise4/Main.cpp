@@ -32,7 +32,7 @@ public:
 	void PrintReversed() {
 		int size = 0;
 
-		for (int i = 0; i < 30; i++)
+		for (int i = 0; i < WordEntry.length(); i++)
 		{
 			if (WordEntry[i] == '\0')
 			{
@@ -40,8 +40,7 @@ public:
 			}
 			size++;
 		}
-
-		char wordReverse [6];
+		char wordReverse [30];
 
 		for (int i = size - 1; i >= 0; i--)
 		{
@@ -55,16 +54,22 @@ public:
 
 	void PrintSpaced (int spaces) {
 		std::cout << std::endl;
-		for (int i = 0; i < 6; i++)
+		std::cout << "\nInsert spaces between each letter" << std::endl;
+		std::cin >> spaces;
+		for (int i = 0; i < WordEntry.length(); i++)
 		{
-			std::cout << WordEntry[i] << " ";
+			std::cout << WordEntry[i];
+			for (int iteration = 0; iteration < spaces; iteration++)
+			{
+				std::cout << " ";
+			}
 		}
 	};
 
 	void PrintVertically()
 	{
 		std::cout << std::endl;
-		for (int i = 0; i < 6; i++)
+		for (int i = 0; i < WordEntry.length(); i++)
 		{
 			std::cout << WordEntry[i] << std::endl;
 		}
@@ -94,6 +99,7 @@ int main()
 	Printer printer(Word);
 	printer.Print();
 	printer.PrintReversed();
+	
 	printer.PrintSpaced (spaces);
 	printer.PrintVertically();
 }
