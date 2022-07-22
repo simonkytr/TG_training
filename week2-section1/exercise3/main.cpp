@@ -18,52 +18,53 @@ float GetPerimeter()
 class FCircle
 {
 private:
-
-	float radius;
-
+	float Radius;
 public:
 	FCircle()
 	{
-		radius = 0.0f;
+		Radius = 0.0f;
 	}
 	FCircle (float InRadius)
 	{
-		radius = InRadius;
+		Radius = InRadius;
 	}
+//---------------------------------------
 	float GetPerimeter() const
 	{
-		return 2.0f * 3.1416f * radius;
+		return 2.0f * 3.1416f * Radius;
 	}
-
+//--------------------------------------
 	float GetArea() const
 	{
-		return 3.1416f * pow(radius, 2);
+		return 3.1416f * pow(Radius, 2);
 	}
 };
 
 class FSquare
 {
 private:
-	float height;
-	float lenght;
+	float Height;
+	float Lenght;
 public:
 	 FSquare()
 	{
-		height = 0.0f;
-		lenght = 0.0f;
+		Height = 0.0f;
+		Lenght = 0.0f;
 	}
 	 FSquare (float InHeight, float InLenght)
 	{
-		height = InHeight;
-		lenght = InLenght;
+		Height = InHeight;
+		Lenght = InLenght;
 	}
+ //----------------------------------------
 	float GetPerimeter() const
 	{
-		return height + lenght + height + lenght;
+		return Height + Lenght + Height + Lenght;
 	}
+//-------------------------------------------
 	float GetArea() const
 	{
-		return height * lenght;
+		return Height * Lenght;
 	}
 
 };
@@ -72,22 +73,18 @@ int main()
 {
 	std::cout << "Welcome to create - a - shape, what type of shape do you want ?" << std::endl;
 	std::cout << "1 - Circle\n2 - Square" << std::endl;
-	
-	int choice;
-	std::cin >> choice;
-
-	
-	
-	switch (choice)
+	int Choice;
+	std::cin >> Choice;
+	switch (Choice)
 	{
 	case 1:
 	{
 		std::cout << "Enter radius for your circle " << std::endl;
 		float Radius;
 		std::cin >> Radius;
-		FCircle circle (Radius);
-		std::cout << "Circle's area: " << circle.GetArea() << std::endl;
-		std::cout << "Circle's perimeter: " << circle.GetPerimeter() << std::endl;
+		FCircle Circle (Radius);
+		std::cout << "Circle's area: " << Circle.GetArea() << std::endl;
+		std::cout << "Circle's perimeter: " << Circle.GetPerimeter() << std::endl;
 	}
 		break;
 	case 2:
@@ -98,13 +95,11 @@ int main()
 		std::cout << "Enter Lenght for the square " << std::endl;
 		float Lenght;
 		std::cin >> Lenght;
-		FSquare square(Height, Lenght);
-		std::cout << "square's perimeter: " << square.GetArea() << std::endl;
-		std::cout << "square's perimeter: " << square.GetPerimeter() << std::endl;
+		FSquare Square(Height, Lenght);
+		std::cout << "square's perimeter: " << Square.GetArea() << std::endl;
+		std::cout << "square's perimeter: " << Square.GetPerimeter() << std::endl;
 	}
 	break;
-
-
 	default:
 		std::cout << "please entry a valid option!" << std::endl;
 		break;

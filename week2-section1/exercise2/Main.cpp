@@ -42,13 +42,13 @@ public:
 		Hours = MilitaryHours;
 		Minutes = MilitaryMinutes;
 	}
-
+//-----------------------------------------------------------------------
 	void SetTime (short MilitaryHours, short MilitaryMinutes)
 	{
 		Hours = MilitaryHours;
 		Minutes = MilitaryMinutes;
 	}
-
+//-----------------------------------------------------------------------
 	void DisplayTime()
 	{
 		if (Hours < 10)

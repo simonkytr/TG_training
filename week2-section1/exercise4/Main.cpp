@@ -25,11 +25,12 @@ public:
 	FPrinter (std::string OutputString) {
 		WordEntry = OutputString;
 	};
+//-----------------------------------------------------------------------
 	void Print() const
 	{
 		std::cout << WordEntry << std::endl;
 	};
-
+//-----------------------------------------------------------------------
 	void PrintReversed() const
 	{
 		int Size = 0;
@@ -53,7 +54,7 @@ public:
 		wordReverse [Size] = 0;
 		std::cout << "This string reversed is: " << wordReverse << std::endl;
 	};
-
+//-----------------------------------------------------------------------
 	void PrintSpaced (int spaces) const
 	{
 		std::cout << std::endl;
@@ -67,7 +68,7 @@ public:
 			}
 		}
 	};
-
+//-----------------------------------------------------------------------
 	void PrintVertically() const
 	{
 		std::cout << std::endl;

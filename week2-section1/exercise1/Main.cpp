@@ -27,12 +27,10 @@ void InstantiateClasses()
 	FMyFirtsClass ThirdInstance;
 	FMyFirtsClass FourthInstance;
 	FMyFirtsClass FifthInstance;
-
 };
 
 void InstantiateClassesLoop()
 {
-
 	for (int NumberInstance = 0; NumberInstance < 5; NumberInstance++)
 	{
 		NumberInstance++;
