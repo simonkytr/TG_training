@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include "Song.h"
-
+#include <string>
 
 class FPlaylist
 {
@@ -16,5 +16,6 @@ public:
 	bool bAddSong(const FSong InSong);
 	FSong GetSong(const int songIndex) const;
 	bool bPlaylistValid() const;
-	void displayPlaylist();
+	void DisplayPlaylist() const;
+	std::string GetPlaylistTitle() const;
 };

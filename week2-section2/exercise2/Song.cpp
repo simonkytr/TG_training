@@ -30,8 +30,15 @@
 	{
 		int Minutes = Duration / 60;
 		int Seconds = Duration % 60;
+		if (Seconds > 10)
+		{
+			return std::to_string(Minutes) + ":" + std::to_string(Seconds);
+		}
+		else
+		{
+			return std::to_string(Minutes) + ":" +"0" + std::to_string(Seconds);
+		}
 		
-		return std::to_string (Minutes) +":"+ std::to_string(Seconds);
 	};
 
 	bool FSong::bIsValid() const

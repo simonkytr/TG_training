@@ -10,6 +10,6 @@ public:
 	FPlaylistContainer();
 	FPlaylistContainer( const int InPlaylistCount ) ;
 	bool bAddPlaylist(const FPlaylist InPlaylist);
-	FPlaylist GetPlaylist( int InPlaylistCount) const;
+	FPlaylist GetPlaylist( int InPlaylistIndex) const;
 	int GetCurrentPlaylistCount() const;
 };

@@ -131,11 +131,14 @@
     <ClCompile Include="PlayList.cpp" />
     <ClCompile Include="PlaylistContainer.cpp" />
     <ClCompile Include="Song.cpp" />
+    <ClCompile Include="Spotify.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Main.h" />
     <ClInclude Include="PlayList.h" />
     <ClInclude Include="PlaylistContainer.h" />
     <ClInclude Include="Song.h" />
+    <ClInclude Include="Spotify.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

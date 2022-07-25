@@ -5,55 +5,57 @@
 	FPlaylist::FPlaylist()
 	{
 		PlaylistTitle = "";
-		Songs[MaxSongCount];
 		songCount = 0;
 	}
 	FPlaylist::FPlaylist ( const std::string InPlayListTitle, const int InSongCount )
 	{
 		PlaylistTitle = InPlayListTitle;
-		Songs[MaxSongCount];
 		songCount = InSongCount;
 	}
 	 bool FPlaylist::bAddSong (const FSong InSong ) 
 	{
-		 for (int i = 0; i < MaxSongCount; i++)
+		 for (int i = 0; i < songCount; i++)
 		 {
-			 if (InSong.bIsValid())
+			 if (Songs[i].GetArtistName() == "")
 			 {
-				 std::cout << "Song Added!" << i << std::endl;
-				 Songs[i];
+				 std::cout << "Song #" << 1 + i << " Added!" << std::endl;
+				 Songs[i] = InSong;
 				 return true;
-			 }
-			 else {
-				 std::cout << "Invalid Song" << std::endl;
-				 return false;
 			 }
 		 }
 	};
 	bool FPlaylist::bPlaylistValid() const
 	{
-		if (PlaylistTitle != "" && songCount <= 1)
+		if ((PlaylistTitle != "") && (songCount <= 1) && (songCount < MaxSongCount))
 		{
 			return true;
 		}
 		else
 		{
-			std::cout << "Invalid Playlist" << std::endl;
 			return false;
 		}
 	}
 	FSong FPlaylist::GetSong (int SongIndex) const
 	{
-		for (SongIndex = 0; SongIndex < MaxSongCount; SongIndex++)
+		for (int OutSongIndex = 0; OutSongIndex < songCount; OutSongIndex++)
 		{
-			return Songs[SongIndex];
+			if (SongIndex == OutSongIndex) {
+				return Songs[SongIndex];
+			}
 		}
 	};
-	void FPlaylist::displayPlaylist()
+	void FPlaylist::DisplayPlaylist() const
 	{
+		std::cout << "\nPlaylist: " << PlaylistTitle << std::endl;
 		std::cout << "\nSong Title" << "\tArtist Name" << "\tDuration" << std::endl;
-		for (int i = 0; i < MaxSongCount; i++)
+		std::cout << "-----------------------------------------------------------------" << std::endl;
+		for (int i = 0; i < songCount; i++)
 		{
 			std::cout << Songs[i].GetSongTitle() << "\t" << Songs[i].GetArtistName() << "\t" << Songs[i].GetFormatedDuration() << std::endl;
 		}
 	};
+	std::string FPlaylist::GetPlaylistTitle() const
+	{
+		return  PlaylistTitle;
+	};
+	
