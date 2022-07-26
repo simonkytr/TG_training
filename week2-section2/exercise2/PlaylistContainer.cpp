@@ -37,7 +37,7 @@
 		}
 		else
 		{
-			std::cout << "Playlist invalid" << std::endl;
+			std::cout << "Invalid Playlist" << std::endl;
 			return  Playlists[InPlaylistIndex];
 		}
 	};
@@ -51,6 +51,7 @@
 			 {
 				 Count++;
 			 }
+			 std::cout << "playlist " << i + 1 << "- " << Playlists[i].GetPlaylistTitle() << std::endl;
 		 }
 		 std::cout << "\nYou have saved: " << Count << " Playlist(s)" << std::endl;
 		 return Count;
