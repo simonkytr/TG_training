@@ -67,7 +67,15 @@ public:
 		{
 			std::cout << Minutes;
 		}
-		std::cout << std::endl;
+		if ((Hours < 0) || (Minutes < 0))
+		{
+			std::cout << " (Invalid Format!) " << std::endl;
+		}
+		else
+		{
+			std::cout << std::endl;
+		}
+		
 	}
 };
 
@@ -77,7 +85,7 @@ int main()
 	Clock.DisplayTime();
 	Clock = FMilitaryClock(5, -2);
 	Clock.DisplayTime();
-	Clock.SetTime(10, 10);
+	Clock.SetTime(10, 0);
 	Clock.DisplayTime();
 
 }
