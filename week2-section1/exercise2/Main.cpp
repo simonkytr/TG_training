@@ -55,14 +55,17 @@ public:
 		{
 			std::cout << "0" << Hours;
 		}
-		
+		else if (Hours > 10)
+		{
+			std::cout << Hours;
+		}
 		if (Minutes < 10)
 		{
 			std::cout << "0" << Minutes;
 		}
-		else
+		else if (Minutes > 10)
 		{
-			std::cout << Hours << Minutes;
+			std::cout << Minutes;
 		}
 		std::cout << std::endl;
 	}
@@ -72,9 +75,9 @@ int main()
 {
 	FMilitaryClock Clock;
 	Clock.DisplayTime();
-	Clock = FMilitaryClock(7, 0);
+	Clock = FMilitaryClock(6, 0);
 	Clock.DisplayTime();
-	Clock.SetTime(12, 15);
+	Clock.SetTime(5, 15);
 	Clock.DisplayTime();
 
 }

@@ -92,8 +92,8 @@ int main()
 	printer.PrintReversed();
 	//the printer is asking about how many spaces between each letter
 	std::cout << "\nInsert spaces between each letter" << std::endl;
-	int spaces;
-	std::cin >> spaces;
-	printer.PrintSpaced (spaces);
+	int SpacesBetweenLetter;
+	std::cin >> SpacesBetweenLetter;
+	printer.PrintSpaced (SpacesBetweenLetter);
 	printer.PrintVertically();
 }
