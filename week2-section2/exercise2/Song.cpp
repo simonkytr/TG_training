@@ -28,8 +28,8 @@
 	
 	std::string FSong::GetFormatedDuration() const
 	{
-		int Minutes = Duration / 60;
-		int Seconds = Duration % 60;
+		const int Minutes = Duration / 60;
+		const int Seconds = Duration % 60;
 		if (Seconds > 10)
 		{
 			return std::to_string(Minutes) + ":" + std::to_string(Seconds);
@@ -41,13 +41,7 @@
 		
 	};
 
-	bool FSong::bIsValid() const
+	bool FSong::IsValid() const
 	{
-		if (( Duration >= 0 ) && ( ArtistName != "" ) && ( SongTitle != "" ))
-		{
-			return true;
-		}
-		else {
-			return false;
-		}
+			return (Duration > 0) && (ArtistName != "") && (SongTitle != "");
 	};

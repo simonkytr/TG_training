@@ -5,7 +5,6 @@ class FSpotify
 private:
 	//Initialiting the playlist container
 	FPlaylistContainer PlaylistContainer;
-	FPlaylistContainer playlists;
 	void OpenMainMenu();
 	void OpenBrowsePlaylistsMenu();
 	void OpenCreatePlaylistMenu();
@@ -16,10 +15,7 @@ public:
 	{ 
 		MainMenu, CreatePlaylist, BrowsePlaylists, Exit 
 	};
-
 	EMenuCommand ActiveMenuCommand;
-
-	
-	void RunApp();
+	int RunApp();
 };
 

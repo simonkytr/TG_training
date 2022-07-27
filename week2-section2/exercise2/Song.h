@@ -11,5 +11,5 @@ public:
 	std::string GetSongTitle() const;
 	std::string GetFormatedDuration() const;
 	std::string GetArtistName() const;
-	bool bIsValid() const;
+	bool IsValid() const;
 };

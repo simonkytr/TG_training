@@ -9,7 +9,7 @@ private:
 public:
 	FPlaylistContainer();
 	FPlaylistContainer( const int InPlaylistCount ) ;
-	bool bAddPlaylist(const FPlaylist InPlaylist);
+	bool AddPlaylist(const FPlaylist InPlaylist);
 	FPlaylist GetPlaylist( int InPlaylistIndex) const;
 	int GetCurrentPlaylistCount() const;
 };

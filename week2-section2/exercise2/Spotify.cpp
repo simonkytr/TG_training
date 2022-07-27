@@ -5,7 +5,7 @@
 FSpotify::FSpotify()
 {
 	ActiveMenuCommand = EMenuCommand::MainMenu;
-	PlaylistContainer = FPlaylistContainer(3);
+	PlaylistContainer = FPlaylistContainer(0);
 };
 
 //------------------------------------------------------
@@ -33,19 +33,19 @@ void FSpotify::OpenMainMenu()
 //--------------------------------------------------------
 void  FSpotify::OpenCreatePlaylistMenu() 
 {
+	//Creating the playlist
 	std::system("cls");
 	std::cout << "Please enter a name for the playlist: " << std::endl;
 	char TitlePlaylist[500];
 	std::cin.getline(TitlePlaylist, 500,'\n');
 	std::cin >> TitlePlaylist;
-	//Creating the playlist
-	FPlaylist Playlist = FPlaylist(TitlePlaylist, 4);
+	FPlaylist Playlist = FPlaylist(TitlePlaylist, 0);
 	
 	std::cout << "Let's add a song to " << TitlePlaylist << std::endl;
 	//Creating the song loop
 
 	bool bWantToAddASong = true;
-	while (bWantToAddASong = true)
+	while (bWantToAddASong == true)
 	{
 		std::cout << "Please enter the song title: " << std::endl;
 		char TitleSong[500];
@@ -71,15 +71,13 @@ void  FSpotify::OpenCreatePlaylistMenu()
 		FSong Song = FSong(TitleSong, ArtistName, DurationSong);
 		
 		//adding the song in playlist
-		Playlist.bAddSong(Song);
+		Playlist.AddSong(Song);
 
-		//std::system("cls");
-		std::cout << "1 - Enter another song\n2 - Go back to main menu" << std::endl;
-		
 		//menu
+		std::cout << "1 - Enter another song\n2 - Go back to main menu" << std::endl;
 		int MenuSelection;
 		std::cin >> MenuSelection;
-		while (std::cin.fail() || (MenuSelection <= 0) || (MenuSelection >= 3))
+		while (std::cin.fail() || (MenuSelection < 1) || (MenuSelection > 2))
 		{
 			std::system("cls");
 			std::cin.clear();
@@ -91,7 +89,7 @@ void  FSpotify::OpenCreatePlaylistMenu()
 		if (MenuSelection == 2)
 		{
 			//adding the playlist in container
-			PlaylistContainer.bAddPlaylist(Playlist);
+			PlaylistContainer.AddPlaylist(Playlist);
 			bWantToAddASong = false;
 			FSpotify::OpenMainMenu();
 		}
@@ -137,7 +135,7 @@ void FSpotify::OpenBrowsePlaylistsMenu()
 	std::cout << "1 - Pick another playlist\n2 - Go back to main menu" << std::endl;
 	int MenuSelection;
 	std::cin >> MenuSelection;
-	while (std::cin.fail() || (MenuSelection <= 0) || (MenuSelection >= 3))
+	while (std::cin.fail() || (MenuSelection < 1) || (MenuSelection > 2))
 	{
 		std::system("cls");
 		std::cin.clear();
@@ -159,7 +157,7 @@ void FSpotify::OpenBrowsePlaylistsMenu()
 };
 
 //-----------------------------------------------------------------------
-void FSpotify::RunApp() 
+int FSpotify::RunApp() 
 {
 	while (ActiveMenuCommand != FSpotify::EMenuCommand::Exit)
 	{
@@ -178,7 +176,6 @@ void FSpotify::RunApp()
 	}
 	if (ActiveMenuCommand == FSpotify::EMenuCommand::Exit)
 	{
-		exit;
+		return 0;
 	}
-	
 };

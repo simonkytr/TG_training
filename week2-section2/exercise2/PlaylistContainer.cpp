@@ -1,6 +1,5 @@
 #include <iostream>
 #include "PlaylistContainer.h"
-#include "PlayList.h"
 
 	FPlaylistContainer::FPlaylistContainer()
 	{
@@ -14,16 +13,18 @@
 		PlaylistCount = InPlaylistCount;
 	};
 
-	bool FPlaylistContainer::bAddPlaylist (const FPlaylist InPlaylist) 
+	bool FPlaylistContainer::AddPlaylist (const FPlaylist InPlaylist) 
 	{
-		for (int i = 0; i < PlaylistCount; i++)
+		if (PlaylistCount < MaxPlaylistCount)
 		{
-			if (Playlists[i].GetPlaylistTitle() == "")
-			{
-				std::cout << "PlayList Added! " << i << std::endl;
-				Playlists[i] = InPlaylist;
-				return true;
-			}
+			Playlists[PlaylistCount] = InPlaylist;
+			PlaylistCount++;
+			return true;
+		}
+		else
+		{
+			std::cout << "The playlist can't be created, The memory is full" << std::endl;
+			return false;
 		}
 	};
 
@@ -45,7 +46,7 @@
 	 int FPlaylistContainer::GetCurrentPlaylistCount() const
 	{
 		 int Count = 0;
-		 for (int i = 0; i < PlaylistCount; i++)
+		 for (int i = 0; i < MaxPlaylistCount; i++)
 		 { 
 			 if (Playlists[i].GetPlaylistTitle() != "")
 			 {
