@@ -9,7 +9,7 @@
 		Duration = 0;
 	}
 
-	FSong::FSong (const std::string InSongTitle, const std::string InArtistName, const int InDuration)
+	FSong::FSong(const std::string InSongTitle, const std::string InArtistName, const int InDuration)
 	{
 		SongTitle = InSongTitle;
 		ArtistName = InArtistName;

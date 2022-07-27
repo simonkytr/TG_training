@@ -5,7 +5,7 @@
 FSpotify::FSpotify()
 {
 	ActiveMenuCommand = EMenuCommand::MainMenu;
-	PlaylistContainer = FPlaylistContainer(0);
+	PlaylistContainer = FPlaylistContainer();
 };
 
 //------------------------------------------------------
@@ -13,21 +13,20 @@ void FSpotify::OpenMainMenu()
 {
 	std::system("cls");
 	std::cout << "Welcome to Spotify! What would you like to do?\n1 - Create a Playlist\n2 - Browse Playlists\n3 - Exit" << std::endl;
-	int InputConverter;
-	std::cin >> InputConverter;
-	while (std::cin.fail() || (InputConverter <= 0) || (InputConverter >= 4))
+	int UserInput;
+	std::cin >> UserInput;
+	while (std::cin.fail() || (UserInput <= 0) || (UserInput >= 4))
 	{
 			std::system("cls");
 			std::cin.clear();
 			std::cin.ignore(100, '\n');
 			std::cout << "Invalid Option, Insert a valid option" << std::endl;
 			std::cout << "Welcome to Spotify! What would you like to do?\n1 - Create a Playlist\n2 - Browse Playlists\n3 - Exit" << std::endl;
-			std::cin >> InputConverter;
+			std::cin >> UserInput;
 	}
 
-	ActiveMenuCommand = (EMenuCommand)InputConverter;
+	ActiveMenuCommand = (EMenuCommand)UserInput;
 	std::system("cls");
-	FSpotify::RunApp();
 };
 
 //--------------------------------------------------------
@@ -39,13 +38,13 @@ void  FSpotify::OpenCreatePlaylistMenu()
 	char TitlePlaylist[500];
 	std::cin.getline(TitlePlaylist, 500,'\n');
 	std::cin >> TitlePlaylist;
-	FPlaylist Playlist = FPlaylist(TitlePlaylist, 0);
+	FPlaylist Playlist = FPlaylist(TitlePlaylist);
 	
 	std::cout << "Let's add a song to " << TitlePlaylist << std::endl;
 	//Creating the song loop
 
 	bool bWantToAddASong = true;
-	while (bWantToAddASong == true)
+	while (bWantToAddASong)
 	{
 		std::cout << "Please enter the song title: " << std::endl;
 		char TitleSong[500];
@@ -86,16 +85,17 @@ void  FSpotify::OpenCreatePlaylistMenu()
 			std::cout << "1 - Enter another song\n2 - Go back to main menu" << std::endl;
 			std::cin >> MenuSelection;
 		}
-		if (MenuSelection == 2)
+		
+		if (MenuSelection == 1) {
+			std::system("cls");
+			bWantToAddASong = true;
+		}
+		else
 		{
 			//adding the playlist in container
 			PlaylistContainer.AddPlaylist(Playlist);
 			bWantToAddASong = false;
-			FSpotify::OpenMainMenu();
-		}
-		else if (MenuSelection == 1) {
-			std::system("cls");
-			bWantToAddASong = true;
+			ActiveMenuCommand = EMenuCommand::MainMenu;
 		}
 	}
 };
@@ -104,15 +104,16 @@ void  FSpotify::OpenCreatePlaylistMenu()
 void FSpotify::OpenBrowsePlaylistsMenu() 
 {
 	std::system("cls");
+	std::cout << "You have saved " << PlaylistContainer.GetCurrentPlaylistCount() << " playlists" << std::endl;
 	std::cout << "Here are your playlist(s):" << std::endl;
-	
+
 	//Looking the playlists saved
-	PlaylistContainer.GetCurrentPlaylistCount();
+	PlaylistContainer.PrintPlaylistTitle();
 	std::cout << "\nWhich playlist do you want to see: " << std::endl;
 
 	//choosing the playlist
-	int InputConverter;
-	std::cin >> InputConverter;
+	int UserInput;
+	std::cin >> UserInput;
 	while (std::cin.fail())
 	{
 		std::cin.clear();
@@ -120,16 +121,17 @@ void FSpotify::OpenBrowsePlaylistsMenu()
 		std::cout << "Invalid Option " << std::endl;
 
 		std::system("cls");
+		std::cout << "You have saved " << PlaylistContainer.GetCurrentPlaylistCount() << " playlists" << std::endl;
 		std::cout << "Here are your playlist(s):" << std::endl;
 
 		//Looking the playlists saved
-		PlaylistContainer.GetCurrentPlaylistCount();
+		
+		PlaylistContainer.PrintPlaylistTitle();
 		std::cout << "\nWhich playlist do you want to see: " << std::endl;
-
-		std::cin >> InputConverter;
+		std::cin >> UserInput;
 	}
 	std::system("cls");
-	PlaylistContainer.GetPlaylist(InputConverter - 1);
+	PlaylistContainer.GetPlaylist(UserInput - 1);
 
 	//Menu
 	std::cout << "1 - Pick another playlist\n2 - Go back to main menu" << std::endl;
@@ -147,35 +149,31 @@ void FSpotify::OpenBrowsePlaylistsMenu()
 	if (MenuSelection == 1)
 	{
 		std::system("cls");
-		FSpotify::OpenBrowsePlaylistsMenu();
+		ActiveMenuCommand = EMenuCommand::BrowsePlaylists;
 	}
 	else
 	{
 		std::system("cls");
-		FSpotify::OpenMainMenu();
+		ActiveMenuCommand = EMenuCommand::MainMenu;
 	}
 };
 
 //-----------------------------------------------------------------------
-int FSpotify::RunApp() 
+void FSpotify::RunApp() 
 {
-	while (ActiveMenuCommand != FSpotify::EMenuCommand::Exit)
+	while (ActiveMenuCommand != EMenuCommand::Exit)
 	{
-		if (ActiveMenuCommand == FSpotify::EMenuCommand::MainMenu)
+		if (ActiveMenuCommand == EMenuCommand::MainMenu)
 		{
-			FSpotify::OpenMainMenu();
+			OpenMainMenu();
 		}
-		else if (ActiveMenuCommand == FSpotify::EMenuCommand::CreatePlaylist)
+		else if (ActiveMenuCommand == EMenuCommand::CreatePlaylist)
 		{
 			FSpotify::OpenCreatePlaylistMenu();
 		}
-		else if (ActiveMenuCommand == FSpotify::EMenuCommand::BrowsePlaylists)
+		else if (ActiveMenuCommand == EMenuCommand::BrowsePlaylists)
 		{
-			FSpotify::OpenBrowsePlaylistsMenu();
+			OpenBrowsePlaylistsMenu();
 		}
-	}
-	if (ActiveMenuCommand == FSpotify::EMenuCommand::Exit)
-	{
-		return 0;
 	}
 };

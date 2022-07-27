@@ -8,14 +8,13 @@ private:
 	void OpenMainMenu();
 	void OpenBrowsePlaylistsMenu();
 	void OpenCreatePlaylistMenu();
-
-public:
-	FSpotify();
-	enum class EMenuCommand 
-	{ 
-		MainMenu, CreatePlaylist, BrowsePlaylists, Exit 
+	enum class EMenuCommand
+	{
+		MainMenu, CreatePlaylist, BrowsePlaylists, Exit
 	};
 	EMenuCommand ActiveMenuCommand;
-	int RunApp();
+public:
+	FSpotify();
+	void RunApp();
 };
 

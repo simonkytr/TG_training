@@ -12,10 +12,10 @@ private:
 	int SongCount;
 public:
 	FPlaylist();
-	FPlaylist(const std::string InPlayListTitle, const int InSongCount);
+	FPlaylist(const std::string InPlayListTitle);
 	bool AddSong(const FSong InSong);
 	FSong GetSong(const int songIndex) const;
-	bool PlaylistValid() const;
+	bool IsPlaylistValid() const;
 	void DisplayPlaylist() const;
 	std::string GetPlaylistTitle() const;
 };
