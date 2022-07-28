@@ -15,7 +15,7 @@
 	}
 
 	//------------------------------------------------------------
-	bool FPlaylist::AddSong(const FSong InSong ) 
+	bool FPlaylist::AddSong(const FSong InSong) 
 	{
 		 if (SongCount < MaxSongCount)
 		 {

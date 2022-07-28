@@ -35,9 +35,9 @@ void  FSpotify::OpenCreatePlaylistMenu()
 	//Creating the playlist
 	std::system("cls");
 	std::cout << "Please enter a name for the playlist: " << std::endl;
-	char TitlePlaylist[500];
-	std::cin.getline(TitlePlaylist, 500,'\n');
-	std::cin >> TitlePlaylist;
+	std::string TitlePlaylist;
+	std::cin.ignore(500, '\n');
+	std::getline(std::cin, TitlePlaylist);
 	FPlaylist Playlist = FPlaylist(TitlePlaylist);
 	
 	std::cout << "Let's add a song to " << TitlePlaylist << std::endl;
@@ -47,14 +47,12 @@ void  FSpotify::OpenCreatePlaylistMenu()
 	while (bWantToAddASong)
 	{
 		std::cout << "Please enter the song title: " << std::endl;
-		char TitleSong[500];
-		std::cin.getline(TitleSong, 500, '\n');
-		std::cin >> TitleSong;
+		std::string TitleSong;
+		std::getline(std::cin, TitleSong);
 
 		std::cout << "Please enter the artist name: " << std::endl;
-		char ArtistName[500];
-		std::cin.getline(ArtistName, 500, '\n');
-		std::cin >> ArtistName;
+		std::string ArtistName;
+		std::getline(std::cin, ArtistName);
 
 		std::cout << "Please enter the duration (in seconds) of the song: " << std::endl;
 		int DurationSong;

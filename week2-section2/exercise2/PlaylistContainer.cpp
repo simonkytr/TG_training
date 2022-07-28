@@ -27,7 +27,7 @@
 	FPlaylist FPlaylistContainer::GetPlaylist(int InPlaylistIndex) const
 	{
 		std::cout << "\nResults: " << std::endl;
-		if (Playlists[InPlaylistIndex].IsPlaylistValid()  == true)
+		if (Playlists[InPlaylistIndex].IsPlaylistValid())
 		{
 			Playlists[InPlaylistIndex].DisplayPlaylist();
 			return Playlists[InPlaylistIndex];
