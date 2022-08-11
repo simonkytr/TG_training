@@ -11,7 +11,7 @@ FGame::FGame()
 };
 
 //-----------------------------------------------------
-FGame::FGame(std::string InNameGame, std::string InStudioGame, int InDay, int InMonth, int InYear)
+FGame::FGame(const std::string InNameGame, const std::string InStudioGame, const int InDay, const int InMonth, const int InYear)
 {
 	NameGame = InNameGame;
 	StudioGame = InStudioGame;

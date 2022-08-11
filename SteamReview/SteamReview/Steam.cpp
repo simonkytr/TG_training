@@ -244,7 +244,7 @@ void FSteam::InputValidate(int InputToValid)
 };
 
 //---------------------------------------------------------------
-void FSteam::InputValidate(int InputToValid, int IntLowValueToValid, int IntHighValueToValid)
+void FSteam::InputValidate(int InputToValid, const int IntLowValueToValid, const int IntHighValueToValid)
 {
 	while (std::cin.fail() || (InputToValid < IntLowValueToValid) || (InputToValid > IntHighValueToValid))
 	{

@@ -10,10 +10,10 @@ private:
 	int CategoryCount;
 public:
 	FCategoryContainer();
-	bool AddCategory(FCategory InCategory);
-	bool DeleteCategory(int InCategoryIndex);
-	FCategory GetCategory(int InCategoryIndex) const;
-	bool AddGameToCategory(int IndexCategory, FGame InGame);
+	bool AddCategory(const FCategory InCategory);
+	bool DeleteCategory(const int InCategoryIndex);
+	FCategory GetCategory(const int InCategoryIndex) const;
+	bool AddGameToCategory(const int IndexCategory, const FGame InGame);
 	void PrintCategory() const;
 	int GetCurrentCategory() const;
 };

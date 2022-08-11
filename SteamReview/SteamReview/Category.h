@@ -13,7 +13,7 @@ private:
 
 public:
 	FCategory();
-	FCategory(std::string InCategoryName);
+	FCategory(const std::string InCategoryName);
 	std::string GetCategoryName() const;
 	bool AddGame(const FGame InGame);
 	FGame GetGame(const int GameIndex) const;

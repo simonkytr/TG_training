@@ -17,7 +17,7 @@ private:
 	void OpenCategoryManager();
 	void OpenDisplayGames();
 	void InputValidate(int InputToValid);
-	void InputValidate(int InputToValid, int IntLowValueToValid, int IntHighValueToValid);
+	void InputValidate(int InputToValid, const int IntLowValueToValid, const int IntHighValueToValid);
 
 public:
 	FSteam();
