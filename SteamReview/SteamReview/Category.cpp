@@ -8,7 +8,7 @@ FCategory::FCategory()
 };
 
 //-------------------------------------------------
-FCategory::FCategory(std::string InCategoryName)
+FCategory::FCategory(const std::string InCategoryName)
 {
 	GameCount = 0;
 	CategoryName = InCategoryName;
