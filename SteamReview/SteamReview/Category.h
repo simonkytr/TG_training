@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include "Game.h"
 class FCategory
 {
@@ -17,7 +16,7 @@ public:
 	std::string GetCategoryName() const;
 	bool AddGame(const FGame InGame);
 	FGame GetGame(const int GameIndex) const;
-	bool IsCategoryFull() const;
-	bool IsCategoryValid() const;
+	bool IsFull() const;
+	bool IsValid() const;
 	void DisplayCategory() const;
 };

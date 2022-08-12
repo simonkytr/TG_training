@@ -21,7 +21,7 @@ bool FCategoryContainer::AddCategory(const FCategory InCategory)
 //---------------------------------------------------------
 bool FCategoryContainer::DeleteCategory(const int InCategoryIndex)
 {
-	if ((InCategoryIndex >= 0))
+	if (InCategoryIndex >= 0)
 	{
 		for (int i = InCategoryIndex; i < CategoryCount && i < MaxCategoryCount - 1; i++)
 		{
@@ -47,7 +47,7 @@ bool FCategoryContainer::AddGameToCategory(const int IndexCategory, const FGame 
 
 
 //----------------------------------------------------------
-void FCategoryContainer::PrintCategory() const
+void FCategoryContainer::PrintCategories() const
 {
 	std::cout << "These are the Categories that you have been created..." << std::endl;
 	std::cout << "-------------------------------------------------------" << std::endl;
@@ -58,7 +58,13 @@ void FCategoryContainer::PrintCategory() const
 };
 
 //-----------------------------------------------------------
-int FCategoryContainer::GetCurrentCategory() const
+int FCategoryContainer::GetCurrentCategoryAmount() const
 {
 	return CategoryCount;
-}
+};
+
+//-----------------------------------------------------------
+bool FCategoryContainer::IsEmpy()
+{
+	return CategoryCount <= 0;
+};

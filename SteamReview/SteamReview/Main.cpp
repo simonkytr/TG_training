@@ -1,6 +1,6 @@
 #include "Steam.h"
 
-void main()
+int main()
 {
 	FSteam Steam = FSteam();
 	Steam.AppRun();

@@ -16,8 +16,13 @@ private:
 	void OpenAddGame();
 	void OpenCategoryManager();
 	void OpenDisplayGames();
-	void InputValidate(int InputToValid);
-	void InputValidate(int InputToValid, const int IntLowValueToValid, const int IntHighValueToValid);
+
+	int InputValidate(int InputToValid, const int IntLowValueToValid, const int IntHighValueToValid);
+
+	FGame AddANewGame();
+	bool AddNewGameToCategory(const FGame InGame, const int UserInput);
+	bool AddNewCategory();
+	bool DeleteACategory();
 
 public:
 	FSteam();

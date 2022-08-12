@@ -14,6 +14,7 @@ public:
 	bool DeleteCategory(const int InCategoryIndex);
 	FCategory GetCategory(const int InCategoryIndex) const;
 	bool AddGameToCategory(const int IndexCategory, const FGame InGame);
-	void PrintCategory() const;
-	int GetCurrentCategory() const;
+	void PrintCategories() const;
+	int GetCurrentCategoryAmount() const;
+	bool IsEmpy();
 };
