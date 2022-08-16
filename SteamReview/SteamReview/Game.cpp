@@ -3,18 +3,16 @@
 #include "Game.h"
 FGame::FGame()
 {
-	NameGame = "";
-	StudioGame = "";
 	Day = 0;
 	Month = 0;
 	Year = 0;
 };
 
 //-----------------------------------------------------
-FGame::FGame(const std::string InNameGame, const std::string InStudioGame, const int InDay, const int InMonth, const int InYear)
+FGame::FGame(const std::string InNameGame, const std::string InGameStudio, const int InDay, const int InMonth, const int InYear)
 {
 	NameGame = InNameGame;
-	StudioGame = InStudioGame;
+	GameStudio = InGameStudio;
 	Day = InDay;
 	Month = InMonth;
 	Year = InYear;
@@ -28,7 +26,7 @@ std::string FGame::GetGameName() const
 //-----------------------------------------------------
 std::string FGame::GetGameStudio() const
 {
-	return StudioGame;
+	return GameStudio;
 };
 
 //-----------------------------------------------------
@@ -40,5 +38,5 @@ std::string FGame::GetGameDateFormat() const
 //-----------------------------------------------------
 bool FGame::IsValid() const
 {
-	return (NameGame != "") && (StudioGame != "") && (Day <= 0) && (Month <= 0) && (Year <= 0);
+	return NameGame.empty() && GameStudio.empty() && Day <= 0 && Month <= 0 && Year <= 0;
 };

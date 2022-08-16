@@ -12,17 +12,20 @@ private:
 		MainMenu, AddGame, CategoryManager, DisplayGames, Exit
 	};
 	EMenuCommand ActiveMenuCommand;
+
 	void OpenMainMenu();
 	void OpenAddGame();
 	void OpenCategoryManager();
 	void OpenDisplayGames();
 
-	int InputValidate(int InputToValid, const int IntLowValueToValid, const int IntHighValueToValid);
+	int ValidateInput(int InputValue, const int LowBoundValue, const int HighBoundValue);
 
-	FGame AddANewGame();
-	bool AddNewGameToCategory(const FGame InGame, const int UserInput);
+	FGame AddNewGame();
+	bool AddNewGameToCategory(const FGame InGame);
 	bool AddNewCategory();
 	bool DeleteACategory();
+
+	void ComeBackMainManu();
 
 public:
 	FSteam();

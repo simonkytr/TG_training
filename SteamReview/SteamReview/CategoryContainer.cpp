@@ -21,9 +21,9 @@ bool FCategoryContainer::AddCategory(const FCategory InCategory)
 //---------------------------------------------------------
 bool FCategoryContainer::DeleteCategory(const int InCategoryIndex)
 {
-	if (InCategoryIndex >= 0)
+	if (InCategoryIndex >= 0 && InCategoryIndex < CategoryCount)
 	{
-		for (int i = InCategoryIndex; i < CategoryCount && i < MaxCategoryCount - 1; i++)
+		for (int i = InCategoryIndex; i < CategoryCount - 1; i++)
 		{
 			Categories[i] = Categories[i + 1];
 			CategoryCount--;
@@ -42,7 +42,11 @@ FCategory FCategoryContainer::GetCategory(const int InCategoryIndex) const
 //----------------------------------------------------------
 bool FCategoryContainer::AddGameToCategory(const int IndexCategory, const FGame InGame)
 {
-	return Categories[IndexCategory].AddGame(InGame);
+	if (IndexCategory < CategoryCount && IndexCategory >= 0)
+	{
+		return Categories[IndexCategory].AddGame(InGame);
+	}
+	return false;
 };
 
 
@@ -64,7 +68,7 @@ int FCategoryContainer::GetCurrentCategoryAmount() const
 };
 
 //-----------------------------------------------------------
-bool FCategoryContainer::IsEmpy()
+bool FCategoryContainer::IsEmpy() const
 {
 	return CategoryCount <= 0;
 };

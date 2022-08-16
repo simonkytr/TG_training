@@ -40,13 +40,18 @@ bool FCategory::AddGame(const FGame InGame)
 //-------------------------------------------------
 FGame FCategory::GetGame(const int GameIndex) const
 {
-	return Games[GameIndex];
+	if (GameIndex < GameCount)
+	{
+		return Games[GameIndex];
+	}
+	FGame VoidGame;
+	return VoidGame;
 };
 
 //-------------------------------------------------
 bool FCategory::IsValid() const
 {
-	return CategoryName != "";
+	return !CategoryName.empty();
 };
 
 //-------------------------------------------------

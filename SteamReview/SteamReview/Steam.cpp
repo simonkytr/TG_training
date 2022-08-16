@@ -21,7 +21,7 @@ void FSteam::OpenMainMenu()
 
 	int UserInput;
 	std::cin >> UserInput;
-	InputValidate(UserInput, 1, 4);
+	UserInput = ValidateInput(UserInput, 1, 4);
 
 	switch (UserInput)
 	{
@@ -46,28 +46,14 @@ void FSteam::OpenMainMenu()
 void FSteam::OpenAddGame()
 {
 	//adding a new game
-	FGame Game = AddANewGame();
+	FGame Game = AddNewGame();
 
-	//Menu to select if you want to add the game to a existing category or not
-	std::system("cls");
-	std::cout << "Would you like to add a game to an existing category?" << std::endl;
-	std::cout << "1 - Yes, please" << std::endl;
-	std::cout << "2 - No, Thanks" << std::endl;
-	std::cout << "Please choose an option to follow" << std::endl;
-	int UserInput;
-	std::cin >> UserInput;
+	// adding the new game into the category
+	AddNewGameToCategory(Game);
+
+	//Come bacck to main menu
+	ComeBackMainManu();
 	
-	// adding the new game tocategoriy
-	AddNewGameToCategory(Game, UserInput);
-
-	//back to MainMenu
-	std::cin.ignore(500, '\n');
-	std::cout << "------------------------------------------\n" << std::endl;
-	std::cout << "Press enter to come back to Main menu" << std::endl;
-	if (std::cin.peek() == '\n')
-	{
-		ActiveMenuCommand = EMenuCommand::MainMenu;
-	}
 };
 
 //------------------------------------------------------
@@ -84,7 +70,7 @@ void FSteam::OpenCategoryManager()
 
 	int UserInput;
 	std::cin >> UserInput;
-	InputValidate(UserInput, 0, 4);
+	UserInput = ValidateInput(UserInput, 1, 3);
 
 	if (UserInput == 1)
 	{
@@ -96,13 +82,8 @@ void FSteam::OpenCategoryManager()
 		{
 			std::cout << "something is wrong, the category wasn't be created..." << std::endl;
 		}
-
-		//back to MainMenu
-		std::cout << "Press enter to come back to Main menu" << std::endl;
-		if (std::cin.peek() == '\n')
-		{
-			ActiveMenuCommand = EMenuCommand::MainMenu;
-		}
+		//back to main menu
+		ComeBackMainManu();
 	}
 	else if (UserInput == 2)
 	{
@@ -113,16 +94,11 @@ void FSteam::OpenCategoryManager()
 		}
 		else
 		{
-			std::cout << "something is wrong, the category wasn't be deleted..." << std::endl;
+			std::cout << "something is wrong, try again later" << std::endl;
 		}
 
-		//back to MainMenu
-		std::cin.ignore(500, '\n');
-		std::cout << "...Press enter to come back to Main menu..." << std::endl;
-		if (std::cin.peek() == '\n')
-		{
-			ActiveMenuCommand = EMenuCommand::MainMenu;
-		}
+		//back to main menu
+		ComeBackMainManu();
 	}
 	else
 	{
@@ -140,15 +116,10 @@ void FSteam::OpenDisplayGames()
 		std::cout << "----------------------------------------------------------------" << std::endl;
 		CategoryContainer.GetCategory(i).DisplayCategory();
 	}
-
 	std::cout << "----------------------------------------------------------------" << std::endl;
+	
 	//back to MainMenu
-	std::cin.ignore(500, '\n');
-	std::cout << "Press enter to come back to Main menu" << std::endl;
-	if (std::cin.peek() == '\n')
-	{
-		ActiveMenuCommand = EMenuCommand::MainMenu;
-	}
+	ComeBackMainManu();
 };
 
 //------------------------------------------------------
@@ -177,9 +148,10 @@ void FSteam::AppRun()
 }
 
 //---------------------------------------------------------------
-int FSteam::InputValidate(int InputValue, const int IntLowValueToValid, const int IntHighValueToValid)
+int FSteam::ValidateInput(int InputValue, const int LowBoundValue, const int HighBoundValue)
 {
-	while (std::cin.fail() || (InputValue < IntLowValueToValid) || (InputValue > IntHighValueToValid))
+
+	while (std::cin.fail() || (InputValue < LowBoundValue) || (InputValue > HighBoundValue))
 	{
 		std::cin.clear();
 		std::cin.ignore(100, '\n');
@@ -190,7 +162,7 @@ int FSteam::InputValidate(int InputValue, const int IntLowValueToValid, const in
 };
 
 //--------------------------------------------------------------
-FGame FSteam::AddANewGame()
+FGame FSteam::AddNewGame()
 {
 	std::system("cls");
 	std::cout << "Let's add a new game!" << std::endl;
@@ -213,51 +185,74 @@ FGame FSteam::AddANewGame()
 	std::cout << "Please enter Day ";
 	int InDay;
 	std::cin >> InDay;
-	InputValidate(InDay, 0, 31);
+	InDay = ValidateInput(InDay, 0, 31);
 
 	std::cout << "Please enter Month ";
 	int InMonth;
 	std::cin >> InMonth;
-	InputValidate(InMonth, 0, 12);
+	InMonth = ValidateInput(InMonth, 0, 12);
 
 	std::cout << "Please enter Year ";
 	int InYear;
 	std::cin >> InYear;
-	InputValidate(InYear, 1990, 2022);
+	InYear = ValidateInput(InYear, 1990, 2022);
 
 	//Creating a Game
 	return FGame(InGameName, InStudioName, InDay, InMonth, InYear);
-
-
 };
 
 //----------------------------------------------------------------
-bool FSteam::AddNewGameToCategory(const FGame InGame, const int UserInput)
+bool FSteam::AddNewGameToCategory(const FGame InGame)
 {
-	InputValidate(UserInput, 1, 2);
+	//Menu to select if you want to add the game to a existing category or not
+	std::system("cls");
+	std::cout << "Would you like to add a game to an existing category?" << std::endl;
+	std::cout << "1 - Yes, please" << std::endl;
+	std::cout << "2 - No, Thanks" << std::endl;
+	std::cout << "Please choose an option to follow" << std::endl;
+
+	int UserInput;
+	std::cin >> UserInput;
+	UserInput = ValidateInput(UserInput, 1, 2);
+
 	if (UserInput == 1)
 	{
-		//Choosing a category where the user going to add a game
-		std::system("cls");
-		std::cout << "------------------------------------------\nPlease Select the category where you want to add a game" << std::endl;
-		CategoryContainer.PrintCategories();
-
-		int CategoryChosen;
-		std::cin >> CategoryChosen;
-		InputValidate(CategoryChosen, 0, CategoryContainer.GetCurrentCategoryAmount());
-
-		//adding the game to category
-		if (CategoryContainer.AddGameToCategory(CategoryChosen - 1, InGame))
+		if (!CategoryContainer.IsEmpy())
 		{
-			std::cout << "------------------------------------------\n" << std::endl;
-			std::cout << "The game is going to add to the category: " << CategoryContainer.GetCategory(CategoryChosen - 1).GetCategoryName() << std::endl;
-			return true;
+			//Choosing a category where the user going to add a game
+			std::system("cls");
+			std::cout << "------------------------------------------\nPlease Select the category where you want to add a game" << std::endl;
+			CategoryContainer.PrintCategories();
+
+			int CategoryChosen;
+			std::cin >> CategoryChosen;
+			CategoryChosen = ValidateInput(CategoryChosen, 1, CategoryContainer.GetCurrentCategoryAmount()) - 1;
+
+			//adding the game to category
+			if (CategoryContainer.AddGameToCategory(CategoryChosen, InGame))
+			{
+				std::cout << "------------------------------------------\n" << std::endl;
+				std::cout << "The game is going to add to the category: " << CategoryContainer.GetCategory(CategoryChosen - 1).GetCategoryName() << std::endl;
+				return true;
+			}
+			else
+			{
+				std::cout << "------------------------------------------\n" << std::endl;
+				std::cout << "The game couldn't be added to the category: " << CategoryContainer.GetCategory(CategoryChosen - 1).GetCategoryName() << std::endl;
+				return false;
+			}
 		}
 		else
 		{
-			std::cout << "------------------------------------------\n" << std::endl;
-			std::cout << "The game couldn't be added to the category: " << CategoryContainer.GetCategory(CategoryChosen - 1).GetCategoryName() << std::endl;
-			return false;
+			//the User Haven't created any category before
+			std::system("cls");
+			std::cout << "------------------------------------------" << std::endl;
+			std::cout << "Empy Category list" << std::endl;
+			std::cout << "------------------------------------------" << std::endl;
+
+			std::cout << "The game is going to add to the category: " << Uncategorized.GetCategoryName() << std::endl;
+			Uncategorized.AddGame(InGame);
+			return true;
 		}
 	}
 	else
@@ -274,30 +269,18 @@ bool FSteam::AddNewCategory()
 	//creating a new category
 	std::system("cls");
 	std::cout << "Please enter the name for the new category" << std::endl;
+
 	std::string CategoryName;
 	std::cin.ignore(500, '\n');
 	std::getline(std::cin, CategoryName);
-	if (CategoryContainer.AddCategory(CategoryName))
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-	
+
+	return CategoryContainer.AddCategory(CategoryName);
 };
 
 //------------------------------------------------------------------------
 bool FSteam::DeleteACategory()
 {
-	if (CategoryContainer.IsEmpy())
-	{
-		std::cout << "You aren't saved any category yet..." << std::endl;
-		return false;
-	}
-	
-	else
+	if (!CategoryContainer.IsEmpy())
 	{
 		//Deleting a category
 		std::system("cls");
@@ -307,14 +290,27 @@ bool FSteam::DeleteACategory()
 		std::cout << "Selected the category to delete" << std::endl;
 		int CategorySelected;
 		std::cin >> CategorySelected;
-		InputValidate(CategorySelected, 0, CategoryContainer.GetCurrentCategoryAmount());
-		if (CategoryContainer.DeleteCategory(CategorySelected - 1))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+
+		CategorySelected = ValidateInput(CategorySelected, 1, CategoryContainer.GetCurrentCategoryAmount()) - 1;
+		return CategoryContainer.DeleteCategory(CategorySelected);
 	}
+	return false;
 };
+
+//-----------------------------------------------------------------------------
+void FSteam::ComeBackMainManu()
+{
+	while (std::cin)
+	{
+		//back to MainMenu
+		std::cin.ignore(500, '\n');
+		std::cout << "------------------------------------------\n" << std::endl;
+		std::cout << "Press enter to come back to Main menu" << std::endl;
+		if (std::cin.peek() == '\n')
+		{
+			ActiveMenuCommand = EMenuCommand::MainMenu;
+			break;
+		}
+		
+	}
+}
