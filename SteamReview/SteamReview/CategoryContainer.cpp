@@ -19,6 +19,17 @@ bool FCategoryContainer::AddCategory(const FCategory& InCategory)
 };
 
 //---------------------------------------------------------
+FCategoryContainer::~FCategoryContainer()
+{
+	//Destructor
+};
+
+//--------------------------------------------------------
+FCategoryContainer::FCategoryContainer(FCategoryContainer())
+{
+};
+
+//---------------------------------------------------------
 bool FCategoryContainer::DeleteCategory(const int InCategoryIndex)
 {
 	if (InCategoryIndex >= 0 && InCategoryIndex < CategoryCount)
@@ -34,14 +45,14 @@ bool FCategoryContainer::DeleteCategory(const int InCategoryIndex)
 };
 
 //---------------------------------------------------------
-const FCategory& FCategoryContainer::GetCategory(const int InCategoryIndex) const
+bool FCategoryContainer::GetCategory(const int InCategoryIndex, FCategory& OutCategory) const
 {
 	if (InCategoryIndex < CategoryCount)
 	{
-		return Categories[InCategoryIndex];
+		OutCategory = Categories[InCategoryIndex];
+		return true;
 	}
-	FCategory EmpyCategory;
-	return EmpyCategory;
+	return false;
 };
 
 //----------------------------------------------------------

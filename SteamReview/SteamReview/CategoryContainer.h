@@ -10,7 +10,9 @@ private:
 	int CategoryCount;
 public:
 	FCategoryContainer();
-	const FCategory& GetCategory(const int InCategoryIndex) const;
+	~FCategoryContainer();
+	FCategoryContainer(FCategoryContainer());
+	bool GetCategory(const int InCategoryIndex, FCategory& OutCategory) const;
 
 	bool AddCategory(const FCategory& InCategory);
 	bool DeleteCategory(const int InCategoryIndex);

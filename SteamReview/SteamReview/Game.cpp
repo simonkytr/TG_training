@@ -19,6 +19,18 @@ FGame::FGame(const std::string& NameRef, const std::string& GameStudioRef, const
 };
 
 //-----------------------------------------------------
+FGame::~FGame()
+{
+
+};
+
+//-----------------------------------------------------
+FGame::FGame(FGame())
+{
+
+};
+
+//-----------------------------------------------------
 std::string FGame::GetGameName() const
 {
 	return NameGame;

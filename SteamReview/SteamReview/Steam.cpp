@@ -111,11 +111,24 @@ void FSteam::OpenCategoryManager()
 void FSteam::OpenDisplayGames()
 {
 	std::system("cls");
-	Uncategorized.DisplayCategory();
+	FGame UncategorizedGame;
+	Uncategorized.DisplayCategory(UncategorizedGame);
+
 	for (int i = 0; i < CategoryContainer.GetCurrentCategoryAmount(); i++)
 	{
 		std::cout << "----------------------------------------------------------------" << std::endl;
-		CategoryContainer.GetCategory(i).DisplayCategory();
+		FCategory Category;
+		
+		if (CategoryContainer.GetCategory(i, Category))
+		{
+			std::cout << "Your Categories" << std::endl;
+			FGame Game;
+			Category.DisplayCategory(Game);
+		}
+		else
+		{
+			std::cout << "Category not found" << std::endl;
+		}
 	}
 	std::cout << "----------------------------------------------------------------" << std::endl;
 	
@@ -149,9 +162,8 @@ void FSteam::AppRun()
 }
 
 //---------------------------------------------------------------
-int FSteam::ValidateInput(int& InputValue, const int LowBoundValue, const int HighBoundValue)
+void FSteam::ValidateInput(int& InputValue, const int LowBoundValue, const int HighBoundValue)
 {
-
 	while (std::cin.fail() || (InputValue < LowBoundValue) || (InputValue > HighBoundValue))
 	{
 		std::cin.clear();
@@ -159,7 +171,6 @@ int FSteam::ValidateInput(int& InputValue, const int LowBoundValue, const int Hi
 		std::cout << "Invalid Option, please enter a valid Option " << std::endl;
 		std::cin >> InputValue;
 	}
-	return InputValue;
 };
 
 //--------------------------------------------------------------
@@ -227,19 +238,31 @@ bool FSteam::AddNewGameToCategory(const FGame& InGame)
 
 			int CategoryChosen;
 			std::cin >> CategoryChosen;
-			CategoryChosen = ValidateInput(CategoryChosen, 1, CategoryContainer.GetCurrentCategoryAmount()) - 1;
+			ValidateInput(CategoryChosen, 1, CategoryContainer.GetCurrentCategoryAmount());
+			
+			//Subtract 1 to select the current object inside of the array
+			CategoryChosen = CategoryChosen - 1;
 
 			//adding the game to category
-			if (CategoryContainer.AddGameToCategory(CategoryChosen, InGame))
+			FCategory Category;
+			if(CategoryContainer.GetCategory(CategoryChosen, Category))
 			{
-				std::cout << "------------------------------------------\n" << std::endl;
-				std::cout << "The game is going to add to the category: " << CategoryContainer.GetCategory(CategoryChosen).GetCategoryName() << std::endl;
-				return true;
+				if (CategoryContainer.AddGameToCategory(CategoryChosen, InGame))
+				{
+					std::cout << "------------------------------------------\n" << std::endl;
+					std::cout << "The game is going to add to the category: " << Category.GetCategoryName() << std::endl;
+					return true;
+				}
+				else
+				{
+					std::cout << "The game couldn't be added to the category: " << Category.GetCategoryName() << std::endl;
+					return false;
+				}
 			}
 			else
 			{
 				std::cout << "------------------------------------------\n" << std::endl;
-				std::cout << "The game couldn't be added to the category: " << CategoryContainer.GetCategory(CategoryChosen).GetCategoryName() << std::endl;
+				std::cout << "Something is wrong" << std::endl;
 				return false;
 			}
 		}
@@ -291,8 +314,10 @@ bool FSteam::DeleteACategory()
 		std::cout << "Selected the category to delete" << std::endl;
 		int CategorySelected;
 		std::cin >> CategorySelected;
+		ValidateInput(CategorySelected, 1, CategoryContainer.GetCurrentCategoryAmount());
 
-		CategorySelected = ValidateInput(CategorySelected, 1, CategoryContainer.GetCurrentCategoryAmount()) - 1;
+		//Subtract 1 to select the current object inside of the array
+		CategorySelected = CategorySelected - 1;
 		return CategoryContainer.DeleteCategory(CategorySelected);
 	}
 	return false;

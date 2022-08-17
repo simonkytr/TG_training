@@ -18,7 +18,7 @@ private:
 	void OpenCategoryManager();
 	void OpenDisplayGames();
 
-	int ValidateInput(int& InputValue, const int LowBoundValue, const int HighBoundValue);
+	void ValidateInput(int& InputValue, const int LowBoundValue, const int HighBoundValue);
 
 	void AddNewGame(FGame& InGame);
 	bool AddNewGameToCategory(const FGame& InGame);
