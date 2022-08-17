@@ -18,10 +18,10 @@ private:
 	void OpenCategoryManager();
 	void OpenDisplayGames();
 
-	int ValidateInput(int InputValue, const int LowBoundValue, const int HighBoundValue);
+	int ValidateInput(int& InputValue, const int LowBoundValue, const int HighBoundValue);
 
-	FGame AddNewGame();
-	bool AddNewGameToCategory(const FGame InGame);
+	void AddNewGame(FGame& InGame);
+	bool AddNewGameToCategory(const FGame& InGame);
 	bool AddNewCategory();
 	bool DeleteACategory();
 

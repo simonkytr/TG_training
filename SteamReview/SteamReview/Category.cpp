@@ -8,7 +8,7 @@ FCategory::FCategory()
 };
 
 //-------------------------------------------------
-FCategory::FCategory(const std::string InCategoryName)
+FCategory::FCategory(const std::string& InCategoryName)
 {
 	GameCount = 0;
 	CategoryName = InCategoryName;
@@ -26,7 +26,7 @@ bool FCategory::IsFull() const
 };
 
 //-------------------------------------------------
-bool FCategory::AddGame(const FGame InGame)
+bool FCategory::AddGame(const FGame& InGame)
 {
 	if (!IsFull() && IsValid())
 	{
@@ -38,7 +38,7 @@ bool FCategory::AddGame(const FGame InGame)
 };
 
 //-------------------------------------------------
-FGame FCategory::GetGame(const int GameIndex) const
+const FGame& FCategory::GetGame(const int GameIndex) const
 {
 	if (GameIndex < GameCount)
 	{

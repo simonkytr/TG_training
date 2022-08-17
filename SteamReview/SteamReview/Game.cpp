@@ -9,13 +9,13 @@ FGame::FGame()
 };
 
 //-----------------------------------------------------
-FGame::FGame(const std::string InNameGame, const std::string InGameStudio, const int InDay, const int InMonth, const int InYear)
+FGame::FGame(const std::string& NameRef, const std::string& GameStudioRef, const int& DayRef, const int& MonthRef, const int& YearRef)
 {
-	NameGame = InNameGame;
-	GameStudio = InGameStudio;
-	Day = InDay;
-	Month = InMonth;
-	Year = InYear;
+	NameGame = NameRef;
+	GameStudio = GameStudioRef;
+	Day = DayRef;
+	Month = MonthRef;
+	Year = YearRef;
 };
 
 //-----------------------------------------------------

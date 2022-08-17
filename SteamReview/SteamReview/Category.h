@@ -12,10 +12,10 @@ private:
 
 public:
 	FCategory();
-	FCategory(const std::string InCategoryName);
+	FCategory(const std::string& InCategoryName);
 
-	bool AddGame(const FGame InGame);
-	FGame GetGame(const int GameIndex) const;
+	bool AddGame(const FGame& InGame);
+	const FGame& GetGame(const int GameIndex) const;
 
 	bool IsFull() const;
 	bool IsValid() const;

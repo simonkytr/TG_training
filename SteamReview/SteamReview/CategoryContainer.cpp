@@ -7,7 +7,7 @@ FCategoryContainer::FCategoryContainer()
 };
 
 //---------------------------------------------------------
-bool FCategoryContainer::AddCategory(const FCategory InCategory)
+bool FCategoryContainer::AddCategory(const FCategory& InCategory)
 {
 	if (CategoryCount < MaxCategoryCount)
 	{
@@ -34,13 +34,18 @@ bool FCategoryContainer::DeleteCategory(const int InCategoryIndex)
 };
 
 //---------------------------------------------------------
-FCategory FCategoryContainer::GetCategory(const int InCategoryIndex) const
+const FCategory& FCategoryContainer::GetCategory(const int InCategoryIndex) const
 {
-	return Categories[InCategoryIndex];
+	if (InCategoryIndex < CategoryCount)
+	{
+		return Categories[InCategoryIndex];
+	}
+	FCategory EmpyCategory;
+	return EmpyCategory;
 };
 
 //----------------------------------------------------------
-bool FCategoryContainer::AddGameToCategory(const int IndexCategory, const FGame InGame)
+bool FCategoryContainer::AddGameToCategory(const int IndexCategory, const FGame& InGame)
 {
 	if (IndexCategory < CategoryCount && IndexCategory >= 0)
 	{

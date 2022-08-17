@@ -11,7 +11,7 @@ private:
 	int Year;
 public:
 	FGame();
-	FGame(const std::string InName, const std::string InStudio, const int InDay, const int InMonth, const int InYear);
+	FGame(const std::string& NameRef, const std::string& GameStudioRef, const int& DayRef, const int& MonthRef, const int& YearRef);
 
 	std::string GetGameName() const;
 	std::string GetGameStudio() const;

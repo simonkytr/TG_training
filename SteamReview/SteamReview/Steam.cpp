@@ -18,10 +18,10 @@ void FSteam::OpenMainMenu()
 	std::cout << "3 - Display Games" << std::endl;
 	std::cout << "4 - Exit" << std::endl;
 	std::cout << "Please choose an option to follow..." << std::endl;
-
+	
 	int UserInput;
 	std::cin >> UserInput;
-	UserInput = ValidateInput(UserInput, 1, 4);
+	ValidateInput(UserInput, 1, 4);
 
 	switch (UserInput)
 	{
@@ -46,7 +46,8 @@ void FSteam::OpenMainMenu()
 void FSteam::OpenAddGame()
 {
 	//adding a new game
-	FGame Game = AddNewGame();
+	FGame Game;
+	AddNewGame(Game);
 
 	// adding the new game into the category
 	AddNewGameToCategory(Game);
@@ -70,7 +71,7 @@ void FSteam::OpenCategoryManager()
 
 	int UserInput;
 	std::cin >> UserInput;
-	UserInput = ValidateInput(UserInput, 1, 3);
+	ValidateInput(UserInput, 1, 3);
 
 	if (UserInput == 1)
 	{
@@ -148,7 +149,7 @@ void FSteam::AppRun()
 }
 
 //---------------------------------------------------------------
-int FSteam::ValidateInput(int InputValue, const int LowBoundValue, const int HighBoundValue)
+int FSteam::ValidateInput(int& InputValue, const int LowBoundValue, const int HighBoundValue)
 {
 
 	while (std::cin.fail() || (InputValue < LowBoundValue) || (InputValue > HighBoundValue))
@@ -162,7 +163,7 @@ int FSteam::ValidateInput(int InputValue, const int LowBoundValue, const int Hig
 };
 
 //--------------------------------------------------------------
-FGame FSteam::AddNewGame()
+void FSteam::AddNewGame(FGame& InGame)
 {
 	std::system("cls");
 	std::cout << "Let's add a new game!" << std::endl;
@@ -185,24 +186,24 @@ FGame FSteam::AddNewGame()
 	std::cout << "Please enter Day ";
 	int InDay;
 	std::cin >> InDay;
-	InDay = ValidateInput(InDay, 0, 31);
+	ValidateInput(InDay, 1, 31);
 
 	std::cout << "Please enter Month ";
 	int InMonth;
 	std::cin >> InMonth;
-	InMonth = ValidateInput(InMonth, 0, 12);
+	ValidateInput(InMonth, 1, 12);
 
 	std::cout << "Please enter Year ";
 	int InYear;
 	std::cin >> InYear;
-	InYear = ValidateInput(InYear, 1990, 2022);
+	ValidateInput(InYear, 1990, 2022);
 
 	//Creating a Game
-	return FGame(InGameName, InStudioName, InDay, InMonth, InYear);
+	InGame = FGame(InGameName, InStudioName, InDay, InMonth, InYear);
 };
 
 //----------------------------------------------------------------
-bool FSteam::AddNewGameToCategory(const FGame InGame)
+bool FSteam::AddNewGameToCategory(const FGame& InGame)
 {
 	//Menu to select if you want to add the game to a existing category or not
 	std::system("cls");
@@ -213,7 +214,7 @@ bool FSteam::AddNewGameToCategory(const FGame InGame)
 
 	int UserInput;
 	std::cin >> UserInput;
-	UserInput = ValidateInput(UserInput, 1, 2);
+	ValidateInput(UserInput, 1, 2);
 
 	if (UserInput == 1)
 	{
@@ -232,13 +233,13 @@ bool FSteam::AddNewGameToCategory(const FGame InGame)
 			if (CategoryContainer.AddGameToCategory(CategoryChosen, InGame))
 			{
 				std::cout << "------------------------------------------\n" << std::endl;
-				std::cout << "The game is going to add to the category: " << CategoryContainer.GetCategory(CategoryChosen - 1).GetCategoryName() << std::endl;
+				std::cout << "The game is going to add to the category: " << CategoryContainer.GetCategory(CategoryChosen).GetCategoryName() << std::endl;
 				return true;
 			}
 			else
 			{
 				std::cout << "------------------------------------------\n" << std::endl;
-				std::cout << "The game couldn't be added to the category: " << CategoryContainer.GetCategory(CategoryChosen - 1).GetCategoryName() << std::endl;
+				std::cout << "The game couldn't be added to the category: " << CategoryContainer.GetCategory(CategoryChosen).GetCategoryName() << std::endl;
 				return false;
 			}
 		}
