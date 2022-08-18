@@ -11,7 +11,7 @@ private:
 public:
 	FCategoryContainer();
 	~FCategoryContainer();
-	FCategoryContainer(FCategoryContainer());
+	FCategoryContainer(FCategoryContainer& OtherContainer);
 	bool GetCategory(const int InCategoryIndex, FCategory& OutCategory) const;
 
 	bool AddCategory(const FCategory& InCategory);

@@ -29,5 +29,6 @@ private:
 
 public:
 	FSteam();
+	FSteam(FSteam& OtherSteam);
 	void AppRun();
 };

@@ -9,6 +9,14 @@ FSteam::FSteam()
 };
 
 //---------------------------------------------------------
+FSteam::FSteam(FSteam& OtherSteam)
+{
+	Uncategorized = OtherSteam.Uncategorized;
+	ActiveMenuCommand = OtherSteam.ActiveMenuCommand;
+	CategoryContainer = OtherSteam.CategoryContainer;
+};
+
+//---------------------------------------------------------
 void FSteam::OpenMainMenu()
 {
 	std::system("cls");
