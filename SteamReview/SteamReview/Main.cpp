@@ -2,6 +2,6 @@
 
 int main()
 {
-	FSteam Steam = FSteam();
+	FSteam Steam;
 	Steam.AppRun();
 }

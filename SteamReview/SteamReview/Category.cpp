@@ -21,9 +21,11 @@ FCategory::~FCategory()
 };
 
 //-------------------------------------------------
-FCategory::FCategory(FCategory())
+FCategory::FCategory(FCategory& OtherCategory)
 {
-	
+	CategoryName = OtherCategory.CategoryName;
+	memcpy_s(Games, sizeof(Games), OtherCategory.Games, sizeof(Games));
+	GameCount = OtherCategory.GameCount;
 };
 
 //-------------------------------------------------
