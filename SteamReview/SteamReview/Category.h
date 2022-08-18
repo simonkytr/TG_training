@@ -22,6 +22,6 @@ public:
 	bool IsFull() const;
 	bool IsValid() const;
 
-	std::string GetCategoryName() const;
+	const std::string& GetCategoryName() const;
 	void DisplayCategory(FGame& OutGame) const;
 };

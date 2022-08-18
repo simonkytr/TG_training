@@ -35,12 +35,12 @@ FGame::FGame(const FGame& OtherGame)
 };
 
 //-----------------------------------------------------
-std::string FGame::GetGameName() const
+const std::string& FGame::GetGameName() const
 {
 	return NameGame;
 };
 //-----------------------------------------------------
-std::string FGame::GetGameStudio() const
+const std::string& FGame::GetGameStudio() const
 {
 	return GameStudio;
 };
