@@ -21,7 +21,7 @@ FGame::FGame(const std::string& NameRef, const std::string& GameStudioRef, const
 //-----------------------------------------------------
 FGame::~FGame()
 {
-
+	//Destructor
 };
 
 //-----------------------------------------------------
@@ -46,7 +46,7 @@ const std::string& FGame::GetGameStudio() const
 };
 
 //-----------------------------------------------------
-std::string FGame::GetGameDateFormat() const
+std::string FGame::GetDateReleaseFormat() const
 {
 	return std::to_string(Year) + "/" + std::to_string(Month) + "/" + std::to_string(Day);
 };
@@ -54,5 +54,5 @@ std::string FGame::GetGameDateFormat() const
 //-----------------------------------------------------
 bool FGame::IsValid() const
 {
-	return NameGame.empty() && GameStudio.empty() && Day <= 0 && Month <= 0 && Year <= 0;
+	return !NameGame.empty() && !GameStudio.empty() && Day <= 0 && Month <= 0 && Month > 12 && Year <= 0;
 };

@@ -17,7 +17,7 @@ public:
 
 	const std::string& GetGameName() const;
 	const std::string& GetGameStudio() const;
-	std::string GetGameDateFormat() const;
+	std::string GetDateReleaseFormat() const;
 
 	bool IsValid() const;
 };

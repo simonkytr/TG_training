@@ -25,10 +25,9 @@ void FSteam::OpenMainMenu()
 	std::cout << "2 - Category Manager" << std::endl;
 	std::cout << "3 - Display Games" << std::endl;
 	std::cout << "4 - Exit" << std::endl;
-	std::cout << "Please choose an option to follow..." << std::endl;
+	std::cout << "Please choose an option to continue..." << std::endl;
 	
 	int UserInput;
-	std::cin >> UserInput;
 	ValidateInput(UserInput, 1, 4);
 
 	switch (UserInput)
@@ -78,7 +77,6 @@ void FSteam::OpenCategoryManager()
 	std::cout << "choose an option" << std::endl;
 
 	int UserInput;
-	std::cin >> UserInput;
 	ValidateInput(UserInput, 1, 3);
 
 	if (UserInput == 1)
@@ -96,7 +94,7 @@ void FSteam::OpenCategoryManager()
 	}
 	else if (UserInput == 2)
 	{
-		if (DeleteACategory())
+		if (DeleteCategory())
 		{
 			std::cout << "The category was deleted succesfully!" << std::endl;
 			
@@ -119,8 +117,8 @@ void FSteam::OpenCategoryManager()
 void FSteam::OpenDisplayGames()
 {
 	std::system("cls");
-	FGame UncategorizedGame;
-	Uncategorized.DisplayCategory(UncategorizedGame);
+	
+	Uncategorized.DisplayCategory();
 
 	for (int i = 0; i < CategoryContainer.GetCurrentCategoryAmount(); i++)
 	{
@@ -130,8 +128,7 @@ void FSteam::OpenDisplayGames()
 		if (CategoryContainer.GetCategory(i, Category))
 		{
 			std::cout << "Your Categories" << std::endl;
-			FGame Game;
-			Category.DisplayCategory(Game);
+			Category.DisplayCategory();
 		}
 		else
 		{
@@ -145,7 +142,7 @@ void FSteam::OpenDisplayGames()
 };
 
 //------------------------------------------------------
-void FSteam::AppRun()
+void FSteam::RunApp()
 {
 	while (ActiveMenuCommand != EMenuCommand::Exit)
 	{
@@ -172,6 +169,7 @@ void FSteam::AppRun()
 //---------------------------------------------------------------
 void FSteam::ValidateInput(int& InputValue, const int LowBoundValue, const int HighBoundValue)
 {
+	std::cin >> InputValue;
 	while (std::cin.fail() || (InputValue < LowBoundValue) || (InputValue > HighBoundValue))
 	{
 		std::cin.clear();
@@ -202,19 +200,16 @@ void FSteam::AddNewGame(FGame& InGame)
 	std::cout << "Please introduce the release date" << std::endl;
 	std::cout << "------------------------------------" << std::endl;
 
-	std::cout << "Please enter Day ";
+	std::cout << "Please enter the release Day ";
 	int InDay;
-	std::cin >> InDay;
 	ValidateInput(InDay, 1, 31);
 
-	std::cout << "Please enter Month ";
+	std::cout << "Please enter the release Month ";
 	int InMonth;
-	std::cin >> InMonth;
 	ValidateInput(InMonth, 1, 12);
 
-	std::cout << "Please enter Year ";
+	std::cout << "Please enter the release Year ";
 	int InYear;
-	std::cin >> InYear;
 	ValidateInput(InYear, 1990, 2022);
 
 	//Creating a Game
@@ -229,15 +224,14 @@ bool FSteam::AddNewGameToCategory(const FGame& InGame)
 	std::cout << "Would you like to add a game to an existing category?" << std::endl;
 	std::cout << "1 - Yes, please" << std::endl;
 	std::cout << "2 - No, Thanks" << std::endl;
-	std::cout << "Please choose an option to follow" << std::endl;
+	std::cout << "Please choose an option to continue" << std::endl;
 
 	int UserInput;
-	std::cin >> UserInput;
 	ValidateInput(UserInput, 1, 2);
 
 	if (UserInput == 1)
 	{
-		if (!CategoryContainer.IsEmpy())
+		if (!CategoryContainer.IsEmpty())
 		{
 			//Choosing a category where the user going to add a game
 			std::system("cls");
@@ -245,7 +239,6 @@ bool FSteam::AddNewGameToCategory(const FGame& InGame)
 			CategoryContainer.PrintCategories();
 
 			int CategoryChosen;
-			std::cin >> CategoryChosen;
 			ValidateInput(CategoryChosen, 1, CategoryContainer.GetCurrentCategoryAmount());
 			
 			//Subtract 1 to select the current object inside of the array
@@ -258,7 +251,7 @@ bool FSteam::AddNewGameToCategory(const FGame& InGame)
 				if (CategoryContainer.AddGameToCategory(CategoryChosen, InGame))
 				{
 					std::cout << "------------------------------------------\n" << std::endl;
-					std::cout << "The game is going to add to the category: " << Category.GetCategoryName() << std::endl;
+					std::cout << "The game has been added to the category: " << Category.GetCategoryName() << std::endl;
 					return true;
 				}
 				else
@@ -270,7 +263,7 @@ bool FSteam::AddNewGameToCategory(const FGame& InGame)
 			else
 			{
 				std::cout << "------------------------------------------\n" << std::endl;
-				std::cout << "Something is wrong" << std::endl;
+				std::cout << "Category haven't founded..." << std::endl;
 				return false;
 			}
 		}
@@ -279,17 +272,17 @@ bool FSteam::AddNewGameToCategory(const FGame& InGame)
 			//the User Haven't created any category before
 			std::system("cls");
 			std::cout << "------------------------------------------" << std::endl;
-			std::cout << "Empy Category list" << std::endl;
+			std::cout << "Category list is Empty" << std::endl;
 			std::cout << "------------------------------------------" << std::endl;
 
-			std::cout << "The game is going to add to the category: " << Uncategorized.GetCategoryName() << std::endl;
+			std::cout << "The game has been added to the category: " << Uncategorized.GetCategoryName() << std::endl;
 			Uncategorized.AddGame(InGame);
 			return true;
 		}
 	}
 	else
 	{
-		std::cout << "The game is going to add to the category: " << Uncategorized.GetCategoryName() << std::endl;
+		std::cout << "The game has been added to the category: " << Uncategorized.GetCategoryName() << std::endl;
 		Uncategorized.AddGame(InGame);
 		return true;
 	}
@@ -310,18 +303,17 @@ bool FSteam::AddNewCategory()
 };
 
 //------------------------------------------------------------------------
-bool FSteam::DeleteACategory()
+bool FSteam::DeleteCategory()
 {
-	if (!CategoryContainer.IsEmpy())
+	if (!CategoryContainer.IsEmpty())
 	{
 		//Deleting a category
 		std::system("cls");
 		CategoryContainer.PrintCategories();
 		std::cout << "-----------------------------------------------" << std::endl;
 
-		std::cout << "Selected the category to delete" << std::endl;
+		std::cout << "Select the category to delete" << std::endl;
 		int CategorySelected;
-		std::cin >> CategorySelected;
 		ValidateInput(CategorySelected, 1, CategoryContainer.GetCurrentCategoryAmount());
 
 		//Subtract 1 to select the current object inside of the array

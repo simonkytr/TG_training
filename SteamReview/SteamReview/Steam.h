@@ -23,12 +23,12 @@ private:
 	void AddNewGame(FGame& InGame);
 	bool AddNewGameToCategory(const FGame& InGame);
 	bool AddNewCategory();
-	bool DeleteACategory();
+	bool DeleteCategory();
 
 	void ComeBackMainManu();
 
 public:
 	FSteam();
 	FSteam(FSteam& OtherSteam);
-	void AppRun();
+	void RunApp();
 };

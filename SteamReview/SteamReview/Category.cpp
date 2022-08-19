@@ -69,22 +69,13 @@ bool FCategory::IsValid() const
 };
 
 //-------------------------------------------------
-void FCategory::DisplayCategory(FGame& OutGame) const
+void FCategory::DisplayCategory() const
 {
 	std::cout << "\nCategory: " << CategoryName << std::endl;
 	std::cout << "\nGame Name" << "\tDeveloper Studio" << "\tRelease Date" << std::endl;
 	std::cout << "-----------------------------------------------------------------" << std::endl;
 	for (int i = 0; i < MaxGamesCount; i++)
 	{
-		//std::cout << Games[i].GetGameName() << "\t" << Games[i].GetGameStudio() << "\t" << Games[i].GetGameDateFormat() << std::endl;
-
-		if (GetGame(i, OutGame))
-		{
-			std::cout << Games[i].GetGameName() << "\t" << Games[i].GetGameStudio() << "\t" << Games[i].GetGameDateFormat() << std::endl;
-		}
-		else
-		{
-			std::cout << "...Empy..." << std::endl;
-		}
+			std::cout << Games[i].GetGameName() << "\t" << Games[i].GetGameStudio() << "\t" << Games[i].GetDateReleaseFormat() << std::endl;
 	}
 };

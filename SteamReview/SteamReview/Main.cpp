@@ -3,5 +3,5 @@
 int main()
 {
 	FSteam Steam;
-	Steam.AppRun();
+	Steam.RunApp();
 }

@@ -21,5 +21,5 @@ public:
 	void PrintCategories() const;
 
 	int GetCurrentCategoryAmount() const;
-	bool IsEmpy() const;
+	bool IsEmpty() const;
 };
