@@ -13,7 +13,7 @@ public:
 	FGame();
 	~FGame();
 	FGame(const FGame& OtherGame);
-	FGame(const std::string& NameRef, const std::string& GameStudioRef, const int& DayRef, const int& MonthRef, const int& YearRef);
+	FGame(const std::string& NameRef, const std::string& GameStudioRef, const int DayRef, const int MonthRef, const int YearRef);
 
 	const std::string& GetGameName() const;
 	const std::string& GetGameStudio() const;

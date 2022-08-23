@@ -28,7 +28,7 @@ FCategoryContainer::~FCategoryContainer()
 FCategoryContainer::FCategoryContainer(FCategoryContainer& OtherContainer)
 {
 	CategoryCount = OtherContainer.CategoryCount;
-	memcpy_s(Categories, sizeof(Categories), OtherContainer.Categories, sizeof(OtherContainer.CategoryCount));
+	memcpy_s(Categories, sizeof(Categories), OtherContainer.Categories, sizeof(FCategory) * CategoryCount);
 };
 
 //---------------------------------------------------------

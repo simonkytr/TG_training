@@ -18,9 +18,9 @@ private:
 	void OpenCategoryManager();
 	void OpenDisplayGames();
 
-	void ValidateInput(int& InputValue, const int LowBoundValue, const int HighBoundValue);
+	int GetValidateInput(const int LowBoundValue, const int HighBoundValue) const;
 
-	void AddNewGame(FGame& InGame);
+	void CreateNewGame(FGame& InGame) const;
 	bool AddNewGameToCategory(const FGame& InGame);
 	bool AddNewCategory();
 	bool DeleteCategory();
@@ -29,6 +29,6 @@ private:
 
 public:
 	FSteam();
-	FSteam(FSteam& OtherSteam);
+	FSteam(const FSteam& OtherSteam);
 	void RunApp();
 };

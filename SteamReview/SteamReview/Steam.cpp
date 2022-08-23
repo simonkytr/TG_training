@@ -9,7 +9,7 @@ FSteam::FSteam()
 };
 
 //---------------------------------------------------------
-FSteam::FSteam(FSteam& OtherSteam)
+FSteam::FSteam(const FSteam& OtherSteam)
 {
 	Uncategorized = OtherSteam.Uncategorized;
 	ActiveMenuCommand = OtherSteam.ActiveMenuCommand;
@@ -27,8 +27,7 @@ void FSteam::OpenMainMenu()
 	std::cout << "4 - Exit" << std::endl;
 	std::cout << "Please choose an option to continue..." << std::endl;
 	
-	int UserInput;
-	ValidateInput(UserInput, 1, 4);
+	int UserInput = GetValidateInput( 1, 4);
 
 	switch (UserInput)
 	{
@@ -54,10 +53,17 @@ void FSteam::OpenAddGame()
 {
 	//adding a new game
 	FGame Game;
-	AddNewGame(Game);
+	CreateNewGame(Game);
 
 	// adding the new game into the category
-	AddNewGameToCategory(Game);
+	if (AddNewGameToCategory(Game))
+	{
+		std::cout << "Task Complete!" << std::endl;
+	}
+	else
+	{
+		std::cout << "Try again. later" << std::endl;
+	}
 
 	//Come bacck to main menu
 	ComeBackMainManu();
@@ -76,8 +82,7 @@ void FSteam::OpenCategoryManager()
 	std::cout << "----------------------------------------" << std::endl;
 	std::cout << "choose an option" << std::endl;
 
-	int UserInput;
-	ValidateInput(UserInput, 1, 3);
+	int UserInput = GetValidateInput(1, 3);
 
 	if (UserInput == 1)
 	{
@@ -167,8 +172,9 @@ void FSteam::RunApp()
 }
 
 //---------------------------------------------------------------
-void FSteam::ValidateInput(int& InputValue, const int LowBoundValue, const int HighBoundValue)
+int FSteam::GetValidateInput(const int LowBoundValue, const int HighBoundValue) const
 {
+	int InputValue;
 	std::cin >> InputValue;
 	while (std::cin.fail() || (InputValue < LowBoundValue) || (InputValue > HighBoundValue))
 	{
@@ -177,10 +183,11 @@ void FSteam::ValidateInput(int& InputValue, const int LowBoundValue, const int H
 		std::cout << "Invalid Option, please enter a valid Option " << std::endl;
 		std::cin >> InputValue;
 	}
+	return InputValue;
 };
 
 //--------------------------------------------------------------
-void FSteam::AddNewGame(FGame& InGame)
+void FSteam::CreateNewGame(FGame& OutGame) const
 {
 	std::system("cls");
 	std::cout << "Let's add a new game!" << std::endl;
@@ -201,19 +208,17 @@ void FSteam::AddNewGame(FGame& InGame)
 	std::cout << "------------------------------------" << std::endl;
 
 	std::cout << "Please enter the release Day ";
-	int InDay;
-	ValidateInput(InDay, 1, 31);
+	int InDay = GetValidateInput(1, 31);
 
 	std::cout << "Please enter the release Month ";
-	int InMonth;
-	ValidateInput(InMonth, 1, 12);
+	int InMonth = GetValidateInput(1, 12);
 
 	std::cout << "Please enter the release Year ";
-	int InYear;
-	ValidateInput(InYear, 1990, 2022);
+	int InYear = GetValidateInput(1990, 2022);
 
 	//Creating a Game
-	InGame = FGame(InGameName, InStudioName, InDay, InMonth, InYear);
+	OutGame = FGame(InGameName, InStudioName, InDay, InMonth, InYear);
+
 };
 
 //----------------------------------------------------------------
@@ -226,8 +231,7 @@ bool FSteam::AddNewGameToCategory(const FGame& InGame)
 	std::cout << "2 - No, Thanks" << std::endl;
 	std::cout << "Please choose an option to continue" << std::endl;
 
-	int UserInput;
-	ValidateInput(UserInput, 1, 2);
+	int UserInput = GetValidateInput(1, 2);
 
 	if (UserInput == 1)
 	{
@@ -238,8 +242,7 @@ bool FSteam::AddNewGameToCategory(const FGame& InGame)
 			std::cout << "------------------------------------------\nPlease Select the category where you want to add a game" << std::endl;
 			CategoryContainer.PrintCategories();
 
-			int CategoryChosen;
-			ValidateInput(CategoryChosen, 1, CategoryContainer.GetCurrentCategoryAmount());
+			int CategoryChosen = GetValidateInput(1, CategoryContainer.GetCurrentCategoryAmount());
 			
 			//Subtract 1 to select the current object inside of the array
 			CategoryChosen = CategoryChosen - 1;
@@ -313,8 +316,7 @@ bool FSteam::DeleteCategory()
 		std::cout << "-----------------------------------------------" << std::endl;
 
 		std::cout << "Select the category to delete" << std::endl;
-		int CategorySelected;
-		ValidateInput(CategorySelected, 1, CategoryContainer.GetCurrentCategoryAmount());
+		int CategorySelected = GetValidateInput(1, CategoryContainer.GetCurrentCategoryAmount());
 
 		//Subtract 1 to select the current object inside of the array
 		CategorySelected = CategorySelected - 1;
