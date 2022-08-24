@@ -1,3 +1,15 @@
+/*Exercise 3 - Understanding Pointers 2
+
+Create a program that will ask the user to enter two integers and assign the given values to two
+separate integers.
+Declare an int* variable and assign it to the memory address of the first integer. Now, using only
+the pointer variable, print the value of the first integer and its memory address. Additionally, print
+the value and the memory address of the pointer variable.
+Then, assign the memory address of the second integer to the same pointer variable. Do the
+same thing as before: using only the pointer variable, print the value of the integer, its memory
+address, and the value and memory address of the pointer variable.
+Do the results make sense to you?*/
+
 #include <iostream>
 
 int main()
