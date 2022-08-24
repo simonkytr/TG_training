@@ -11,11 +11,13 @@ private:
 	int Year;
 public:
 	FGame();
-	FGame(const std::string InName, const std::string InStudio, const int InDay, const int InMonth, const int InYear);
+	~FGame();
+	FGame(const FGame& OtherGame);
+	FGame(const std::string& NameRef, const std::string& GameStudioRef, const int DayRef, const int MonthRef, const int YearRef);
 
-	std::string GetGameName() const;
-	std::string GetGameStudio() const;
-	std::string GetGameDateFormat() const;
+	const std::string& GetGameName() const;
+	const std::string& GetGameStudio() const;
+	std::string GetDateReleaseFormat() const;
 
 	bool IsValid() const;
 };

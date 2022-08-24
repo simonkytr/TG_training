@@ -1,5 +1,6 @@
 #pragma once
 #include "Game.h"
+
 class FCategory
 {
 	/*La clase debería tener la funcionalidad de añadir nuevos juegos a su arreglo de juegos y debería tener una función para saber si le caben más juegos.
@@ -12,14 +13,16 @@ private:
 
 public:
 	FCategory();
-	FCategory(const std::string InCategoryName);
+	~FCategory();
+	FCategory(FCategory& OtherCategory);
+	FCategory(const std::string& InCategoryName);
 
-	bool AddGame(const FGame InGame);
-	FGame GetGame(const int GameIndex) const;
+	bool AddGame(const FGame& InGame);
+	bool GetGame(const int GameIndex, FGame& OutGame) const;
 
 	bool IsFull() const;
 	bool IsValid() const;
 
-	std::string GetCategoryName() const;
+	const std::string& GetCategoryName() const;
 	void DisplayCategory() const;
 };

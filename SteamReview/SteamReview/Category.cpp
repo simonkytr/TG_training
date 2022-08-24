@@ -8,14 +8,28 @@ FCategory::FCategory()
 };
 
 //-------------------------------------------------
-FCategory::FCategory(const std::string InCategoryName)
+FCategory::FCategory(const std::string& InCategoryName)
 {
 	GameCount = 0;
 	CategoryName = InCategoryName;
 };
 
 //-------------------------------------------------
-std::string FCategory::GetCategoryName() const
+FCategory::~FCategory()
+{
+	//Destructor
+};
+
+//-------------------------------------------------
+FCategory::FCategory(FCategory& OtherCategory)
+{
+	CategoryName = OtherCategory.CategoryName;
+	memcpy_s(Games, sizeof(Games), OtherCategory.Games, sizeof(Games));
+	GameCount = OtherCategory.GameCount;
+};
+
+//-------------------------------------------------
+const std::string& FCategory::GetCategoryName() const
 {
 	return CategoryName;
 };
@@ -26,7 +40,7 @@ bool FCategory::IsFull() const
 };
 
 //-------------------------------------------------
-bool FCategory::AddGame(const FGame InGame)
+bool FCategory::AddGame(const FGame& InGame)
 {
 	if (!IsFull() && IsValid())
 	{
@@ -38,14 +52,14 @@ bool FCategory::AddGame(const FGame InGame)
 };
 
 //-------------------------------------------------
-FGame FCategory::GetGame(const int GameIndex) const
+bool FCategory::GetGame(const int GameIndex, FGame& OutGame) const
 {
 	if (GameIndex < GameCount)
 	{
-		return Games[GameIndex];
+		OutGame = Games[GameIndex];
+		return true;
 	}
-	FGame VoidGame;
-	return VoidGame;
+	return false;
 };
 
 //-------------------------------------------------
@@ -62,6 +76,6 @@ void FCategory::DisplayCategory() const
 	std::cout << "-----------------------------------------------------------------" << std::endl;
 	for (int i = 0; i < MaxGamesCount; i++)
 	{
-		std::cout << Games[i].GetGameName() << "\t" << Games[i].GetGameStudio() << "\t" << Games[i].GetGameDateFormat() << std::endl;
+			std::cout << Games[i].GetGameName() << "\t" << Games[i].GetGameStudio() << "\t" << Games[i].GetDateReleaseFormat() << std::endl;
 	}
 };

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "Game.h"
+
 FGame::FGame()
 {
 	Day = 0;
@@ -9,28 +10,44 @@ FGame::FGame()
 };
 
 //-----------------------------------------------------
-FGame::FGame(const std::string InNameGame, const std::string InGameStudio, const int InDay, const int InMonth, const int InYear)
+FGame::FGame(const std::string& NameRef, const std::string& GameStudioRef, const int DayRef, const int MonthRef, const int YearRef)
 {
-	NameGame = InNameGame;
-	GameStudio = InGameStudio;
-	Day = InDay;
-	Month = InMonth;
-	Year = InYear;
+	NameGame = NameRef;
+	GameStudio = GameStudioRef;
+	Day = DayRef;
+	Month = MonthRef;
+	Year = YearRef;
 };
 
 //-----------------------------------------------------
-std::string FGame::GetGameName() const
+FGame::~FGame()
+{
+	//Destructor
+};
+
+//-----------------------------------------------------
+FGame::FGame(const FGame& OtherGame)
+{
+	NameGame = OtherGame.NameGame;
+	GameStudio = OtherGame.GameStudio;
+	Day = OtherGame.Day;
+	Month = OtherGame.Month;
+	Year = OtherGame.Year;
+};
+
+//-----------------------------------------------------
+const std::string& FGame::GetGameName() const
 {
 	return NameGame;
 };
 //-----------------------------------------------------
-std::string FGame::GetGameStudio() const
+const std::string& FGame::GetGameStudio() const
 {
 	return GameStudio;
 };
 
 //-----------------------------------------------------
-std::string FGame::GetGameDateFormat() const
+std::string FGame::GetDateReleaseFormat() const
 {
 	return std::to_string(Year) + "/" + std::to_string(Month) + "/" + std::to_string(Day);
 };
@@ -38,5 +55,5 @@ std::string FGame::GetGameDateFormat() const
 //-----------------------------------------------------
 bool FGame::IsValid() const
 {
-	return NameGame.empty() && GameStudio.empty() && Day <= 0 && Month <= 0 && Year <= 0;
+	return !NameGame.empty() && !GameStudio.empty() && Day < 0 && Month < 0 && Month > 12 && Year < 1990;
 };

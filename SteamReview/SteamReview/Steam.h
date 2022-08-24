@@ -18,16 +18,17 @@ private:
 	void OpenCategoryManager();
 	void OpenDisplayGames();
 
-	int ValidateInput(int InputValue, const int LowBoundValue, const int HighBoundValue);
+	int GetValidateInput(const int LowBoundValue, const int HighBoundValue) const;
 
-	FGame AddNewGame();
-	bool AddNewGameToCategory(const FGame InGame);
+	void CreateNewGame(FGame& InGame) const;
+	bool AddNewGameToCategory(const FGame& InGame);
 	bool AddNewCategory();
-	bool DeleteACategory();
+	bool DeleteCategory();
 
 	void ComeBackMainManu();
 
 public:
 	FSteam();
-	void AppRun();
+	FSteam(const FSteam& OtherSteam);
+	void RunApp();
 };
