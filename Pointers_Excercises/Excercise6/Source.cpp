@@ -21,18 +21,16 @@ int main()
 	int* ArrayPtr = Array;
 
 	std::cout << "I've looped through the following numbers :" << std::endl;
-	for (int i = 0; i < 10; i++)
+	for (ArrayPtr = Array + 0; ArrayPtr < Array + 10; ArrayPtr++)
 	{
-		ArrayPtr[i] = rand() % 100;
-		std::cout << ArrayPtr[i] << " ";
+		*ArrayPtr = rand() % 100;
+		std::cout << *ArrayPtr << " ";
 	}
 
-	std::cout << "\nI've looped through the following numbers (BACKWARDS) :" << std::endl;
 	int Sum = 0;
-	for (int i = 10; i > 0; i--)
+	for (ArrayPtr -= 1; ArrayPtr > Array ; ArrayPtr--)
 	{
-		std::cout << ArrayPtr[i - 1] << " ";
-		Sum += ArrayPtr[i - 1];
+		Sum += *ArrayPtr;
 	}
 	std::cout << "\nThe sum of all those numbers is: " << Sum << std::endl;
 }
