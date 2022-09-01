@@ -10,13 +10,13 @@ second pointer. Print the final value of your initial variable. Do these results
 int main()
 {
 	int Value = 15;
-	int* ValuePtrA +=1;
-	int* ValuePtrB +=1;
+	int* ValuePtrA = Value;
+	int* ValuePtrB = Value;
 
 	std::cout << "The value of my variable is " << *ValuePtrA << std::endl;
 
-	*ValuePtrA = 6;
-	*ValuePtrB = 2;
+	*ValuePtrA += 1;
+	*ValuePtrB += 1;
 
 	std::cout << "The value of my variable after the pointer stuff I did is " << Value << std::endl;
 }
