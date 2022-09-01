@@ -28,7 +28,8 @@ int main()
 	std::cout << "//////////////////////////////////////////" << std::endl;
 	std::cout << "insert an integer value" << std::endl;
 	
-	std::cin >> InputValue;
-	std::cout << "The value of your variable is: " << InputValue << std::endl;
-	std::cout << "The memory address where your variable is stored is: " << &InputValue << std::endl;
+	int InputValue2;
+	std::cin >> InputValue2;
+	std::cout << "The value of your variable is: " << InputValue2 << std::endl;
+	std::cout << "The memory address where your variable is stored is: " << &InputValue2 << std::endl;
 }
