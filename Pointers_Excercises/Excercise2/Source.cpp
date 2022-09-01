@@ -21,5 +21,5 @@ int main()
 	std::cin >> *InputValuePtr;
 	std::cout << "The value of variable a is now: " << InputValue << std::endl;
 
-	std::cout << "\nFun fact: I didn’t have to touch a directly to change its value :)" << std::endl;
+	std::cout << "\nFun fact: I didn't have to touch a directly to change its value :)" << std::endl;
 }
