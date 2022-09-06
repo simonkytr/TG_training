@@ -7,7 +7,7 @@ private:
 
 public:
 	FCircle();
-	FCircle(float InRadius);
+	FCircle(const float InRadius);
 
 	virtual float CalculateArea() override;
 	virtual float CalculatePerimeter() override;

@@ -6,7 +6,7 @@ FSquare::FSquare()
 	Height = 0;
 }
 
-FSquare::FSquare(float InLenght, float InHeight)
+FSquare::FSquare(const float InLenght, const float InHeight)
 {
 	Lenght = InLenght;
 	Height = InHeight;

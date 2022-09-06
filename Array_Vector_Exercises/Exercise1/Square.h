@@ -9,7 +9,7 @@ private:
 	
 public:
 	FSquare();
-	FSquare(float InLenght, float InHeight);
+	FSquare(const float InLenght, const float InHeight);
 
 	virtual float CalculateArea() override;
 	virtual float CalculatePerimeter() override;

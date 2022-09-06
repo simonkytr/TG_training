@@ -9,7 +9,7 @@ FCircle::FCircle()
 	Radius = 0;
 }
 
-FCircle::FCircle(float InRadius)
+FCircle::FCircle(const float InRadius)
 {
 	Radius = InRadius;
 }
