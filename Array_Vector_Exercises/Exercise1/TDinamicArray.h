@@ -4,19 +4,19 @@ template<typename T>
 class TDinamicArray
 {
 private:
-	static int ArraySize;
-	static int ArrayCapacity;
+	int SizeArray;
+	int CapacityArray;
 
-	T StaticArray[SizeArray];
 public:
 	TDinamicArray()
 	{
-		ArraySize = 1;
+		SizeArray = 1;
 		ArrayCapacity = 1;
+		T* ArrayPtr = new T[SizeArray];
 	};
 
 	~TDinamicArray()
 	{
-		//Destructor
+		delete[] ArrayPtr;
 	};
 };
