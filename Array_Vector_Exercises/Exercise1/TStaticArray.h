@@ -14,7 +14,7 @@ public:
 		return StaticArray[Index];
 	};
 
-	const T& operator[](int Index) const
+	const T& operator[](const int Index) const
 	{
 		return StaticArray[Index];
 	};
@@ -42,12 +42,12 @@ public:
 	};
 
 	//---------------------------------------------------------
-	T& GetData()
+	T* GetData()
 	{
 		return StaticArray;
 	};
 
-	const T& GetData() const
+	const T* GetData() const
 	{
 		return StaticArray;
 	};
