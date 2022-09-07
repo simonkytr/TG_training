@@ -13,7 +13,7 @@ public:
 	{
 		SizeArray = 1;
 		ArrayCapacity = 1;
-		DinamicArray = new T[SizeArray];
+		DinamicArray = new T[CapacityArray];
 	};
 
 	~TDinamicArray()
@@ -63,5 +63,45 @@ public:
 	const T* GetData() const
 	{
 		return DinamicArray;
+	}
+
+	//------------------------------------------------------------------------
+	bool IsEmpty()
+	{
+		if (SizeArray == 0)
+		{
+			return true;
+		}
+		return false;
+	};
+
+	//-------------------------------------------------------------------------
+	int GetSize()
+	{
+		return SizeArray;
+	}
+
+	//-------------------------------------------------------------------------
+	int GetCapacity()
+	{
+		return CapacityArray;
+	}
+
+	//-------------------------------------------------------------------------
+	void Reserve()
+	{
+		if (SizeArray == CapacityArray)
+		{
+			CapacityArray = SizeArray + 1;
+		}
+	}
+
+	//--------------------------------------------------------------------------
+	void ShrinkToFit()
+	{
+		if (CapacityArray != SizeArray)
+		{
+			CapacityArray = SizeArray;
+		}
 	}
 };
