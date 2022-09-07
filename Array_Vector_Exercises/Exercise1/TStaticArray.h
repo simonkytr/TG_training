@@ -42,13 +42,62 @@ class TStaticArray
 	//---------------------------------------------------------
 	T GetData()
 	{
-		T* StaticArrayPtr = &StaticArray;
-		return StaticArrayPtr;
+		return StaticArray;
 	};
 
 	T GetData() const
 	{
-		T* StaticArrayPtr = &StaticArray;
-		return StaticArrayPtr;
+		return StaticArray;
 	};
+
+	//---------------------------------------------------------
+	bool IsEmpty()
+	{
+		if (SizeArray == 0)
+		{
+			return false;
+		}
+		retur true;
+	};
+
+	//----------------------------------------------------------
+	int GetSize()
+	{
+		return SizeArray;
+	};
+
+	//----------------------------------------------------------
+	void Fill(T Type)
+	{
+		for (int i = 0; i < SizeArray; i++)
+		{
+			StaticArray[i] = Type;
+		}
+	};
+
+	//----------------------------------------------------------
+	void Swap(T SwapArray[])
+	{
+		T ArraycContainer[SizeArray];
+
+		if (SizeArray == SwapArray.size())
+		{
+			for (int i = 0; i < SizeArray; i++)
+			{
+				ArrayContainer[i] = StaticArray[i];
+			}
+			for (int i = 0; i < SizeArray; i++)
+			{
+				StaticArray[i] = SwapArray[i];
+			}
+			for (int i = 0; i < SizeArray; i++)
+			{
+				SwapArray[i] = ContainerArray[i];
+			}
+		}
+		else 
+		{
+			return false;
+		}
+	}
 };
