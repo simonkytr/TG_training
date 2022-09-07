@@ -55,9 +55,9 @@ class TStaticArray
 	{
 		if (SizeArray == 0)
 		{
-			return false;
+			return true;
 		}
-		retur true;
+		return false;
 	};
 
 	//----------------------------------------------------------
@@ -76,28 +76,21 @@ class TStaticArray
 	};
 
 	//----------------------------------------------------------
-	void Swap(T SwapArray[])
+	void Swap(TStaticArray<T, N>& SwapArray)
 	{
-		T ArraycContainer[SizeArray];
+		T ArrayContainer[SizeArray];
 
-		if (SizeArray == SwapArray.size())
+		for (int i = 0; i < SizeArray; i++)
 		{
-			for (int i = 0; i < SizeArray; i++)
-			{
-				ArrayContainer[i] = StaticArray[i];
-			}
-			for (int i = 0; i < SizeArray; i++)
-			{
-				StaticArray[i] = SwapArray[i];
-			}
-			for (int i = 0; i < SizeArray; i++)
-			{
-				SwapArray[i] = ContainerArray[i];
-			}
+			ArrayContainer[i] = StaticArray[i];
 		}
-		else 
+		for (int i = 0; i < SizeArray; i++)
 		{
-			return false;
+			StaticArray[i] = SwapArray[i];
+		}
+		for (int i = 0; i < SizeArray; i++)
+		{
+			SwapArray[i] = ArrayContainer[i];
 		}
 	}
 };
