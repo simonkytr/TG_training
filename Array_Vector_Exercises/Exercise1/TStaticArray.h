@@ -3,6 +3,7 @@
 template <typename T, const int N>
 class TStaticArray
 {
+private:
 	static const int SizeArray = N;
 	T StaticArray[SizeArray];
 
