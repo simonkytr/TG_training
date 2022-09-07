@@ -2,6 +2,7 @@
 #include "shape.h"
 #include "Circle.h"
 #include "Square.h"
+#include "TStaticArray.h"
 
 //------------------------------------------------------------------------------
 int ValidateInput(int& UserInput, const int LowerBounce, const int HigherBounce)
@@ -121,7 +122,65 @@ void AskForBuildInArray()
 //---------------------------------------------------------------------------------
 void AskForStaticArray()
 {
-	
+	TStaticArray<FShape*, 5> Shapes;
+
+	for (int i = 0; i < 5; i++)
+	{
+		std::system("cls");
+		std::cout << "INFORMATION: You can create just 5 shapes*" << std::endl;
+		std::cout << "--------------------------------------------------------" << std::endl;
+		std::cout << "shape #" << i + 1 << "\nWhat kind of shape Would you like create?" << std::endl;
+		std::cout << "-------------------------------------" << std::endl;
+		std::cout << "1- Circle" << std::endl;
+		std::cout << "2- Square" << std::endl;
+		std::cout << "-------------------------------------" << std::endl;
+
+		int UserInput;
+		UserInput = ValidateInput(UserInput, 1, 2);
+
+		if (UserInput == 1)
+		{
+			std::cout << "Insert circle's Radius: ";
+			float InRadius;
+			InRadius = ValidateInputFloat(InRadius);
+
+			Shapes[i] = new FCircle(InRadius);
+
+		}
+		else
+		{
+			std::cout << "Insert square's lenght: ";
+			float InLenght;
+			InLenght = ValidateInputFloat(InLenght);
+
+			std::cout << "Insert square's heignt: ";
+			float InHeight;
+			InHeight = ValidateInputFloat(InHeight);
+
+			Shapes[i] = new FSquare(InLenght, InHeight);
+		}
+	}
+
+	std::cout << "These are the shapes that you created: " << std::endl;
+	std::system("cls");
+
+	for (int i = 0; i < 5; i++)
+	{
+		std::cout << "--------------------------------- " << std::endl;
+		std::cout << "Shape #" << i + 1 << std::endl;
+
+		std::cout << "this Shape is a: " << Shapes[i]->GetKindOfShape() << std::endl;
+		std::cout << Shapes[i]->PrintParameters() << std::endl;
+		std::cout << "the Shape's area is: " << Shapes[i]->CalculateArea() << std::endl;
+		std::cout << "the Shape's perimeter is: " << Shapes[i]->CalculatePerimeter() << std::endl;
+		std::cout << "--------------------------------- " << std::endl;
+	}
+
+	//freeing Memory
+	for (int i = 0; i < 5; i++)
+	{
+		delete Shapes[i];
+	}
 }
 
 //---------------------------------------------------------------------------------
@@ -141,6 +200,8 @@ int main()
 	std::cout << "1- Build-in array" << std::endl;
 	std::cout << "2- Static array" << std::endl;
 	std::cout << "3- Dinamic array" << std::endl;
+	std::cout << "-----------------------------------------\n" << std::endl;
+	std::cout << "Enter a valid option: ";
 	
 	int UserInput;
 	UserInput = ValidateInput(UserInput, 1, 3);

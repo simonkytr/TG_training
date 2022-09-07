@@ -3,49 +3,50 @@
 template <typename T, const int N>
 class TStaticArray
 {
-	static const SizeArray = N;
+	static const int SizeArray = N;
 	T StaticArray[SizeArray];
 
+public:
 	//---------------------------------------------------------
-	T operator[int Index]
+	T& operator[](const int Index)
 	{
 		return StaticArray[Index];
 	};
 
-	T operator[int Index] const
+	const T& operator[](int Index) const
 	{
 		return StaticArray[Index];
 	};
 
 	//---------------------------------------------------------
-	T Front()
+	T& Front()
 	{
 		return StaticArray[0];
 	};
 
-	T Front() const
+	const T& Front() const
 	{
 		return StaticArray[0];
 	};
 
 	//---------------------------------------------------------
-	T Back()
+	T& Back()
 	{
 		return StaticArray[SizeArray - 1];
 	};
 
-	T Back() const
+	const T& Back() const
 	{
 		return StaticArray[SizeArray - 1];
 	};
 
 	//---------------------------------------------------------
-	T GetData()
+	T& GetData()
 	{
 		return StaticArray;
 	};
 
-	T GetData() const
+	const T& GetData() const
 	{
 		return StaticArray;
 	};
