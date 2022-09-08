@@ -129,11 +129,13 @@
   <ItemGroup>
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="shape.cpp" />
     <ClCompile Include="square.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="shape.h" />
     <ClInclude Include="Square.h" />
     <ClInclude Include="TDinamicArray.h" />

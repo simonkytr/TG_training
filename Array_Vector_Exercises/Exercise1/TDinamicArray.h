@@ -12,7 +12,7 @@ public:
 	TDynamicArray()
 	{
 		SizeArray = 0;
-		ArrayCapacity = 1;
+		CapacityArray = 1;
 		DynamicArray = new T[CapacityArray];
 	};
 
@@ -34,14 +34,14 @@ public:
 	}
 
 	//----------------------------------------------------------------------
-	T& operator[] (const int index)
+	T& operator[] (const int Index)
 	{
-		return DynamicArray[i];
+		return DynamicArray[Index];
 	}
 
-	const T& operator[] (const int index) const
+	const T& operator[] (const int Index) const
 	{
-		return DynamicArray[i];
+		return DynamicArray[Index];
 	}
 
 	//-----------------------------------------------------------------------
@@ -102,7 +102,7 @@ public:
 	//-------------------------------------------------------------------------
 	void Reserve(const int NewCapacity)
 	{
-		if (NewCapacitye > CapacityArray)
+		if (NewCapacity > CapacityArray)
 		{
 			T* ContainerArray = new T[NewCapacity];
 
@@ -151,7 +151,7 @@ public:
 		}
 		else
 		{
-			DynamicArray[size] = InType;
+			DynamicArray[SizeArray] = InType;
 			SizeArray++;
 		}
 	}
@@ -213,13 +213,13 @@ public:
 	//----------------------------------------------------------------------------
 	void Replace(const int Index, T& InType)
 	{
-		DynamicArray[Index] = inType;
+		DynamicArray[Index] = InType;
 	}
 
 	//---------------------------------------------------------------------------
 	void SwapIndex(const int Index1, const int Index2)
 	{
-		T SwapType = Dynamic[Index1];
+		T SwapType = DynamicArray[Index1];
 		DynamicArray[Index1] = DynamicArray[Index2];
 		DynamicArray[Index2] = SwapType;		
 	}
@@ -227,18 +227,20 @@ public:
 	//----------------------------------------------------------------------------
 	void Split(TDynamicArray<T>& Array1, TDynamicArray<T>& Array2, const int Index)
 	{
-		if (Array1.IsEmpty() && Array2.IsEmpty())
+		if (!Array1.IsEmpty() && !Array2.IsEmpty())
 		{
-			for (int i = 0; i < Index; i++)
-			{
-				Array1.Reserve(Index);
-				Array1.PushBack(DynamicArray[i]);
-			}
-			for (int i = Index; i < CapacityArray; i++)
-			{
-				Array1.Reserve(CapacityArray - Index);
-				Array2.PushBack(DynamicArray[i]);
-			}
+			Array1.Clear();
+			Array2.Clear();
+		}
+		for (int i = 0; i < Index; i++)
+		{
+			Array1.Reserve(Index);
+			Array1.PushBack(DynamicArray[i]);
+		}
+		for (int i = Index; i < CapacityArray; i++)
+		{
+			Array1.Reserve(CapacityArray - Index);
+			Array2.PushBack(DynamicArray[i]);
 		}
 	}
 };
