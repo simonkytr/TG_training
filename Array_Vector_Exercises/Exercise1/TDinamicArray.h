@@ -21,6 +21,18 @@ public:
 		delete[] DynamicArray;
 	};
 
+	TDynamicArray(const TDynamicArray<T>& OtherDynamicArray)
+	{
+		Append(DynamicArray);
+	}
+
+	TDynamicArray& operator= (const TDynamicArray<T>& OtherDynamicArray)
+	{
+		Clear();
+		Append(OtherDynamicArray);
+		return *this;
+	}
+
 	//----------------------------------------------------------------------
 	T& operator[] (const int index)
 	{
