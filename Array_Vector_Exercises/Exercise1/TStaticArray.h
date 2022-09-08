@@ -53,7 +53,7 @@ public:
 	};
 
 	//---------------------------------------------------------
-	bool IsEmpty()
+	bool IsEmpty() const
 	{
 		if (SizeArray == 0)
 		{

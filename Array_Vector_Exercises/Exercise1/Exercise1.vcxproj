@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -131,12 +131,12 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="shape.cpp" />
     <ClCompile Include="square.cpp" />
-    <ClCompile Include="TStaticArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h" />
     <ClInclude Include="shape.h" />
     <ClInclude Include="Square.h" />
+    <ClInclude Include="TDinamicArray.h" />
     <ClInclude Include="TStaticArray.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
