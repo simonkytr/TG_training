@@ -184,7 +184,7 @@ void AskForStaticArray()
 }
 
 //---------------------------------------------------------------------------------
-void AskForDinamicArray()
+void AskForDynamicArray()
 {
 
 }
@@ -216,6 +216,6 @@ int main()
 	}
 	else
 	{
-		AskForDinamicArray();
+		AskForDynamicArray();
 	}
 }

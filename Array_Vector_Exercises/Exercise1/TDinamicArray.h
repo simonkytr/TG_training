@@ -209,4 +209,36 @@ public:
 			PushBack(AppendArray[i]);
 		}
 	}
+
+	//----------------------------------------------------------------------------
+	void Replace(const int Index, T& InType)
+	{
+		DynamicArray[Index] = inType;
+	}
+
+	//---------------------------------------------------------------------------
+	void SwapIndex(const int Index1, const int Index2)
+	{
+		T SwapType = Dynamic[Index1];
+		DynamicArray[Index1] = DynamicArray[Index2];
+		DynamicArray[Index2] = SwapType;		
+	}
+
+	//----------------------------------------------------------------------------
+	void Split(TDynamicArray<T>& Array1, TDynamicArray<T>& Array2, const int Index)
+	{
+		if (Array1.IsEmpty() && Array2.IsEmpty())
+		{
+			for (int i = 0; i < Index; i++)
+			{
+				Array1.Reserve(Index);
+				Array1.PushBack(DynamicArray[i]);
+			}
+			for (int i = Index; i < CapacityArray; i++)
+			{
+				Array1.Reserve(CapacityArray - Index);
+				Array2.PushBack(DynamicArray[i]);
+			}
+		}
+	}
 };
