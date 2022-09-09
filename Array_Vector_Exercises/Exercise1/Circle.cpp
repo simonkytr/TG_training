@@ -22,7 +22,7 @@ std::string FCircle::PrintParameters() const
 
 float FCircle::GetArea() const
 {
-	return (float)M_PI * exp(Radius);
+	return (float)M_PI * pow(Radius, 2);
 }
 
 
