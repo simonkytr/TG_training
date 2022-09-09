@@ -20,13 +20,13 @@ std::string FCircle::PrintParameters() const
 	return "the Circle's radius is: " + std::to_string(Radius);
 };
 
-float FCircle::CalculateArea()
+float FCircle::GetArea() const
 {
 	return (float)M_PI * exp(Radius);
 }
 
 
-float FCircle::CalculatePerimeter()
+float FCircle::GetPerimeter() const
 {
 	return 2.0f * (float)M_PI * Radius;
 }

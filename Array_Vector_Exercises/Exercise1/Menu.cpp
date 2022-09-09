@@ -16,6 +16,7 @@ void FMenu::OpenMainMenu()
 	std::cout << "1- Build-in array" << std::endl;
 	std::cout << "2- Static array" << std::endl;
 	std::cout << "3- Dinamic array" << std::endl;
+	std::cout << "4- Exit" << std::endl;
 	std::cout << "-----------------------------------------\n" << std::endl;
 	std::cout << "Enter a valid option: ";
 
@@ -51,40 +52,21 @@ void FMenu::AskForBuildInArray()
 	int SizeArray;
 	SizeArray = ValidateInput(SizeArray);
 
-	FShape** BuidInArrayPtr = new FShape * [SizeArray];
+	FShape** Shapes = new FShape * [SizeArray];
 
+	//Creating new Shape
 	for (int i = 0; i < SizeArray; i++)
 	{
 		std::system("cls");
 		std::cout << "shape #" << i + 1 << "\nWhat kind of shape Would you like create?" << std::endl;
-		std::cout << "-------------------------------------" << std::endl;
-		std::cout << "1- Circle" << std::endl;
-		std::cout << "2- Square" << std::endl;
-		std::cout << "-------------------------------------" << std::endl;
 
-		int UserInput;
-		UserInput = ValidateInput(UserInput, 1, 2);
-
-		if (UserInput == 1)
+		if (CreateShape(*Shapes))
 		{
-			std::cout << "Insert circle's Radius: ";
-			float InRadius;
-			InRadius = ValidateInputFloat(InRadius);
-
-			BuidInArrayPtr[i] = new FCircle(InRadius);
-
+			std::cout << "The Shape was created succesfully" << std::endl;
 		}
 		else
 		{
-			std::cout << "Insert square's lenght: ";
-			float InLenght;
-			InLenght = ValidateInputFloat(InLenght);
-
-			std::cout << "Insert square's heignt: ";
-			float InHeight;
-			InHeight = ValidateInputFloat(InHeight);
-
-			BuidInArrayPtr[i] = new FSquare(InLenght, InHeight);
+			std::cout << "The Shape wasn't created" << std::endl;
 		}
 	}
 
@@ -97,20 +79,15 @@ void FMenu::AskForBuildInArray()
 	{
 		std::cout << "--------------------------------- " << std::endl;
 		std::cout << "Shape #" << i + 1 << std::endl;
-
-		std::cout << "this Shape is a: " << BuidInArrayPtr[i]->GetKindOfShape() << std::endl;
-		std::cout << BuidInArrayPtr[i]->PrintParameters() << std::endl;
-		std::cout << "the Shape's area is: " << BuidInArrayPtr[i]->CalculateArea() << std::endl;
-		std::cout << "the Shape's perimeter is: " << BuidInArrayPtr[i]->CalculatePerimeter() << std::endl;
-		std::cout << "--------------------------------- " << std::endl;
+		PrintArray(*Shapes[i]);
 	}
 
 	//freeing Memory
 	for (int i = 0; i < SizeArray; i++)
 	{
-		delete BuidInArrayPtr[i];
+		delete Shapes[i];
 	}
-	delete[] BuidInArrayPtr;
+	delete[] Shapes;
 
 	//back to MainMenu
 	ComeBackMainManu();
@@ -125,37 +102,15 @@ void FMenu::AskForStaticArray()
 	for (int i = 0; i < 5; i++)
 	{
 		std::system("cls");
-		std::cout << "INFORMATION: You can create just 5 shapes*" << std::endl;
-		std::cout << "--------------------------------------------------------" << std::endl;
 		std::cout << "shape #" << i + 1 << "\nWhat kind of shape Would you like create?" << std::endl;
-		std::cout << "-------------------------------------" << std::endl;
-		std::cout << "1- Circle" << std::endl;
-		std::cout << "2- Square" << std::endl;
-		std::cout << "-------------------------------------" << std::endl;
 
-		int UserInput;
-		UserInput = ValidateInput(UserInput, 1, 2);
-
-		if (UserInput == 1)
+		if (CreateShape(Shapes[i]))
 		{
-			std::cout << "Insert circle's Radius: ";
-			float InRadius;
-			InRadius = ValidateInputFloat(InRadius);
-
-			Shapes[i] = new FCircle(InRadius);
-
+			std::cout << "The Shape was created succesfully" << std::endl;
 		}
 		else
 		{
-			std::cout << "Insert square's lenght: ";
-			float InLenght;
-			InLenght = ValidateInputFloat(InLenght);
-
-			std::cout << "Insert square's heignt: ";
-			float InHeight;
-			InHeight = ValidateInputFloat(InHeight);
-
-			Shapes[i] = new FSquare(InLenght, InHeight);
+			std::cout << "The Shape wasn't created" << std::endl;
 		}
 	}
 
@@ -167,11 +122,9 @@ void FMenu::AskForStaticArray()
 		std::cout << "--------------------------------- " << std::endl;
 		std::cout << "Shape #" << i + 1 << std::endl;
 
-		std::cout << "this Shape is a: " << Shapes[i]->GetKindOfShape() << std::endl;
-		std::cout << Shapes[i]->PrintParameters() << std::endl;
-		std::cout << "the Shape's area is: " << Shapes[i]->CalculateArea() << std::endl;
-		std::cout << "the Shape's perimeter is: " << Shapes[i]->CalculatePerimeter() << std::endl;
 		std::cout << "--------------------------------- " << std::endl;
+		std::cout << "Shape #" << i + 1 << std::endl;
+		PrintArray(*Shapes[i]);
 	}
 
 	//freeing Memory
@@ -203,8 +156,6 @@ void FMenu::AskForDynamicArray()
 
 		UserInput = ValidateInput(UserInput, 1, 3);
 
-
-
 		if (UserInput == 1)
 		{
 			std::system("cls");
@@ -222,12 +173,12 @@ void FMenu::AskForDynamicArray()
 			{
 				std::system("cls");
 				std::cout << "Insert circle's Radius: ";
+
 				float InRadius;
 				InRadius = ValidateInputFloat(InRadius);
-
 				Shapes.PushBack(new FCircle(InRadius));
-
 			}
+
 			else
 			{
 				std::system("cls");
@@ -238,19 +189,21 @@ void FMenu::AskForDynamicArray()
 				std::cout << "Insert square's heignt: ";
 				float InHeight;
 				InHeight = ValidateInputFloat(InHeight);
+
 				Shapes.PushBack(new FSquare(InLenght, InHeight));
 			}
 			std::cout << "You shape was created succefully" << std::endl;
 		}
+
 		else if (UserInput == 2)
 		{
+
 			if (Shapes.IsEmpty())
 			{
 				std::system("cls");
 				std::cout << "You don't create a shape yet..." << std::endl;
-
-
 			}
+
 			else
 			{
 				std::system("cls");
@@ -260,14 +213,10 @@ void FMenu::AskForDynamicArray()
 				{
 					std::cout << "--------------------------------- " << std::endl;
 					std::cout << "Shape #" << i + 1 << std::endl;
-
-					std::cout << "this Shape is a: " << Shapes[i]->GetKindOfShape() << std::endl;
-					std::cout << Shapes[i]->PrintParameters() << std::endl;
-					std::cout << "the Shape's area is: " << Shapes[i]->CalculateArea() << std::endl;
-					std::cout << "the Shape's perimeter is: " << Shapes[i]->CalculatePerimeter() << std::endl;
-					std::cout << "--------------------------------- " << std::endl;
+					PrintArray(*Shapes[i]);
 				}
 			}
+
 			std::cout << "Press 1... to back previus menu" << std::endl;
 			int MenuInput;
 			std::cin >> MenuInput;
@@ -287,23 +236,58 @@ void FMenu::AskForDynamicArray()
 
 		else
 		{
-
 			//freeing Memory
 			for (int i = 0; i < Shapes.GetSize(); i++)
 			{
 				delete Shapes[i];
 			}
-
 			ActiveMenuCommand = EMenuCommand::MainMenu;
 		}
 
 	} while (UserInput != 3);
-
 }
 
-void FMenu::PrintArray()
+//---------------------------------------------------------------------------------
+bool FMenu::CreateShape(FShape*& Shape)
 {
+	std::cout << "-------------------------------------" << std::endl;
+	std::cout << "1- Circle" << std::endl;
+	std::cout << "2- Square" << std::endl;
+	std::cout << "-------------------------------------" << std::endl;
 
+	int UserInput;
+	UserInput = ValidateInput(UserInput, 1, 2);
+
+	if (UserInput == 1)
+	{
+		std::cout << "Insert circle's Radius: ";
+		float InRadius;
+		InRadius = ValidateInputFloat(InRadius);
+
+		return Shape = new FCircle(InRadius);
+	}
+	else
+	{
+		std::cout << "Insert square's lenght: ";
+		float InLenght;
+		InLenght = ValidateInputFloat(InLenght);
+
+		std::cout << "Insert square's heignt: ";
+		float InHeight;
+		InHeight = ValidateInputFloat(InHeight);
+
+		return Shape = new FSquare(InLenght, InHeight);
+	}
+}
+
+//---------------------------------------------------------------------------------
+void FMenu::PrintArray(const FShape& Shape) const
+{
+	std::cout << "this Shape is a: " << Shape.GetKindOfShape() << std::endl;
+	std::cout << Shape.PrintParameters() << std::endl;
+	std::cout << "the Shape's area is: " << Shape.GetArea() << std::endl;
+	std::cout << "the Shape's perimeter is: " << Shape.GetPerimeter() << std::endl;
+	std::cout << "--------------------------------- " << std::endl;
 };
 
 //---------------------------------------------------------------------------------
@@ -390,6 +374,6 @@ void FMenu::ComeBackMainManu()
 			ActiveMenuCommand = EMenuCommand::MainMenu;
 			break;
 		}
-
 	}
 }
+

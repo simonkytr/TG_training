@@ -11,6 +11,6 @@ public:
 	FCircle(const float InRadius);
 
 	virtual std::string PrintParameters() const override;
-	virtual float CalculateArea() override;
-	virtual float CalculatePerimeter() override;
+	virtual float GetArea() const override;
+	virtual float GetPerimeter() const override;
 };

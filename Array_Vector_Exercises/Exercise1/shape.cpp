@@ -6,7 +6,7 @@ FShape::FShape()
 	KindOfShape = "";
 }
 
-std::string FShape::GetKindOfShape()
+std::string FShape::GetKindOfShape() const
 {
 	return KindOfShape;
 }
@@ -16,14 +16,12 @@ std::string FShape::PrintParameters() const
 	return "";
 }
 
- float FShape::CalculateArea()
+ float FShape::GetArea() const
 {
-	 std::cout << "here it is going to calculate the shape's Area" << std::endl;
 	 return 0;
 }
 
-float FShape::CalculatePerimeter()
+float FShape::GetPerimeter() const
 {
-	std::cout << "here it is going to calculate the Perimeter's Area" << std::endl;
 	return 0;
 }

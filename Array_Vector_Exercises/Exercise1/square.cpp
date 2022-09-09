@@ -19,12 +19,12 @@ std::string FSquare::PrintParameters() const
 	return "the square's lenght: " + std::to_string(Lenght) + "\nthe square's height: " + std::to_string(Height);
 }
 
-float FSquare::CalculateArea()
+float FSquare::GetArea() const
 {
 	return Lenght * Height;
 }
 
-float FSquare::CalculatePerimeter()
+float FSquare::GetPerimeter() const
 {
 	return (Lenght * 2) + (Height * 2);
 }

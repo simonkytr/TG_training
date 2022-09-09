@@ -8,9 +8,9 @@ protected:
 public:
 	FShape();
 	
-	virtual std::string GetKindOfShape();
+	virtual std::string GetKindOfShape() const;
 	virtual std::string PrintParameters() const;
 
-	virtual float CalculateArea();
-	virtual float CalculatePerimeter();
+	virtual float GetArea() const;
+	virtual float GetPerimeter() const;
 };

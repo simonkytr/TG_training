@@ -20,7 +20,8 @@ private:
 	void AskForStaticArray();
 	void AskForDynamicArray();
 
-	void PrintArray(int SizeArray, FShape*[] Shapes);
+	void PrintArray(const FShape& Shape) const;
+	bool CreateShape(FShape*& Shape);
 
 	int ValidateInput(int& UserInput, const int LowerBounce, const int HigherBounce);
 	int ValidateInput(int& UserInput);
