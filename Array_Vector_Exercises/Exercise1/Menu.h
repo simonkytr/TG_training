@@ -21,7 +21,7 @@ private:
 	void AskForDynamicArray();
 
 	void PrintArray(const FShape& Shape) const;
-	bool CreateShape(FShape*& Shape);
+	FShape* CreateShape();
 
 	int ValidateInput(int& UserInput, const int LowerBounce, const int HigherBounce);
 	int ValidateInput(int& UserInput);

@@ -60,7 +60,7 @@ void FMenu::AskForBuildInArray()
 		std::system("cls");
 		std::cout << "shape #" << i + 1 << "\nWhat kind of shape Would you like create?" << std::endl;
 
-		if (CreateShape(*Shapes))
+		if (Shapes[i] = CreateShape())
 		{
 			std::cout << "The Shape was created succesfully" << std::endl;
 		}
@@ -104,7 +104,7 @@ void FMenu::AskForStaticArray()
 		std::system("cls");
 		std::cout << "shape #" << i + 1 << "\nWhat kind of shape Would you like create?" << std::endl;
 
-		if (CreateShape(Shapes[i]))
+		if (Shapes[i] = CreateShape())
 		{
 			std::cout << "The Shape was created succesfully" << std::endl;
 		}
@@ -247,8 +247,7 @@ void FMenu::AskForDynamicArray()
 	} while (UserInput != 3);
 }
 
-//---------------------------------------------------------------------------------
-bool FMenu::CreateShape(FShape*& Shape)
+FShape* FMenu::CreateShape()
 {
 	std::cout << "-------------------------------------" << std::endl;
 	std::cout << "1- Circle" << std::endl;
@@ -262,9 +261,11 @@ bool FMenu::CreateShape(FShape*& Shape)
 	{
 		std::cout << "Insert circle's Radius: ";
 		float InRadius;
+		
 		InRadius = ValidateInputFloat(InRadius);
-
-		return Shape = new FCircle(InRadius);
+		return new FCircle(InRadius);
+		
+			
 	}
 	else
 	{
@@ -276,7 +277,7 @@ bool FMenu::CreateShape(FShape*& Shape)
 		float InHeight;
 		InHeight = ValidateInputFloat(InHeight);
 
-		return Shape = new FSquare(InLenght, InHeight);
+		return new FSquare(InLenght, InHeight);
 	}
 }
 
@@ -363,7 +364,7 @@ float FMenu::ValidateInputFloat(float& UserInput)
 //-----------------------------------------------------------------------------
 void FMenu::ComeBackMainManu()
 {
-	while (std::cin)
+	while (std::cin.bad())
 	{
 		//back to MainMenu
 		std::cin.ignore(500, '\n');

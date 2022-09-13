@@ -55,11 +55,7 @@ public:
 	//---------------------------------------------------------
 	bool IsEmpty() const
 	{
-		if (SizeArray == 0)
-		{
-			return true;
-		}
-		return false;
+		return SizeArray == 0
 	};
 
 	//----------------------------------------------------------
