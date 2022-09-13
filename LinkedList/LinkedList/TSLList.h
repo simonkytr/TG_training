@@ -5,49 +5,70 @@ class TSLList
 private:
 
 	int Size = 0;
-	FNode* Head = nullptr;
-	FNode* Tail = nullptr;
-
 	struct FNode
 	{
 		Type Element;
 		FNode* Next = nullptr;
 	};
+	FNode* Head = nullptr;
+	FNode* Tail = nullptr;
 
 public:
 
+	//-------------------------Access
 	Type& operator[] (const int Index)
 	{
-		return TSLList[Index];
+		FNode* Temporal = Head; 
+		for (int i = 0; i < index; i++)
+		{
+			Temporal = Temporal->Next;
+		}
+		return Temporal->Element;
 	}
 
 	const Type& operator[] (const int Index) const
 	{
-		return TSLList[Index];
+		FNode* Temporal = Head;
+		for (int i = 0; i < index; i++)
+		{
+			Temporal = Temporal->Next;
+		}
+		return Temporal->Element;
 	}
 
 	//-----------------------------------------------
 	Type& Head()
 	{
-		return TSLList[0];
+		return Head->Element;
 	}
 
 	const Type& Head() const
 	{
-		return TSLList[0];
+		return Head->Element;
 	}
 
 	//-----------------------------------------------
 	Type& Tail()
 	{
-		return TSLList[Size - 1];
+		return Tail->Element;
 	}
 
 	const Type& Tail() const
 	{
-		return TSLList[Size - 1];
+		return Tail->Element;
 	}
 
-	//-----------------------------------------------
+	//---------------------------------Size
+	bool IsEmpty()
+	{
+		return Size == 0;
+	}
 
+	//------------------------------------------------
+	int GetSize()
+	{
+		return Size;
+	}
+
+	
 };
