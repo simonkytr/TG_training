@@ -171,9 +171,9 @@ public:
 				Reserve(CapacityArray * 2);
 			}
 				
-			for (int i = 0; i < SizeArray; i++)
+			for (int i = SizeArray; i > Index; i--)
 			{
-				DynamicArray[Index + 1] = DynamicArray[Index];
+				DynamicArray[Index] = DynamicArray[i - 1];
 			}
 			DynamicArray[Index] = InType;
 			SizeArray++;	
