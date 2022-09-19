@@ -341,7 +341,8 @@ public:
 		{
 			if (Predictate(Temporal))
 			{
-				Remove(Temporal);
+				Remove(i);
+				i--;
 			}
 			Temporal = Temporal->Next;
 		}
