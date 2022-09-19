@@ -25,6 +25,18 @@ public:
 		Clear();
 	}
 
+	//-------------------------------CopyConstructor
+	TSLList(const TSLList<Type>& OtherTSLlist)
+	{
+		FNode* Temporal = OtherTSLlist.Head;
+
+		for (int i = 0; i < Size; i++)
+		{
+			AddTail(Temporal->Element);
+			Temporal = Temporal->Next;
+		}
+	}
+
 	//--------------------------------FIterator
 	class FIterator
 	{
@@ -66,26 +78,12 @@ public:
 
 	FIterator begin()
 	{
-		if(Head)
-			return FIterator(Head);
-		return FIterator(nullptr);
+		return FIterator(Head);
 	}
 
 	FIterator end()
 	{
 		return FIterator(nullptr);
-	}
-
-	//-------------------------------CopyConstructor
-	TSLList(const TSLList<Type>& OtherTSLlist)
-	{
-		FNode* Temporal = OtherTSLlist.Head;
-
-		for (int i = 0; i < Size; i++)
-		{
-			AddTail(Temporal->Element);
-			Temporal = Temporal->Next;
-		}
 	}
 
 	//-------------------------Access
@@ -113,12 +111,12 @@ public:
 	TSLList& operator= (const TSLList<Type>& OtherTSLlist)
 	{
 		Clear();
-		FNode* Temporal = OtherTSLlist.Head;
+		FNode* CurrentNode = OtherTSLlist.Head;
 
 		for (int i = 0; i < Size; i++)
 		{
-			AddTail(Temporal->Element);
-			Temporal = Temporal->Next;
+			AddTail(CurrentNode->Element);
+			CurrentNode = CurrentNode->Next;
 		}
 		return *this;
 
@@ -186,7 +184,6 @@ public:
 		{
 			AddHead(InTail);
 		}
-
 		else
 		{
 			Tail->Next = new FNode;
@@ -250,7 +247,12 @@ public:
 	{
 		FNode* Temporal = Head;
 
-		if (Index >= 0 && Index <= Size)
+		if (Index == 0)
+		{
+			RemoveHead();
+		}
+
+		else if (Index >= 0 && Index <= Size)
 		{
 			for (int i = 0; i < Index - 1; i++)
 			{
@@ -287,14 +289,12 @@ public:
 	}
 
 	//----------------------------------------ForEach
-	template<typename Function>
-	void forEach(const Function& SomeFunction)
+	template<typename Pred>
+	void forEach(const Pred& Predicate)
 	{
-		FNode* Temporal = Head;
-		for (int i = 0; i < Size; i++)
+		for (Type& Temporal: *this)
 		{
-			SomeFunction(Temporal);
-			Temporal = Temporal->Next;
+			Predicate(Temporal);
 		}
 	}
 
@@ -302,14 +302,12 @@ public:
 	template< typename Pred>
 	Type* FindByPredicate(const Pred& Predictate)
 	{
-		FNode* Temporal = Head;
-		for (int i = 0; i < Size; i++)
+		for (Type& Temporal : *this)
 		{
 			if (Predictate(Temporal))
 			{
 				return &Temporal->Element;
 			}
-			Temporal = Temporal->Next;
 		}
 		return nullptr;
 	};
@@ -321,15 +319,15 @@ public:
 		FNode* Temporal;
 		TSLList <Type> Filterlist;
 
-		for(int i = 0; i < Size; i++)
+		for(Type& Temporal : *this)
 		{
 			if (Predictate(Temporal))
 			{
-				Filterlist.AddTail(Temporal);
-				return Filterlist;				
+				Filterlist.AddTail(Temporal);		
 			}
-			Temporal = Temporal->Next;
 		}
+
+		return Filterlist;
 	};
 
 	//-------------------------------------------------
