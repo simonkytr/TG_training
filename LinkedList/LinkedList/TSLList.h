@@ -5,10 +5,10 @@ template <typename Type>
 class TSLList
 {
 private:
-	int Size;
+	int Size = 0;
 	struct FNode
 	{
-		Type Element;
+		Type Data;
 		FNode* Next = nullptr;
 	};
 	FNode* Head = nullptr;
@@ -17,7 +17,6 @@ private:
 public:
 	TSLList()
 	{
-		Size = 0;
 	}
 
 	~TSLList()
@@ -26,13 +25,13 @@ public:
 	}
 
 	//-------------------------------CopyConstructor
-	TSLList(const TSLList<Type>& OtherTSLlist)
+	TSLList(const TSLList<Type>& Otherlist)
 	{
-		FNode* Temporal = OtherTSLlist.Head;
+		FNode* Temporal = Otherlist.Head;
 
-		for (int i = 0; i < Size; i++)
+		for (int i = 0; i < Otherlist.Size; i++)
 		{
-			AddTail(Temporal->Element);
+			AddTail(Temporal->Data);
 			Temporal = Temporal->Next;
 		}
 	}
@@ -57,12 +56,12 @@ public:
 
 		Type& operator*()
 		{
-			return Current->Element;
+			return Current->Data;
 		}
 
 		const Type& operator*() const
 		{
-			return Current->Element;
+			return Current->Data;
 		}
 
 		bool operator!=(const FIterator& Other)
@@ -87,35 +86,35 @@ public:
 	}
 
 	//-------------------------Access
-	Type& operator[] (const int Index)
+	Type& operator[](const int Index)
 	{
 		FNode* Temporal = Head; 
 		for (int i = 0; i < Index; i++)
 		{
 			Temporal = Temporal->Next;
 		}
-		return Temporal->Element;
+		return Temporal->Data;
 	}
 
-	const Type& operator[] (const int Index) const
+	const Type& operator[](const int Index) const
 	{
 		FNode* Temporal = Head;
 		for (int i = 0; i < Index; i++)
 		{
 			Temporal = Temporal->Next;
 		}
-		return Temporal->Element;
+		return Temporal->Data;
 	}
 
 	//-----------------------------------------------
-	TSLList& operator= (const TSLList<Type>& OtherTSLlist)
+	TSLList& operator=(const TSLList<Type>& Otherlist)
 	{
 		Clear();
-		FNode* CurrentNode = OtherTSLlist.Head;
+		FNode* CurrentNode = Otherlist.Head;
 
-		for (int i = 0; i < Size; i++)
+		for (int i = 0; i < Otherlist.Size; i++)
 		{
-			AddTail(CurrentNode->Element);
+			AddTail(CurrentNode->Data);
 			CurrentNode = CurrentNode->Next;
 		}
 		return *this;
@@ -125,33 +124,33 @@ public:
 	//-----------------------------------------------
 	Type& GetHead()
 	{
-		return Head->Element;
+		return Head->Data;
 	}
 
 	const Type& GetHead() const
 	{
-		return Head->Element;
+		return Head->Data;
 	}
 
 	//-----------------------------------------------
 	Type& GetTail()
 	{
-		return Tail->Element;
+		return Tail->Data;
 	}
 
 	const Type& GetTail() const
 	{
-		return Tail->Element;
+		return Tail->Data;
 	}
 
 	//---------------------------------Size
-	bool IsEmpty()
+	bool IsEmpty() const
 	{
 		return Size == 0;
 	}
 
 	//------------------------------------------------
-	int GetSize()
+	int GetSize() const
 	{
 		return Size;
 	}
@@ -160,26 +159,23 @@ public:
 	void AddHead(const Type& InHead)
 	{
 		FNode* NewHead = new FNode;
-		NewHead->Element = InHead;
+		NewHead->Data = InHead;
 
 		if (Head == nullptr)
 		{
-			Head = NewHead;
-			Tail = NewHead;
-			Size++;
+			Head = NewHead;	
 		}
 		else
 		{
 			NewHead->Next = Head;
-			Head = NewHead;
-			Size++;
 		}
+		Head = NewHead;
+		Size++;
 	}
 
 	//-------------------------------------------------
 	void AddTail(const Type& InTail)
 	{
-
 		if (Head == nullptr)
 		{
 			AddHead(InTail);
@@ -187,7 +183,7 @@ public:
 		else
 		{
 			Tail->Next = new FNode;
-			Tail->Next->Element = InTail;
+			Tail->Next->Data = InTail;
 			Tail = Tail->Next;
 			Size++;
 		}
@@ -196,7 +192,11 @@ public:
 	//----------------------------------------------------
 	void Insert(const Type& NewItem, const int Index)
 	{
-		if (Index == 0)
+		if (Index < 0 || Index > Size)
+		{
+			return;
+		}
+		else if (Index == 0)
 		{
 			AddHead(NewItem);
 		}
@@ -204,21 +204,22 @@ public:
 		{
 			AddTail(NewItem);
 		}
-
-		else if (Index > 0 && Index < Size)
+		else
 		{
 			FNode* Temporal = Head;
-			FNode* Container = new FNode;
 
 			for (int i = 0; i < Index; i++)
 			{
 				Temporal = Temporal->Next;
 			}
-			Container->Element = Temporal->Element;
 
-			Temporal->Element = NewItem;
-			Container->Next = Temporal->Next;
-			Temporal->Next = Container;
+			FNode* NewNode = new FNode;
+			NewNode->Data = Temporal->Data;
+			Temporal->Data = NewItem;
+
+			NewNode->Next = Temporal->Next;
+			Temporal->Next = NewNode;
+
 			Size++;
 		}
 	}
@@ -231,28 +232,31 @@ public:
 			delete Head;
 			Head = NewHead;
 			--Size;
-		}
 
-		else if (Size == 1)
-		{
-			delete Head;
-			Head = nullptr;
-			Tail = nullptr;
-			--Size;
-		}
+			 if (Size == 1)
+			{
+				Head = nullptr;
+				Tail = nullptr;
+				--Size;
+			}
+		}		
 	}
 
 	//---------------------------------------------------------
 	void Remove(const int Index)
 	{
-		FNode* Temporal = Head;
+		if (Index < 0 || Index > Size)
+		{
+			return;
+		}
 
 		if (Index == 0)
 		{
 			RemoveHead();
 		}
 
-		else if (Index >= 0 && Index <= Size)
+		FNode* Temporal = Head;
+		else (Index > 0 && Index < Size)
 		{
 			for (int i = 0; i < Index - 1; i++)
 			{
@@ -290,7 +294,7 @@ public:
 
 	//----------------------------------------ForEach
 	template<typename Pred>
-	void forEach(const Pred& Predicate)
+	void ForEach(const Pred& Predicate)
 	{
 		for (Type& Temporal: *this)
 		{
@@ -300,13 +304,13 @@ public:
 
 	//----------------------------------------Lambdas
 	template< typename Pred>
-	Type* FindByPredicate(const Pred& Predictate)
+	Type* FindByPredicate(const Pred& Predicate) const
 	{
 		for (Type& Temporal : *this)
 		{
-			if (Predictate(Temporal))
+			if (Predicate(Temporal))
 			{
-				return &Temporal->Element;
+				return &Temporal->Data;
 			}
 		}
 		return nullptr;
@@ -316,18 +320,17 @@ public:
 	template< typename Pred>
 	TSLList<Type> FilterByPredicate(const Pred& Predicate)
 	{
-		FNode* Temporal;
-		TSLList <Type> Filterlist;
+		TSLList <Type> FilterList;
 
 		for(Type& Temporal : *this)
 		{
 			if (Predictate(Temporal))
 			{
-				Filterlist.AddTail(Temporal);		
+				FilterList.AddTail(Temporal);		
 			}
 		}
 
-		return Filterlist;
+		return FilterList;
 	};
 
 	//-------------------------------------------------
@@ -344,7 +347,6 @@ public:
 			}
 			Temporal = Temporal->Next;
 		}
-		return false;
 	}
 
 };
