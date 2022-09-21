@@ -340,7 +340,7 @@ public:
 		FNode* Temporal = Head;
 		for (int i = 0; i < Size; i++)
 		{
-			if (Predictate(Temporal))
+			if (Predicate(Temporal))
 			{
 				Remove(i);
 				i--;
