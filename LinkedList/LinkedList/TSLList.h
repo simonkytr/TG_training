@@ -164,6 +164,7 @@ public:
 		if (Head == nullptr)
 		{
 			Head = NewHead;	
+			Tail = NewHead;
 		}
 		else
 		{
@@ -190,7 +191,7 @@ public:
 	}
 	
 	//----------------------------------------------------
-	void Insert(const Type& NewItem, const int Index)
+	void Insert(const Type& NewData, const int Index)
 	{
 		if (Index < 0 || Index > Size)
 		{
@@ -198,11 +199,7 @@ public:
 		}
 		else if (Index == 0)
 		{
-			AddHead(NewItem);
-		}
-		else if(Index == Size)
-		{
-			AddTail(NewItem);
+			AddHead(NewData);
 		}
 		else
 		{
@@ -213,13 +210,21 @@ public:
 				Temporal = Temporal->Next;
 			}
 
-			FNode* NewNode = new FNode;
-			NewNode->Data = Temporal->Data;
-			Temporal->Data = NewItem;
+			if (Temporal == Tail)
+			{
+				AddTail(NewData);
+			}
+			else
+			{
+				FNode* NewNode = new FNode;
+				NewNode->Data = Temporal->Data;
+				Temporal->Data = NewData;
 
-			NewNode->Next = Temporal->Next;
-			Temporal->Next = NewNode;
+				NewNode->Next = Temporal->Next;
+				Temporal->Next = NewNode;
 
+			}
+			
 			Size++;
 		}
 	}
@@ -249,15 +254,13 @@ public:
 		{
 			return;
 		}
-
 		if (Index == 0)
 		{
 			RemoveHead();
 		}
-
-		FNode* Temporal = Head;
-		else (Index > 0 && Index < Size)
+		else
 		{
+			FNode* Temporal = Head;
 			for (int i = 0; i < Index - 1; i++)
 			{
 				Temporal = Temporal->Next;
@@ -279,13 +282,13 @@ public:
 	//----------------------------------------------------------
 	void Clear()
 	{
-		FNode* NextItem;
+		FNode* NextData;
 
 		for (int i = 0; i < Size; i++)
 		{
-			NextItem = Head->Next;
+			NextData = Head->Next;
 			delete Head;
-			Head = NextItem;
+			Head = NextData;
 		}
 		Size = 0;
 		Head = nullptr;
