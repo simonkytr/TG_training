@@ -18,6 +18,15 @@
     <ClInclude Include="TSLList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DoublyList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Queue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">

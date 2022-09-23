@@ -77,7 +77,9 @@ public:
 
 	FIterator begin()
 	{
-		return FIterator(Head);
+		if(Head)
+			return FIterator(Head);
+		return nullptr;
 	}
 
 	FIterator end()
@@ -88,21 +90,13 @@ public:
 	//-------------------------Access
 	Type& operator[](const int Index)
 	{
-		FNode* Temporal = Head; 
-		for (int i = 0; i < Index; i++)
-		{
-			Temporal = Temporal->Next;
-		}
+		FNode* Temporal = GetNode(Index);
 		return Temporal->Data;
 	}
 
 	const Type& operator[](const int Index) const
 	{
-		FNode* Temporal = Head;
-		for (int i = 0; i < Index; i++)
-		{
-			Temporal = Temporal->Next;
-		}
+		FNode* Temporal = GetNode(Index);
 		return Temporal->Data;
 	}
 
@@ -203,12 +197,7 @@ public:
 		}
 		else
 		{
-			FNode* Temporal = Head;
-
-			for (int i = 0; i < Index; i++)
-			{
-				Temporal = Temporal->Next;
-			}
+			FNode* Temporal = GetNode(Index);
 
 			if (Temporal == Tail)
 			{
@@ -217,15 +206,15 @@ public:
 			else
 			{
 				FNode* NewNode = new FNode;
+
 				NewNode->Data = Temporal->Data;
 				Temporal->Data = NewData;
 
 				NewNode->Next = Temporal->Next;
 				Temporal->Next = NewNode;
 
+				Size++;
 			}
-			
-			Size++;
 		}
 	}
 	//---------------------------------------------------------
@@ -260,12 +249,7 @@ public:
 		}
 		else
 		{
-			FNode* Temporal = Head;
-			for (int i = 0; i < Index - 1; i++)
-			{
-				Temporal = Temporal->Next;
-			}
-
+			FNode* Temporal = GetNode(Index);
 			FNode* Current = Temporal->Next;
 			Temporal->Next = Current->Next;
 
@@ -282,17 +266,10 @@ public:
 	//----------------------------------------------------------
 	void Clear()
 	{
-		FNode* NextData;
-
-		for (int i = 0; i < Size; i++)
+		while (Head)
 		{
-			NextData = Head->Next;
-			delete Head;
-			Head = NextData;
+			RemoveHead();
 		}
-		Size = 0;
-		Head = nullptr;
-		Tail = nullptr;
 	}
 
 	//----------------------------------------ForEach
@@ -352,4 +329,24 @@ public:
 		}
 	}
 
+	private:
+		FNode* GetNode(const int Index)
+		{
+			FNode* Temporal = Head;
+			for (int i = 0; i < Index - 1; i++)
+			{
+				Temporal = Temporal->Next;
+			}
+			return Temporal;
+		}
+
+		const FNode* GetNode(const int Index) const
+		{
+			FNode* Temporal = Head;
+			for (int i = 0; i < Index - 1; i++)
+			{
+				Temporal = Temporal->Next;
+			}
+			return Temporal;
+		}
 };
