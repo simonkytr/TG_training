@@ -298,7 +298,7 @@ public:
 
 	//-------------------------------------------------
 	template< typename Pred>
-	TSLList<Type> FilterByPredicate(const Pred& Predicate)
+	TSLList<Type> FilterByPredicate(const Pred& Predicate) const
 	{
 		TSLList <Type> FilterList;
 

@@ -10,7 +10,7 @@ private:
 	{
 		Type Data;
 		FNode* Next = nullptr;
-		FNode* Previuos = nullptr;
+		FNode* previous = nullptr;
 	};
 	FNode* Head = nullptr;
 	FNode* Tail = nullptr;
@@ -103,7 +103,7 @@ public:
 			Current = Tail;
 			for (int i = Size - 1; i < Index / 2; i--)
 			{
-				Current = Current->Previuos;
+				Current = Current->previous;
 			}
 			return Current->Data;
 		}
@@ -115,7 +115,7 @@ public:
 		if (Index < Size / 2)
 		{
 			Current = Head;
-			for (int i = 0; i < Index / 2; i++)
+			for (int i = 0; i < Index; i++)
 			{
 				Current = Current->Next;
 			}
@@ -124,9 +124,9 @@ public:
 		else
 		{
 			Current = Tail;
-			for (int i = Size - 1; i < Index / 2; i--)
+			for (int i = Size - 1; i > Index; i--)
 			{
-				Current = Current->Previuos;
+				Current = Current->previous;
 			}
 			return Current->Data;
 		}
@@ -186,15 +186,15 @@ public:
 		FNode* NewHead = new FNode;
 		NewHead->Data = InHead;
 
-		if (Head == nullptr)
+		if (!Head)
 		{
 			Tail = NewHead;
 		}
 		else
 		{
 			NewHead->Next = Head;
-			Head->Previuos = NewHead;
-			NewHead->Previuos = nullptr;
+			Head->previous = NewHead;
+			NewHead->previous = nullptr;
 		}
 		Head = NewHead;
 		Size++;
@@ -203,7 +203,7 @@ public:
 	//--------------------------------------------------
 	void AddTail(const Type& InTail)
 	{
-		if (Head == nullptr)
+		if (IsEmpty())
 		{
 			AddHead(InTail);
 		}
@@ -211,7 +211,7 @@ public:
 		{
 			Tail->Next = new FNode;
 			Tail->Next->Data = InTail;
-			Tail->Next->Previuos = Tail;
+			Tail->Next->previous = Tail;
 			Tail = Tail->Next;
 			
 			Size++;
@@ -231,8 +231,7 @@ public:
 		}
 		else
 		{
-			FNode* Current = GetNode(Index);
-			if (Current == Tail)
+			if (Index == Size)
 			{
 				AddTail(NewData);
 			}
@@ -241,10 +240,12 @@ public:
 				FNode* NewNode = new FNode;
 				NewNode->Data = NewData;
 
-				NewNode->Previuos = Current->Previuos;
-				Current->Previuos->Next = NewNode;
+				FNode* Current = GetNode(Index);
+				NewNode->previous = Current->previous;
+				Current->previous->Next = NewNode;
+
 				NewNode->Next = Current;
-				Current->Previuos = NewNode;	
+				Current->previous = NewNode;	
 
 				Size++;
 			}
@@ -284,11 +285,11 @@ public:
 		{
 			FNode* Current = GetNode(Index);
 			
-			Current->Previuos->Next = Current->Next;
+			Current->previous->Next = Current->Next;
 
 			if (Current->Next != nullptr)
 			{
-				Current->Next->Previuos = Current->Previuos;
+				Current->Next->previous = Current->previous;
 			}
 			
 			delete Current;
@@ -397,7 +398,7 @@ public:
 				Current = Tail;
 				for (int i = Size - 1; i > Index; i--)
 				{
-					Current = Current->Previuos;
+					Current = Current->previous;
 				}
 				return Current;
 			}
@@ -409,20 +410,20 @@ public:
 			if (Index < Size / 2)
 			{
 				Current = Head;
-				for (int i = 0; i < Index / 2; i++)
+				for (int i = 0; i < Index; i++)
 				{
 					Current = Current->Next;
 				}
-				return Current;
+				return Current->Data;
 			}
 			else
 			{
 				Current = Tail;
-				for (int i = Size - 1; i < Index / 2; i--)
+				for (int i = Size - 1; i > Index; i--)
 				{
-					Current = Current->Previuos;
+					Current = Current->previous;
 				}
-				return Current;
+				return Current->Data;
 			}
 		}
 

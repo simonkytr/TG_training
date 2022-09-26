@@ -12,21 +12,25 @@ public:
 		return StackArray.IsEmpty();
 	}
 
+	//---------------------------------------------------------------------------
 	void Push(const Type NewData)
 	{
 		StackArray.AddHead(NewData);
 	}
 
+	//---------------------------------------------------------------------------
 	void Pop()
 	{
 		StackArray.RemoveHead();
 	}
 
+	//---------------------------------------------------------------------------
 	Type& Top()
 	{
 		StackArray.GetHead();
 	}
 
+	//---------------------------------------------------------------------------
 	const Type& Top() const
 	{
 		StackArray.GetHead();

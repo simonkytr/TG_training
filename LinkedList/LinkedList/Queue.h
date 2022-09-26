@@ -12,19 +12,28 @@ public:
 		return Queue.IsEmpty();
 	}
 
+	//---------------------------------------------------------------------------
 	void Enqueue(const Type& NewData)
 	{
 		QueueArray.AddTail(NewData);
 	}
 
+	//---------------------------------------------------------------------------
 	void Dequeue()
 	{
 		QueueArray.RemoveHead();
 	}
 
-	void Front()
+	//---------------------------------------------------------------------------
+	Type& Front()
 	{
-		
 			QueueArray.GetHead();
+	}
+
+	//---------------------------------------------------------------------------
+	const Type& Front() const
+	{
+
+		QueueArray.GetHead();
 	}
 };
