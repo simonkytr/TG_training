@@ -8,20 +8,16 @@ private:
     olc::vf2d OriginPosition;
     olc::vf2d SavedPosition;
 
-    enum EEstate { Formation, Selected, Snake, Dead};
-    EEstate Estate;
-    
-    bool bIsSelected = false;
-    bool bIsSnake = false;
+    float Angle = 0.0f;
     float Marker = 0.0f;
-    //FSpline Path;
+   
     std::vector<FSpline> Paths;
 
-    float x = 0;
-    float y = 0;
-
+    olc::Decal* Decal;
 
 public:
+    enum EEstate {Start, Formation, Selected, Snake};
+    EEstate Estate;
     
     FEnemy(const olc::vf2d& InSize, const olc::vf2d& InPosition, const olc::vf2d& InVelocity);
 
@@ -38,16 +34,10 @@ public:
     void SetSavedPosition(const olc::vf2d& NewPosition);
 
     //--------------------------------------------------------------------------------------------------------------
-    bool IsSelected() const;
+    EEstate GetState() const;
 
     //--------------------------------------------------------------------------------------------------------------
-    void UpdateIsSelected(bool Selection);
-
-    //-------------------------------------------------------------------------------------------------------------
-    bool IsSnake() const;
-
-    //-------------------------------------------------------------------------------------------------------------
-    void UpdateIsSnake(bool Selection);
+    void SetState(EEstate NewState);
 
     //--------------------------------------------------------------------------------------------------------------
     float GetMarker() const;
@@ -66,4 +56,16 @@ public:
 
     //---------------------------------------------------------------------------------------------------------------
     void ActivatePath(float Timer, int PathSelector);
+
+    //---------------------------------------------------------------------------------------------------------------
+    void CalculateAngle(const FSpline& PathToCalculate);
+
+    //---------------------------------------------------------------------------------------------------------------
+    float GetAngle() const;
+
+    //----------------------------------------------------------------------------------------------------------------
+    olc::Decal* GetDecal() const;
+
+    //----------------------------------------------------------------------------------------------------------------
+    void SetDecal( olc::Decal* NewDecal);
 };

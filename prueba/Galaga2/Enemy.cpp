@@ -5,23 +5,26 @@
     {
         OriginPosition = olc::vf2d(0.0f, 0.0f);
         SavedPosition = Position;
-        Paths[0].Points = {
+        
+        FSpline Path;
+        Path.Points = {
             {-20, 200}, //0
-            {10, 10}, //1
+            {-10, 10}, //1
             {30, 85}, //2
             {50, 62}, //3
-             {70, 96}, //4
-             {95, 56}, //5
+             // {70, 96}, //4
+             // {95, 56}, //5
              {60, 86}, //6
-             {45, 50}, //7
+             // {45, 50}, //7
              {20, 70},//8
              {60, 50},//9
-             {60, 30},//9
             {0, 0},
-            {x, y}
+            {70, 0}
         };
+        Paths.push_back(Path);
 
-        Paths[1].Points = {
+        FSpline Path1;
+        Path1.Points = {
             {140, -20}, //0
             {120, 0}, //1
             {30, 65}, //2
@@ -29,11 +32,12 @@
             {55, 46}, //4
             {65, 96}, //5
             {90, 86}, //6
-            {65, 70}, //7
-            // {EndEnemy.x, 160},//9
-            // {EndEnemy.x, 200}//10
+            {70, 0}, //7
+            
         };
+        Paths.push_back(Path1);
     }
+
 
     //--------------------------------------------------------------------------------------------------------------
     const olc::vf2d& FEnemy::GetOriginPosition() const
@@ -60,28 +64,16 @@
     };
 
     //--------------------------------------------------------------------------------------------------------------
-    bool FEnemy::IsSelected() const
+    FEnemy::EEstate FEnemy::GetState() const
     {
-        return bIsSelected;
+        return Estate;
     }
 
     //--------------------------------------------------------------------------------------------------------------
-    void FEnemy::UpdateIsSelected(bool Selection)
+    void FEnemy::SetState(EEstate NewState)
     {
-        bIsSelected = Selection;
+        Estate = NewState;
     }
-
-    //-------------------------------------------------------------------------------------------------------------
-    bool FEnemy::IsSnake() const
-    {
-        return bIsSnake;
-    };
-
-    //-------------------------------------------------------------------------------------------------------------
-    void FEnemy::UpdateIsSnake(bool Selection)
-    {
-        bIsSnake = Selection;
-    };
 
     //--------------------------------------------------------------------------------------------------------------
     float FEnemy::GetMarker() const
@@ -121,21 +113,60 @@
     //---------------------------------------------------------------------------------------------------------------
     void FEnemy::ActivatePath(float Timer, int PathSelector)
     {       
-                
-        Paths[PathSelector].Points[Paths[PathSelector].Points.size() - 2].PositionX = GetSavedPosition().x ;
-        Paths[PathSelector].Points[Paths[PathSelector].Points.size() - 2].PositionY = GetSavedPosition().y;
-        
-        if (GetMarker() < static_cast<float>(Paths[PathSelector].Points.size() - 3.0f))
+        if(PathSelector >= 0 && PathSelector < static_cast<int>(Paths.size()))
         {
-            const FPoint2D Point1 = Paths[PathSelector].GetSplinePoint(GetMarker());
-            SetPosition(olc::vf2d(Point1.PositionX, Point1.PositionY));
-            UpdateMarker(Timer);
+            
+                Paths[PathSelector].Points[Paths[PathSelector].Points.size() - 2].PositionX = GetSavedPosition().x;
+                Paths[PathSelector].Points[Paths[PathSelector].Points.size() - 2].PositionY = GetSavedPosition().y;
+            
+            if(PathSelector != 0)
+            {
+                Paths[PathSelector].Points[1].PositionX = GetSavedPosition().x;
+                Paths[PathSelector].Points[1].PositionY = GetSavedPosition().y;
+            }
+        
+            if (GetMarker() < static_cast<float>(Paths[PathSelector].Points.size() - 3.0f))
+            {
+                const FPoint2D Point1 = Paths[PathSelector].GetSplinePoint(GetMarker());
+                SetPosition(olc::vf2d(Point1.PositionX, Point1.PositionY));
+                CalculateAngle(Paths[PathSelector]);
+                UpdateMarker(Timer);
+            }
+            else
+            {
+                SetState(Formation);
+                SetMarker(0);
+            }
         }
         else
         {
-            UpdateIsSnake(false);
-            UpdateIsSelected(false);
-            SetMarker(0);
+            return;
         }
     }
+
+    //---------------------------------------------------------------------------------------------------------------
+    void FEnemy::CalculateAngle(const FSpline& PathToCalculate)
+    {
+        const FPoint2D Gradient1 = PathToCalculate.GetSplineGradient(Marker);
+        Angle = atan2(-Gradient1.PositionX, -Gradient1.PositionY);
+    };
+
+    //---------------------------------------------------------------------------------------------------------------
+    float FEnemy::GetAngle() const
+    {
+        return Angle;
+    }
+
+//----------------------------------------------------------------------------------------------------------------
+    olc::Decal* FEnemy::GetDecal() const
+    {
+        return Decal;
+    };
+
+//----------------------------------------------------------------------------------------------------------------
+void FEnemy::SetDecal(olc::Decal* NewDecal)
+{
+    Decal = NewDecal;
+};
+
 

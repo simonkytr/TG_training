@@ -11,16 +11,25 @@ bool FGame::HasCollidedBoxBox(const olc::vf2d& SizeBox1, const olc::vf2d& Positi
 //----------------------------------------------------------------------------------------------------------------------
 int FGame::GetRandomEnemy() const
 {
-    return rand() % static_cast<int>(Enemies.size());
+    if(!Enemies.empty())
+    {
+        return rand() % static_cast<int>(Enemies.size());
+    }
+    return -1;
 }
 
 //------------------------------------------------------------------------------------------------------------------
 void FGame::SelectRandomEnemy()
 {
     const int RandomValue = GetRandomEnemy();
+    if(RandomValue == -1)
+    {
+        return;
+    }
+    
     const std::shared_ptr<FEnemy> RandomEnemy = Enemies[RandomValue];
        
-    RandomEnemy->UpdateIsSelected(true);
+    RandomEnemy->SetState(FEnemy::Selected);
 }
 
 //------------------------------------------------------------------------------------------------------------------
