@@ -57,8 +57,8 @@
     }
 
     //--------------------------------------------------------------------------------------------------------------
-    void FSpaceObject::IsDeadTrue()
+    void FSpaceObject::UpdateIsDead(bool IsDead)
     {
-        bIsDead = true;
+        bIsDead = IsDead;
     }
   
