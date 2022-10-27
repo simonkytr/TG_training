@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "Shooter",
+			"Path": "C:\\Users\\dguerrero\\Documents\\GitHub\\TG_training\\Shooter\\Source\\Shooter.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "ShooterEditor",
+			"Path": "C:\\Users\\dguerrero\\Documents\\GitHub\\TG_training\\Shooter\\Source\\ShooterEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

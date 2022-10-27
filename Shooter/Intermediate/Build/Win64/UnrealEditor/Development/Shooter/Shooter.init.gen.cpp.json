@@ -1,0 +1,13 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\dguerrero\\documents\\github\\tg_training\\shooter\\intermediate\\build\\win64\\unrealeditor\\inc\\shooter\\shooter.init.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\dguerrero\\documents\\github\\tg_training\\shooter\\intermediate\\build\\win64\\shootereditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
+        "Includes": [
+            "c:\\users\\dguerrero\\documents\\github\\tg_training\\shooter\\intermediate\\build\\win64\\unrealeditor\\development\\shooter\\definitions.shooter.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
